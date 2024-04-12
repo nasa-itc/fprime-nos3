@@ -77,11 +77,14 @@
         <channel name="systemResources.CPU_14"/>
         <channel name="systemResources.CPU_15"/>
     </packet>
-
+    
     <!-- Ignored packets -->
 
     <ignore>
         <channel name="cmdDisp.CommandErrors"/>
         <channel name="sampleSim.GreetingCount"/>
+        <channel name="sampleSim.DeviceCounter"/>
+        <channel name="sampleSim.DeviceConfig"/>
+        <channel name="sampleSim.DeviceStatus"/>
     </ignore>
 </packets>

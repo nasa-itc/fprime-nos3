@@ -44,6 +44,16 @@ namespace Components {
           const Fw::CmdStringArg& greeting //!< Greeting to repeat in the Hello event
       ) override;
 
+      void REQUEST_HOUSEKEEPING_cmdHandler(
+        FwOpcodeType opCode, 
+        U32 cmdSeq
+      ) override;
+
+      void NOOP_cmdHandler(
+        FwOpcodeType opCode, 
+        U32 cmdSeq
+      )override;
+
   };
 
 }

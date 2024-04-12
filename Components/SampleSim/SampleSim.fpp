@@ -14,8 +14,30 @@ module Components {
             greeting: string size 20 @< Greeting supplied from the SAY_HELLO command
         ) severity activity high format "I say: {}"
 
+        @ Command to Request Housekeeping
+        async command REQUEST_HOUSEKEEPING(
+        )
+
+        @ Command to issue noop
+        async command NOOP(
+        )
+
+        @ Greeting event with maximum greeting length of 30 characters
+        event TELEM(
+            log_info: string size 30 @< 
+        ) severity activity high format "SampleSim: {}"
+
         @ A count of the number of greetings issued
         telemetry GreetingCount: U32
+
+         @ A count of the number of greetings issued
+        telemetry DeviceCounter: U32
+
+         @ A count of the number of greetings issued
+        telemetry DeviceConfig: U32
+
+         @ A count of the number of greetings issued
+        telemetry DeviceStatus: U32
 
         ##############################################################################
         #### Uncomment the following examples to start customizing your component ####
@@ -65,6 +87,7 @@ module Components {
 
         @Port to set the value of a parameter
         param set port prmSetOut
+
 
     }
 }
