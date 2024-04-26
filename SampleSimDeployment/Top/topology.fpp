@@ -33,7 +33,6 @@ module SampleSimDeployment {
     instance fileUplink
     instance bufferManager
     instance framer
-    instance posixTime
     instance prmDb
     instance rateGroup1
     instance rateGroup2
@@ -42,6 +41,7 @@ module SampleSimDeployment {
     instance textLogger
     instance systemResources
     instance sampleSim
+    instance nos3Time
 
     # ----------------------------------------------------------------------
     # Pattern graph specifiers
@@ -57,7 +57,7 @@ module SampleSimDeployment {
 
     text event connections instance textLogger
 
-    time connections instance posixTime
+    time connections instance nos3Time
 
     health connections instance $health
 
