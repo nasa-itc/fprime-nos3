@@ -7,12 +7,12 @@
 #
 ####
 
-include_directories("../../../../../../fsw/apps/hwlib/sim/inc")
+include_directories("../../../../../fsw/apps/hwlib/sim/inc")
 
 set(SOURCE_FILES
   "${CMAKE_CURRENT_LIST_DIR}/Nos3Time.fpp"
   "${CMAKE_CURRENT_LIST_DIR}/Nos3Time.cpp"
-  "${CMAKE_CURRENT_LIST_DIR}/../../../../../../fsw/apps/hwlib/sim/inc/nos_link.h"
+  "${CMAKE_CURRENT_LIST_DIR}/../../../../../fsw/apps/hwlib/sim/inc/nos_link.h"
 )
 
 # Uncomment and add any modules that this component depends on, else

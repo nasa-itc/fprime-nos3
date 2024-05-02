@@ -20,11 +20,11 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${_ITC_CMAKE_MODULES_})
 
 find_package(NOSENGINE REQUIRED QUIET COMPONENTS common transport client uart can i2c spi)
 
-include_directories("../../../../fsw/src")
-include_directories("../../.././")
-include_directories("../../../../../../fsw/apps/hwlib/fsw/public_inc")
-include_directories("../../../../fsw/platform_inc")
-include_directories("../../../../../../fsw/apps/hwlib/sim/inc")
+include_directories("../../../../../components/sample/fsw/src")
+include_directories("../../.././") #device_cfg.h
+include_directories("../../../../../fsw/apps/hwlib/fsw/public_inc")
+include_directories("../../../../../components/sample/fsw/platform_inc")
+include_directories("../../../../../fsw/apps/hwlib/sim/inc")
 
 
 set(SOURCE_FILES
@@ -35,14 +35,14 @@ set(SOURCE_FILES
 
   #ITC STUFF
   "${CMAKE_CURRENT_LIST_DIR}/../../../device_cfg.h"
-  "${CMAKE_CURRENT_LIST_DIR}/../../../../../../fsw/apps/hwlib/fsw/public_inc/hwlib.h"
-  "${CMAKE_CURRENT_LIST_DIR}/../../../../fsw/src/sample_device.h"
-  "${CMAKE_CURRENT_LIST_DIR}/../../../../fsw/platform_inc/sample_platform_cfg.h"
-  "${CMAKE_CURRENT_LIST_DIR}/../../../../../../fsw/apps/hwlib/sim/src/libuart.c"
-  "${CMAKE_CURRENT_LIST_DIR}/../../../../../../fsw/apps/hwlib/sim/src/libcan.c"
-  "${CMAKE_CURRENT_LIST_DIR}/../../../../../../fsw/apps/hwlib/sim/src/libi2c.c"
-  "${CMAKE_CURRENT_LIST_DIR}/../../../../../../fsw/apps/hwlib/sim/src/libspi.c"
-  "${CMAKE_CURRENT_LIST_DIR}/../../../../../../fsw/apps/hwlib/sim/src/nos_link.c"
+  "${CMAKE_CURRENT_LIST_DIR}/../../../../../fsw/apps/hwlib/fsw/public_inc/hwlib.h"
+  "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/sample/fsw/src/sample_device.h"
+  "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/sample/fsw/platform_inc/sample_platform_cfg.h"
+  "${CMAKE_CURRENT_LIST_DIR}/../../../../../fsw/apps/hwlib/sim/src/libuart.c"
+  "${CMAKE_CURRENT_LIST_DIR}/../../../../../fsw/apps/hwlib/sim/src/libcan.c"
+  "${CMAKE_CURRENT_LIST_DIR}/../../../../../fsw/apps/hwlib/sim/src/libi2c.c"
+  "${CMAKE_CURRENT_LIST_DIR}/../../../../../fsw/apps/hwlib/sim/src/libspi.c"
+  "${CMAKE_CURRENT_LIST_DIR}/../../../../../fsw/apps/hwlib/sim/src/nos_link.c"
 )
 set(MOD_DEPS
   Fw/Logger
