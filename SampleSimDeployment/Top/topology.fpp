@@ -42,7 +42,7 @@ module SampleSimDeployment {
     instance systemResources
     instance sampleSim
     instance nos3Time
-
+    instance generic_mag
     # ----------------------------------------------------------------------
     # Pattern graph specifiers
     # ----------------------------------------------------------------------
