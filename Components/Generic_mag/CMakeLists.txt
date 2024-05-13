@@ -8,7 +8,7 @@
 ####
 #ITC Changes
 include_directories("../../../../../components/generic_mag/fsw/src")
-include_directories("../../.././") #device_cfg.h
+include_directories("../../../../../components/generic_mag/support/") #device_cfg.h
 include_directories("../../../../../fsw/apps/hwlib/fsw/public_inc")
 include_directories("../../../../../components/generic_mag/fsw/platform_inc")
 
@@ -20,7 +20,7 @@ set(SOURCE_FILES
   "${CMAKE_CURRENT_LIST_DIR}/Generic_mag.fpp"
   "${CMAKE_CURRENT_LIST_DIR}/Generic_mag.cpp"
   "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_mag/fsw/src/generic_mag_device.h"
-  "${CMAKE_CURRENT_LIST_DIR}/../../../device_cfg.h"
+  "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_mag/support/device_cfg.h"
   "${CMAKE_CURRENT_LIST_DIR}/../../../../../fsw/apps/hwlib/fsw/public_inc/hwlib.h"
   "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_mag/fsw/platform_inc/generic_mag_platform_cfg.h"
 
