@@ -5,7 +5,23 @@ module Components {
         # One async command/port is required for active components
         # This should be overridden by the developers with a useful command/port
         @ TODO
-        async command TODO opcode 0
+        @ Command to Request Housekeeping
+        async command REQUEST_HOUSEKEEPING(
+        )
+
+        @ event with maximum greeting length of 30 characters
+        event TELEM(
+            log_info: string size 30 @< 
+        ) severity activity high format "Generic_star_tracker: {}"
+
+        @ A count of the number of greetings issued
+        telemetry DeviceCounter: U32
+
+        #@ A count of the number of greetings issued
+        #telemetry DeviceConfig: U32
+
+        #@ A count of the number of greetings issued
+        #telemetry DeviceStatus: U32
 
         ##############################################################################
         #### Uncomment the following examples to start customizing your component ####

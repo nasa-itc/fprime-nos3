@@ -43,6 +43,7 @@ module SampleSimDeployment {
     instance sampleSim
     instance nos3Time
     instance generic_mag
+    instance generic_star_tracker
     # ----------------------------------------------------------------------
     # Pattern graph specifiers
     # ----------------------------------------------------------------------

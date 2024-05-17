@@ -16,10 +16,10 @@ set(SOURCE_FILES
   "${CMAKE_CURRENT_LIST_DIR}/Generic_eps.fpp"
   "${CMAKE_CURRENT_LIST_DIR}/Generic_eps.cpp"
 
-  "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_eps/fsw/src/generic_eps_device.h"
-  "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_eps/support/device_cfg.h"
-  "${CMAKE_CURRENT_LIST_DIR}/../../../../../fsw/apps/hwlib/fsw/public_inc/hwlib.h"
-  "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_eps/fsw/platform_inc/generic_eps_platform_cfg.h"
+  "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_eps/fsw/src/generic_eps_device.c"
+  # "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_eps/support/device_cfg.h"
+  # "${CMAKE_CURRENT_LIST_DIR}/../../../../../fsw/apps/hwlib/fsw/public_inc/hwlib.h"
+  # "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_eps/fsw/platform_inc/generic_eps_platform_cfg.h"
 )
 
 # Uncomment and add any modules that this component depends on, else
