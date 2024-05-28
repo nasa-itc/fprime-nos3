@@ -8,6 +8,9 @@ module Components {
         @ Command to Request Housekeeping
         async command REQUEST_HOUSEKEEPING(
         )
+        @ Command to Request Housekeeping
+        async command NOOP(
+        )
 
         @ event with maximum greeting length of 30 characters
         event TELEM(

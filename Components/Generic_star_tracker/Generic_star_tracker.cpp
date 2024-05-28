@@ -54,6 +54,42 @@ namespace Components {
   //   this->cmdResponse_out(opCode, cmdSeq, Fw::CmdResponse::OK);
   // }
 
+  // CMD_NOOP
+  void Generic_star_tracker :: NOOP_cmdHandler(FwOpcodeType opCode, U32 cmdSeq) {
+
+    int32_t status = OS_SUCCESS;
+    uint32_t  DeviceCounter;
+
+     /* Open device specific protocols */
+    Generic_star_trackerUart.deviceString = GENERIC_STAR_TRACKER_CFG_STRING;
+    Generic_star_trackerUart.handle = GENERIC_STAR_TRACKER_CFG_HANDLE;
+    Generic_star_trackerUart.isOpen = PORT_CLOSED;
+    Generic_star_trackerUart.baud = GENERIC_STAR_TRACKER_CFG_BAUDRATE_HZ;
+    status = uart_init_port(&Generic_star_trackerUart);
+    //  if (status == OS_SUCCESS)
+    // {
+    //     printf("UART device %s configured with baudrate %d \n", Generic_star_trackerUart.deviceString, Generic_star_trackerUart.baud);
+    // }
+    // else
+    // {
+    //     printf("UART device %s failed to initialize! \n", Generic_star_trackerUart.deviceString);
+    // }
+    
+    status = GENERIC_STAR_TRACKER_CommandDevice(&Generic_star_trackerUart, GENERIC_STAR_TRACKER_DEVICE_NOOP_CMD, 0);
+    if (status == OS_SUCCESS)
+    {
+        this->log_ACTIVITY_HI_TELEM("Star Tracker NOOP command success\n");
+    }
+    else
+    {
+        this->log_ACTIVITY_HI_TELEM("Star Tracker NOOP command failed!\n");
+    }
+    
+    // Tell the fprime command system that we have completed the processing of the supplied command with OK status
+    this->cmdResponse_out(opCode, cmdSeq, Fw::CmdResponse::OK);
+  }
+
+  // GENERIC_STAR_TRACKER_RequestHK
   void Generic_star_tracker :: REQUEST_HOUSEKEEPING_cmdHandler(FwOpcodeType opCode, U32 cmdSeq) {
 
     int32_t status = OS_SUCCESS;

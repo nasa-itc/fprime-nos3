@@ -11,6 +11,12 @@ include_directories("../../../../../components/generic_imu/fsw/src")
 include_directories("../../../../../components/generic_imu/support/") #device_cfg.h
 include_directories("../../../../../fsw/apps/hwlib/fsw/public_inc")
 include_directories("../../../../../components/generic_imu/fsw/platform_inc")
+include_directories("../../../../../fsw/cfe/modules/core_api/fsw/inc/") #cfe_endian.h
+include_directories("../../../../../fsw/osal/src/os/inc/") #common_types.h
+include_directories("../../../../../fsw/osal/") #osconfig.h
+# include_directories("../../../../../cfg/nos3_defs/") #cfe_mission_cfg.h
+# /home/jstar/dev/nos3/cfg/nos3_defs
+# /home/jstar/dev/nos3/fsw/osal/src/os/inc
 
 set(SOURCE_FILES
   "${CMAKE_CURRENT_LIST_DIR}/Generic_imu.fpp"

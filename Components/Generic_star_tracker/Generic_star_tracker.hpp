@@ -48,6 +48,10 @@ namespace Components {
         U32 cmdSeq
       ) override;
 
+      void NOOP_cmdHandler(
+        FwOpcodeType opCode, 
+        U32 cmdSeq
+      ) override;
   };
 
 }
