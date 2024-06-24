@@ -8,7 +8,7 @@ module Components {
         @ Command to Request Housekeeping
         async command REQUEST_HOUSEKEEPING(
         )
-        @ Command to Request Housekeeping
+        @ Command to send NOOP
         async command NOOP(
         )
 
