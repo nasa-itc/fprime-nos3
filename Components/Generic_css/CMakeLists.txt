@@ -7,16 +7,16 @@
 #
 ####
 #ITC Changes
-include_directories("../../../../../components/generic_css/fsw/src")
+include_directories("../../../../../components/generic_css/fsw/cfs/src")
 include_directories("../../../../../components/generic_css/support/") #device_cfg.h
 include_directories("../../../../../fsw/apps/hwlib/fsw/public_inc")
-include_directories("../../../../../components/generic_css/fsw/platform_inc")
+include_directories("../../../../../components/generic_css/fsw/cfs/platform_inc")
 
 set(SOURCE_FILES
   "${CMAKE_CURRENT_LIST_DIR}/Generic_css.fpp"
   "${CMAKE_CURRENT_LIST_DIR}/Generic_css.cpp"
 
-  "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_css/fsw/src/generic_css_device.c"
+  "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_css/fsw/cfs/src/generic_css_device.c"
   # "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_css/support/device_cfg.c"
   # "${CMAKE_CURRENT_LIST_DIR}/../../../../../fsw/apps/hwlib/fsw/public_inc/hwlib.h"
   # "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_css/fsw/platform_inc/generic_css_platform_cfg.h"

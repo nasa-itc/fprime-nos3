@@ -7,16 +7,16 @@
 #
 ####
 #ITC Changes
-include_directories("../../../../../components/generic_eps/fsw/src")
+include_directories("../../../../../components/generic_eps/fsw/cfs/src")
 include_directories("../../../../../components/generic_eps/support/") #device_cfg.h
 include_directories("../../../../../fsw/apps/hwlib/fsw/public_inc")
-include_directories("../../../../../components/generic_eps/fsw/platform_inc")
+include_directories("../../../../../components/generic_eps/fsw/cfs/platform_inc")
 
 set(SOURCE_FILES
   "${CMAKE_CURRENT_LIST_DIR}/Generic_eps.fpp"
   "${CMAKE_CURRENT_LIST_DIR}/Generic_eps.cpp"
 
-  "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_eps/fsw/src/generic_eps_device.c"
+  "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_eps/fsw/cfs/src/generic_eps_device.c"
   # "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_eps/support/device_cfg.h"
   # "${CMAKE_CURRENT_LIST_DIR}/../../../../../fsw/apps/hwlib/fsw/public_inc/hwlib.h"
   # "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_eps/fsw/platform_inc/generic_eps_platform_cfg.h"

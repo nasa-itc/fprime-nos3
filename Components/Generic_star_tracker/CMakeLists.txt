@@ -7,16 +7,16 @@
 #
 ####
 #ITC Changes
-include_directories("../../../../../components/generic_star_tracker/fsw/src")
+include_directories("../../../../../components/generic_star_tracker/fsw/cfs/src")
 include_directories("../../../../../components/generic_star_tracker/support/") #device_cfg.h
 include_directories("../../../../../fsw/apps/hwlib/fsw/public_inc")
-include_directories("../../../../../components/generic_star_tracker/fsw/platform_inc")
+include_directories("../../../../../components/generic_star_tracker/fsw/cfs/platform_inc")
 message(INFO,"${CMAKE_CURRENT_LIST_DIR}")
 set(SOURCE_FILES
   "${CMAKE_CURRENT_LIST_DIR}/Generic_star_tracker.fpp"
   "${CMAKE_CURRENT_LIST_DIR}/Generic_star_tracker.cpp"
 
-  "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_star_tracker/fsw/src/generic_star_tracker_device.c"
+  "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_star_tracker/fsw/cfs/src/generic_star_tracker_device.c"
   # "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_star_tracker/support/device_cfg.h"
   # "${CMAKE_CURRENT_LIST_DIR}/../../../../../fsw/apps/hwlib/fsw/public_inc/hwlib.h"
   # "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_star_tracker/fsw/platform_inc/generic_star_tracker_platform_cfg.h"
