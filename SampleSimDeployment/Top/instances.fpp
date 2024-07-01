@@ -102,6 +102,11 @@ module SampleSimDeployment {
     stack size Default.STACK_SIZE \
     priority 50
 
+  instance generic_radio: Components.Generic_radio base id 0xE100 \
+    queue size Default.QUEUE_SIZE \
+    stack size Default.STACK_SIZE \
+    priority 50
+
   # ----------------------------------------------------------------------
   # Queued component instances
   # ----------------------------------------------------------------------

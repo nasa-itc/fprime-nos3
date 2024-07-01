@@ -16,7 +16,8 @@ extern "C"{
 /*
 ** Global Variables
 */
-socket_info_t Generic_radioUart;
+// socket_info_t Generic_radioUart;
+uart_info_t Generic_radioUart;
 GENERIC_RADIO_Device_HK_tlm_t Generic_radioHK;
 // GENERIC_RADIO_Device_Data_tlm_t Generic_radioData;
 
@@ -54,6 +55,29 @@ void init_socket_data() {
     GENERIC_RADIO_AppData.RadioSocket.connected = false;
 
     status = socket_create(&GENERIC_RADIO_AppData.RadioSocket);
+    if (status != SOCKET_SUCCESS)
+    {
+       printf("radio socket failed to create");
+    }
+
+    GENERIC_RADIO_AppData.ProxySocket.sockfd = -1;
+    GENERIC_RADIO_AppData.ProxySocket.port_num = GENERIC_RADIO_CFG_UDP_PROX_TO_FSW;
+    GENERIC_RADIO_AppData.ProxySocket.ip_address = GENERIC_RADIO_CFG_FSW_IP;
+    GENERIC_RADIO_AppData.ProxySocket.address_family = ip_ver_4;
+    GENERIC_RADIO_AppData.ProxySocket.type = dgram;
+    GENERIC_RADIO_AppData.ProxySocket.category = client;
+    GENERIC_RADIO_AppData.ProxySocket.block = false;
+    GENERIC_RADIO_AppData.ProxySocket.keep_alive = false;
+    GENERIC_RADIO_AppData.ProxySocket.created = false;
+    GENERIC_RADIO_AppData.ProxySocket.bound = false;
+    GENERIC_RADIO_AppData.ProxySocket.listening = false;
+    GENERIC_RADIO_AppData.ProxySocket.connected = false;
+
+  status = socket_create(&GENERIC_RADIO_AppData.ProxySocket);
+  if (status != SOCKET_SUCCESS)
+    {
+       printf("proxy socket failed to create");
+    }
 
 }
 
@@ -100,11 +124,19 @@ namespace Components {
     init_socket_data();
 
      /* Open device specific protocols */ //needs to be changed for socket_infot_t
-    // Generic_radioUart.deviceString = GENERIC_RADIO_CFG_STRING;
-    // Generic_radioUart.handle = GENERIC_RADIO_CFG_HANDLE;
-    // Generic_radioUart.isOpen = PORT_CLOSED;
-    // Generic_radioUart.baud = GENERIC_RADIO_CFG_BAUDRATE_HZ;
-    // status = uart_init_port(&Generic_radioUart);
+    Generic_radioUart.deviceString = GENERIC_RADIO_CFG_STRING;
+    Generic_radioUart.handle = GENERIC_RADIO_CFG_HANDLE;
+    Generic_radioUart.isOpen = PORT_CLOSED;
+    Generic_radioUart.baud = GENERIC_RADIO_CFG_BAUDRATE_HZ;
+    status = uart_init_port(&Generic_radioUart);
+    if (status == OS_SUCCESS)
+    {
+        printf("UART device %s configured with baudrate %d \n", Generic_radioUart.deviceString, Generic_radioUart.baud);
+    }
+    else
+    {
+        printf("UART device %s failed to initialize! \n", Generic_radioUart.deviceString);
+    }
     
     status = GENERIC_RADIO_RequestHK(&GENERIC_RADIO_AppData.RadioSocket, &GENERIC_RADIO_AppData.HkTelemetryPkt);
     if (status == OS_SUCCESS)
@@ -115,6 +147,8 @@ namespace Components {
     {
         // this->log_ACTIVITY_HI_TELEM("RequestHK command failed!\n");
     }
+
+    
 
     // DeviceCounter = Generic_radioHK.DeviceCounter;
     DeviceCounter = GENERIC_RADIO_AppData.HkTelemetryPkt.DeviceCounter;
