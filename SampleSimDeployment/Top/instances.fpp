@@ -92,6 +92,21 @@ module SampleSimDeployment {
     stack size Default.STACK_SIZE \
     priority 50
 
+  instance generic_mag: Components.Generic_mag base id 0xEF00 \
+    queue size Default.QUEUE_SIZE \
+    stack size Default.STACK_SIZE \
+    priority 50
+
+  instance generic_star_tracker: Components.Generic_star_tracker base id 0xE000 \
+    queue size Default.QUEUE_SIZE \
+    stack size Default.STACK_SIZE \
+    priority 50
+
+  instance generic_radio: Components.Generic_radio base id 0xE100 \
+    queue size Default.QUEUE_SIZE \
+    stack size Default.STACK_SIZE \
+    priority 50
+
   # ----------------------------------------------------------------------
   # Queued component instances
   # ----------------------------------------------------------------------
