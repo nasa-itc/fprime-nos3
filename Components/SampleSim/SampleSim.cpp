@@ -32,13 +32,17 @@ namespace Components {
     SampleSim(const char *const compName) : SampleSimComponentBase(compName),
     m_greetingCount(0)
 {
-
+    SampleUart.deviceString = SAMPLE_CFG_STRING;
+    SampleUart.handle = SAMPLE_CFG_HANDLE;
+    SampleUart.isOpen = PORT_CLOSED;
+    SampleUart.baud = SAMPLE_CFG_BAUDRATE_HZ;
+    status = uart_init_port(&SampleUart);
 }
   
   SampleSim ::
     ~SampleSim()
   {
-
+      status = uart_close_port(&SampleUart);
   }
 
   // ----------------------------------------------------------------------
@@ -52,36 +56,13 @@ namespace Components {
     this->log_ACTIVITY_HI_Hello(eventGreeting);
     
     this->tlmWrite_GreetingCount(++this->m_greetingCount);
-    
-    
-
-    SampleUart.deviceString = SAMPLE_CFG_STRING;
-    SampleUart.handle = SAMPLE_CFG_HANDLE;
-    SampleUart.isOpen = PORT_CLOSED;
-    SampleUart.baud = SAMPLE_CFG_BAUDRATE_HZ;
-
-    printf("sleeping 3 seconds\n");
-    sleep(3);
-    
-
-    status = uart_init_port(&SampleUart);
-    // for (int i=0;i<2;i++) status = SAMPLE_CommandDevice(&SampleUart, SAMPLE_DEVICE_NOOP_CMD, 0);
-    status = SAMPLE_CommandDevice(&SampleUart, SAMPLE_DEVICE_NOOP_CMD, 0);
-    printf("Done sending noop command from fprime\n");
-
+ 
     // Tell the fprime command system that we have completed the processing of the supplied command with OK status
     this->cmdResponse_out(opCode, cmdSeq, Fw::CmdResponse::OK);
   }
 
   void SampleSim :: NOOP_cmdHandler(FwOpcodeType opCode, U32 cmdSeq) {
-  
-    SampleUart.deviceString = SAMPLE_CFG_STRING;
-    SampleUart.handle = SAMPLE_CFG_HANDLE;
-    SampleUart.isOpen = PORT_CLOSED;
-    SampleUart.baud = SAMPLE_CFG_BAUDRATE_HZ;
-    
 
-    status = uart_init_port(&SampleUart);
     status = SAMPLE_CommandDevice(&SampleUart, SAMPLE_DEVICE_NOOP_CMD, 0);
     this->log_ACTIVITY_HI_TELEM("NOOP SENT");
     // Tell the fprime command system that we have completed the processing of the supplied command with OK status
@@ -90,17 +71,6 @@ namespace Components {
 
   void SampleSim :: REQUEST_HOUSEKEEPING_cmdHandler(FwOpcodeType opCode, U32 cmdSeq) {
     
-    SampleUart.deviceString = SAMPLE_CFG_STRING;
-    SampleUart.handle = SAMPLE_CFG_HANDLE;
-    SampleUart.isOpen = PORT_CLOSED;
-    SampleUart.baud = SAMPLE_CFG_BAUDRATE_HZ;
-
-    // printf("sleeping 3 seconds\n");
-    // this->log_ACTIVITY_HI_Hello("SLEEPING 3 SECONDS");
-    // sleep(3);
-    
-
-    status = uart_init_port(&SampleUart);
     
     status = SAMPLE_RequestHK(&SampleUart, &SampleHK);
     if (status == OS_SUCCESS)
