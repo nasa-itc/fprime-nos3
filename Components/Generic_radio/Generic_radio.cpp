@@ -153,7 +153,7 @@ namespace Components {
     Generic_radio(const char* const compName) :
       Generic_radioComponentBase(compName)
   {
-        GENERIC_RADIO_AppInit();
+        // GENERIC_RADIO_AppInit();
   }
 
   Generic_radio ::

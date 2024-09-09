@@ -24,7 +24,7 @@ set(SOURCE_FILES
   "${CMAKE_CURRENT_LIST_DIR}/Generic_radio.cpp"
 
   "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_radio/fsw/fprime/src/generic_radio_device.c" 
-  "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_radio/fsw/fprime/src/generic_radio_app.c"
+  # "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_radio/fsw/fprime/src/generic_radio_app.c"
   # "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_radio/support/device_cfg.h"
   # "${CMAKE_CURRENT_LIST_DIR}/../../../../../fsw/apps/hwlib/fsw/public_inc/hwlib.h"
   # "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_radio/fsw/platform_inc/generic_radio_platform_cfg.h"

@@ -64,7 +64,7 @@ set(SOURCE_FILES
 "${CMAKE_CURRENT_LIST_DIR}/../../../../fsw/apps/hwlib/sim/src/libspi.c"
 "${CMAKE_CURRENT_LIST_DIR}/../../../../fsw/apps/hwlib/sim/src/nos_link.c"
 "${CMAKE_CURRENT_LIST_DIR}/../../../../components/generic_radio/fsw/fprime/src/generic_radio_device.c" 
-"${CMAKE_CURRENT_LIST_DIR}/../../../../components/generic_radio/fsw/fprime/src/generic_radio_app.c"
+# "${CMAKE_CURRENT_LIST_DIR}/../../../../components/generic_radio/fsw/fprime/src/generic_radio_app.c"
 )
 
 

@@ -54,7 +54,7 @@ set(SOURCE_FILES
   "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_star_tracker/fsw/fprime/src/generic_star_tracker_device.c"
   "${CMAKE_CURRENT_LIST_DIR}/../../../../../fsw/apps/hwlib/sim/src/libsocket.c"
   "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_radio/fsw/fprime/src/generic_radio_device.c" 
-  "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_radio/fsw/fprime/src/generic_radio_app.c"
+  # "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_radio/fsw/fprime/src/generic_radio_app.c"
   # "${CMAKE_CURRENT_LIST_DIR}/../../../../../fsw/apps/hwlib/fsw/public_inc/hwlib.h"
   "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/sample/fsw/fprime/src/sample_device.c"
   # "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/sample/fsw/platform_inc/sample_platform_cfg.h"
