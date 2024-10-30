@@ -5,6 +5,7 @@
 // ======================================================================
 
 #include "Components/SampleSim/SampleSim.hpp"
+#include <Fw/Logger/Logger.hpp>
 #include "FpConfig.hpp"
 
 extern "C"{
@@ -65,6 +66,9 @@ namespace Components {
 
     status = SAMPLE_CommandDevice(&SampleUart, SAMPLE_DEVICE_NOOP_CMD, 0);
     this->log_ACTIVITY_HI_TELEM("NOOP SENT");
+    // Fw::Logger::logMsg("testing ZL noop\n");
+    
+    // this->log_ACTIVITY_HI_TEXTTELEM("NOOP SENT");
     // Tell the fprime command system that we have completed the processing of the supplied command with OK status
     this->cmdResponse_out(opCode, cmdSeq, Fw::CmdResponse::OK);
   }

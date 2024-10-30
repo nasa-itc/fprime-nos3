@@ -12,7 +12,7 @@ include_directories("../../../../../components/generic_mag/support/") #device_cf
 include_directories("../../../../../fsw/apps/hwlib/fsw/public_inc")
 include_directories("../../../../../components/generic_mag/fsw/fprime/platform_inc")
 
-include_directories("../../../../../components/sample/fsw/fprime/src")
+include_directories("../../../../../components/sample/fsw/shared")
 include_directories("../../../../../components/sample/fsw/fprime/platform_inc")
 
 set(SOURCE_FILES
@@ -23,7 +23,7 @@ set(SOURCE_FILES
   # "${CMAKE_CURRENT_LIST_DIR}/../../../../../fsw/apps/hwlib/fsw/public_inc/hwlib.h"
   # "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_mag/fsw/platform_inc/generic_mag_platform_cfg.h"
 
-  "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/sample/fsw/fprime/src/sample_device.c"
+  "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/sample/fsw/shared/sample_device.c"
   # "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/sample/fsw/platform_inc/sample_platform_cfg.h"
 )
 

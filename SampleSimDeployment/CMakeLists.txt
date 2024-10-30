@@ -30,8 +30,8 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${_ITC_CMAKE_MODULES_})
 
 find_package(NOSENGINE REQUIRED QUIET COMPONENTS common transport client uart can i2c spi)
 
-include_directories("../../../../components/sample/fsw/fprime/src")
-include_directories("../../../../components/sample/support/") #device_cfg.h
+include_directories("../../../../components/sample/fsw/shared")#sample_device.h
+include_directories("../../../../components/sample/fsw/standalone") #device_cfg.h
 include_directories("../../../../fsw/apps/hwlib/fsw/public_inc")
 include_directories("../../../../components/sample/fsw/fprime/platform_inc")
 include_directories("../../../../fsw/apps/hwlib/sim/inc")
@@ -49,7 +49,7 @@ set(SOURCE_FILES
 
 #ITC STUFF
 # "${CMAKE_CURRENT_LIST_DIR}/../../../../components/sample/fsw/src/sample_device.h"
-"${CMAKE_CURRENT_LIST_DIR}/../../../../components/sample/fsw/fprime/src/sample_device.c"
+"${CMAKE_CURRENT_LIST_DIR}/../../../../components/sample/fsw/shared/sample_device.c"
 # "${CMAKE_CURRENT_LIST_DIR}/../../../../components/sample/support/device_cfg.h"
 # "${CMAKE_CURRENT_LIST_DIR}/../../../../components/generic_star_tracker/support/device_cfg.h"
 # "${CMAKE_CURRENT_LIST_DIR}/../../../../components/generic_star_tracker/fsw/platform_inc/generic_star_tracker_platform_cfg.h"
