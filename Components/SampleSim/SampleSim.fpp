@@ -22,6 +22,10 @@ module Components {
         async command NOOP(
         )
 
+        @ Command to initialize Sequence Sample HK
+        async command SAMPLE_SEQ(
+        )
+
         @ Greeting event with maximum greeting length of 30 characters
         event TELEM(
             log_info: string size 30 @< 

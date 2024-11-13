@@ -54,6 +54,11 @@ namespace Components {
         U32 cmdSeq
       )override;
 
+       void SAMPLE_SEQ_cmdHandler(
+        FwOpcodeType opCode, 
+        U32 cmdSeq
+      )override;
+
   };
 
 }

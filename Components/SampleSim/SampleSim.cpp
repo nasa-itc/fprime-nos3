@@ -60,6 +60,8 @@ namespace Components {
  
     // Tell the fprime command system that we have completed the processing of the supplied command with OK status
     this->cmdResponse_out(opCode, cmdSeq, Fw::CmdResponse::OK);
+
+    
   }
 
   void SampleSim :: NOOP_cmdHandler(FwOpcodeType opCode, U32 cmdSeq) {
@@ -96,6 +98,33 @@ namespace Components {
     
     // Tell the fprime command system that we have completed the processing of the supplied command with OK status
     this->cmdResponse_out(opCode, cmdSeq, Fw::CmdResponse::OK);
+  }
+
+  void SampleSim :: SAMPLE_SEQ_cmdHandler(FwOpcodeType opCode, U32 cmdSeq) {
+    
+  for(int i=0;i<5;i++){
+    sleep(1);
+    status = SAMPLE_RequestHK(&SampleUart, &SampleHK);
+    if (status == OS_SUCCESS)
+    {
+        this->log_ACTIVITY_HI_TELEM("RequestHK command success\n");
+    }
+    else
+    {
+        this->log_ACTIVITY_HI_TELEM("RequestHK command failed!\n");
+    }
+
+    DeviceCounter = SampleHK.DeviceCounter;
+    DeviceConfig =  SampleHK.DeviceConfig;
+    DeviceStatus = SampleHK.DeviceStatus;
+
+    this->tlmWrite_DeviceCounter(DeviceCounter);
+    this->tlmWrite_DeviceConfig(DeviceConfig);
+    this->tlmWrite_DeviceStatus(DeviceStatus);
+
+    this->cmdResponse_out(opCode, cmdSeq, Fw::CmdResponse::OK);
+
+    }
   }
 
 }
