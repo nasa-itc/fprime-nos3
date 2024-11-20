@@ -22,6 +22,8 @@ uint32_t  DeviceCounter;
 uint32_t  DeviceConfig;
 uint32_t  DeviceStatus;
 
+// int seq_toggle = 0;
+
 
 namespace Components {
 
@@ -102,8 +104,16 @@ namespace Components {
 
   void SampleSim :: SAMPLE_SEQ_cmdHandler(FwOpcodeType opCode, U32 cmdSeq) {
     
-  for(int i=0;i<5;i++){
+  // seq_toggle = 1;
+  
+  for(int i=0;i<20;i++){
+  // while(1){
     sleep(1);
+    // printf("seq toggle is equal to %d \n", seq_toggle);
+    // if(seq_toggle==0){
+    //   break;
+    // }
+
     status = SAMPLE_RequestHK(&SampleUart, &SampleHK);
     if (status == OS_SUCCESS)
     {
@@ -121,10 +131,19 @@ namespace Components {
     this->tlmWrite_DeviceCounter(DeviceCounter);
     this->tlmWrite_DeviceConfig(DeviceConfig);
     this->tlmWrite_DeviceStatus(DeviceStatus);
-
-    this->cmdResponse_out(opCode, cmdSeq, Fw::CmdResponse::OK);
+    // this->cmdResponse_out(opCode, cmdSeq, Fw::CmdResponse::OK);
 
     }
+
+    this->cmdResponse_out(opCode, cmdSeq, Fw::CmdResponse::OK);
   }
+
+  //  void SampleSim :: SAMPLE_SEQ_CANCEL_cmdHandler(FwOpcodeType opCode, U32 cmdSeq) {
+    
+  //   seq_toggle = 0;
+  //   printf("seq toggle is equal to %d\n", seq_toggle);
+
+  //   this->cmdResponse_out(opCode, cmdSeq, Fw::CmdResponse::OK);
+  // }
 
 }

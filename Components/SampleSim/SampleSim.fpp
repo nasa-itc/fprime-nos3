@@ -26,6 +26,10 @@ module Components {
         async command SAMPLE_SEQ(
         )
 
+        #@ Command to initialize Sequence Sample HK
+        #async command SAMPLE_SEQ_CANCEL(
+        #)priority 10
+
         @ Greeting event with maximum greeting length of 30 characters
         event TELEM(
             log_info: string size 30 @< 
