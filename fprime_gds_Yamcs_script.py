@@ -54,24 +54,24 @@ class SpecificChannel(DataHandler):
     channel is received, it will be printed to the terminal.
     """
 
-    def __init__(self, channels_by_name, name):
-        """ Initialize the handler with a dictionary and name
+    # def __init__(self, channels_by_name, name):
+    #     """ Initialize the handler with a dictionary and name
 
-        This function will use the channels_by_name dictionary and the name to look up the channel dictionary entry by
-        name. This entry provides the ID to be filtered by.
+    #     This function will use the channels_by_name dictionary and the name to look up the channel dictionary entry by
+    #     name. This entry provides the ID to be filtered by.
 
-        Note: channel data objects include the name, however; using the ID allows us to demo dictionary look ups.
+    #     Note: channel data objects include the name, however; using the ID allows us to demo dictionary look ups.
 
-        Args:
-            channels_by_name: python dictionary of channel name to fprime ChannelTemplate dictionary entries
-            name: string of channel name
-        """
-        self.id = channels_by_name[name].id
+    #     Args:
+    #         channels_by_name: python dictionary of channel name to fprime ChannelTemplate dictionary entries
+    #         name: string of channel name
+    #     """
+    #     self.id = channels_by_name[name].id
         
-    # def __init__(self, yamcs_connection):
-    #     # todo use new Framer, change ampcs Framer
-    #     self.yamcs_framer_framer = FramerDeframer()
-    #     self.connection = yamcs_connection
+    def __init__(self, yamcs_connection):
+        # todo use new Framer, change ampcs Framer
+        self.yamcs_framer_framer = FramerDeframer()
+        self.connection = yamcs_connection
 
     def data_callback(self, data, sender=None):
         """ Handle a given data item
@@ -79,77 +79,77 @@ class SpecificChannel(DataHandler):
         This function is called on every channel received by the GDS. In this specific case, the ID of the incoming
         channel is checked against the supplied ID. If the ID matches, the channel is printed.
         """
-        # # print(data)
-        if data.id == self.id:
-        #     print(data)
+        # # # print(data)
+        # if data.id == self.id:
+        # #     print(data)
         
-            print("=============================================")
-            #print("data=" , data, "type of data= ", type(data))
+        print("=============================================")
+        #print("data=" , data, "type of data= ", type(data))
 
-            # data.id and data.val_obj are what we want
-            print("type of id= ", type(data.id), ", value of id =  ", data.id, " / ", hex(data.id),
-                    ", len= ", sys.getsizeof(data.id))
-            packet_data = struct.pack(">i", data.id)
-            #print("1 - packet (data.id) = ", packet_data, " size = ",
-            #        sys.getsizeof(packet_data), "len = ", len(packet_data))
+        # data.id and data.val_obj are what we want
+        print("type of id= ", type(data.id), ", value of id =  ", data.id, " / ", hex(data.id),
+                ", len= ", sys.getsizeof(data.id))
+        packet_data = struct.pack(">i", data.id)
+        #print("1 - packet (data.id) = ", packet_data, " size = ",
+        #        sys.getsizeof(packet_data), "len = ", len(packet_data))
 
-            try:
-                #print("type(data.val_obj) = ", type(data.val_obj))
-                #print("type name = ", data.val_obj.__class__.__name__)
-                #print("type of val_obj.val = ", type(data.val_obj.val))
-                #print("size of val_obj.val = ", sys.getsizeof(data.val_obj.val))
+        try:
+            #print("type(data.val_obj) = ", type(data.val_obj))
+            #print("type name = ", data.val_obj.__class__.__name__)
+            #print("type of val_obj.val = ", type(data.val_obj.val))
+            #print("size of val_obj.val = ", sys.getsizeof(data.val_obj.val))
 
-                match(data.val_obj.__class__.__name__):
+            match(data.val_obj.__class__.__name__):
 
-                    case "U32Type":
-                        #print("U32Type 1")
-                        value_packet_data = struct.pack(">I", data.val_obj.val)
-                        #print("U32 value_packet_data = ", value_packet_data, 
-                        #        " len= ", len(value_packet_data))
-                        packet_data += value_packet_data
-                        print("U32Type 2")
-                        #print("2 - packet (+data.val_obj) = ", packet_data, " size = ",
-                        #          sys.getsizeof(packet_data), " len = ", len(packet_data))
-                        print("type of val_obj = ", type(data.val_obj),  ", value of val_obj = ", 
-                            data.val_obj.val, " / ", hex(data.val_obj.val), " len= ", sys.getsizeof(data.val_obj.val))
+                case "U32Type":
+                    #print("U32Type 1")
+                    value_packet_data = struct.pack(">I", data.val_obj.val)
+                    #print("U32 value_packet_data = ", value_packet_data, 
+                    #        " len= ", len(value_packet_data))
+                    packet_data += value_packet_data
+                    print("U32Type 2")
+                    #print("2 - packet (+data.val_obj) = ", packet_data, " size = ",
+                    #          sys.getsizeof(packet_data), " len = ", len(packet_data))
+                    print("type of val_obj = ", type(data.val_obj),  ", value of val_obj = ", 
+                        data.val_obj.val, " / ", hex(data.val_obj.val), " len= ", sys.getsizeof(data.val_obj.val))
 
-                        pass
+                    pass
 
-                    case "F32Type":
-                        #print("F32Type 1")
-                        value_packet_data = struct.pack(">f", data.val_obj.val)
-                        #print("value_pack_data = ", value_packet_data)
-                        packet_data += value_packet_data
-                        #print("F32Type 2")
-                        #print("3 - packet (+data.val_obj) = ", packet_data, " size = ",
-                        #          sys.getsizeof(packet_data), " len = ", len(packet_data))
-                        print("type of val_obj = ", type(data.val_obj),  ", value of val_obj = ", 
-                            data.val_obj.val)
-                        pass
-                    
-                    case _:
-                        print("[ERROR] Unknown type", type(data.val_obj), "name = ",
-                                data.val_obj.__class__.__name__)
-                        return
+                case "F32Type":
+                    #print("F32Type 1")
+                    value_packet_data = struct.pack(">f", data.val_obj.val)
+                    #print("value_pack_data = ", value_packet_data)
+                    packet_data += value_packet_data
+                    #print("F32Type 2")
+                    #print("3 - packet (+data.val_obj) = ", packet_data, " size = ",
+                    #          sys.getsizeof(packet_data), " len = ", len(packet_data))
+                    print("type of val_obj = ", type(data.val_obj),  ", value of val_obj = ", 
+                        data.val_obj.val)
+                    pass
+                
+                case _:
+                    print("[ERROR] Unknown type", type(data.val_obj), "name = ",
+                            data.val_obj.__class__.__name__)
+                    return
 
-            except Exception as exc:
-                # Capture errors and print a nice message
-                print(f"[ERROR] Failed to convert type: {exc}",file=sys.stderr)  
-                return
+        except Exception as exc:
+            # Capture errors and print a nice message
+            print(f"[ERROR] Failed to convert type: {exc}",file=sys.stderr)  
+            return
 
-            print("5 - packet (id+value) = ", packet_data.hex(), " size = ",
-                sys.getsizeof(packet_data), " len = ", len(packet_data))
-            print("\n")
+        print("5 - packet (id+value) = ", packet_data.hex(), " size = ",
+            sys.getsizeof(packet_data), " len = ", len(packet_data))
+        print("\n")
         
-        # # todo decide what ampcs framer is
-        # # primary header (6 bytes) + secondary header/timestamp (6 bytes) +
-        # # payload=meas_id (2 bytes) + EHA value (4 bytes)
-        # yamcs_frame = self.yamcs_framer.frame(packet_data)
-        # print("ampcs_frame = [", ampcs_frame.hex(), "], len = ",
-        #         len(ampcs_frame))
+        # todo decide what ampcs framer is
+        # primary header (6 bytes) + secondary header/timestamp (6 bytes) +
+        # payload=meas_id (2 bytes) + EHA value (4 bytes)
+        yamcs_frame = self.yamcs_framer.frame(packet_data)
+        print("ampcs_frame = [", ampcs_frame.hex(), "], len = ",
+                len(ampcs_frame))
 
-        # self.connection.send(ampcs_frame)
-        # print("packet sent")
+        self.connection.send(ampcs_frame)
+        print("packet sent")
 
 
 class ChannelNameParser(ParserBase):
@@ -171,28 +171,28 @@ class ChannelNameParser(ParserBase):
         Return:
             tuple of flags to argparse key word arguments
         """
-        return {
-            ("--channel-name",): {
-                "dest": "channel_name",
-                "help": "Name of channel to filter on",
-                "required": False
-            }
-            
         # return {
-        #     ("--yamcs-dwn-ip-addr",): {
-        #         "dest": "yamcs_dwn_ip_addr",
-        #         "action": "store",
-        #         "type": str,
-        #         "help": "yamcs downlink ip address",
-        #         "default": "0.0.0.0",
-        #     },
-        #     ("--yamcs-dwn-ip-port",): {
-        #         "dest": "yamcs_dwn_ip_port",
-        #         "action": "store",
-        #         "type": int,
-        #         "help": "yamcs downlink ip port",
-        #         "default": 5013,
-        #     },
+        #     ("--channel-name",): {
+        #         "dest": "channel_name",
+        #         "help": "Name of channel to filter on",
+        #         "required": False
+        #     }
+            
+        return {
+            ("--yamcs-dwn-ip-addr",): {
+                "dest": "yamcs_dwn_ip_addr",
+                "action": "store",
+                "type": str,
+                "help": "yamcs downlink ip address",
+                "default": "0.0.0.0",
+            },
+            ("--yamcs-dwn-ip-port",): {
+                "dest": "yamcs_dwn_ip_port",
+                "action": "store",
+                "type": int,
+                "help": "yamcs downlink ip port",
+                "default": 5013,
+            },
         }
 
     def handle_arguments(self, args, **kwargs):
@@ -238,40 +238,40 @@ class YamcsConnection():
 
 def main():
     """ Parse CLI arguments, connect to GDS, and register example handler """
-    try:
+    # try:
         # Parse command line arguments using two parsers "StandardPipelineParser", and "ChannelNameParser"
-        arguments, _ = ParserBase.parse_args([StandardPipelineParser, ChannelNameParser],
-                                            description="An example channel handling script",
-                                            client=True,  # This is a client script, thus client=True must be specified
-                                            )
-        # Use the StandardPipelineParser to build a pipeline from the arguments parsed above
-        # pipeline = StandardPipelineParser.pipeline_factory(args_ns=arguments)
-        pipeline = StandardPipelineParser.pipeline_factory(args_ns=arguments) #piplene stuff from fprime-gds package
+    arguments, _ = ParserBase.parse_args([StandardPipelineParser, ChannelNameParser],
+                                        description="An example channel handling script",
+                                        client=True,  # This is a client script, thus client=True must be specified
+                                        )
+    # Use the StandardPipelineParser to build a pipeline from the arguments parsed above
+    # pipeline = StandardPipelineParser.pipeline_factory(args_ns=arguments)
+    pipeline = StandardPipelineParser.pipeline_factory(args_ns=arguments) #piplene stuff from fprime-gds package
 
-        # Initialize the SpecificChannel data handler with the pipeline's loaded "channel_name" dictionary and the
-        # channel_name argument parsed on the command line
-        channel_handler = SpecificChannel(pipeline.dictionaries.channel_name, arguments.channel_name)
-        # yamcs_connection = YamcsConnection(arguments.yamcs_dwn_ip_addr, arguments.yamcs_dwn_ip_port)
+    # Initialize the SpecificChannel data handler with the pipeline's loaded "channel_name" dictionary and the
+    # channel_name argument parsed on the command line
+    # channel_handler = SpecificChannel(pipeline.dictionaries.channel_name, arguments.channel_name)
+    yamcs_connection = YamcsConnection(arguments.yamcs_dwn_ip_addr, arguments.yamcs_dwn_ip_port)
 
-        # # Register the channel_handler as a channel consumer
-        pipeline.coders.register_channel_consumer(channel_handler) #only have the python objects
-        # # Run until CTRL-C shutdown
+    # # # Register the channel_handler as a channel consumer
+    # pipeline.coders.register_channel_consumer(channel_handler) #only have the python objects
+    # # # Run until CTRL-C shutdown
+    # while True:
+    #     pass
+    
+    try:
+        # Initialize the SpecificChannel data handler with the pipeline's loaded 
+        # "channel_name" dictionary and the channel_name argument parsed on the command line
+        #channel_handler = SpecificChannel(pipeline.dictionaries.channel_name, arguments.channel_name)
+        yamcs_handler = SpecificChannel(yamcs_connection)
+
+        # Register the channel_handler as a channel consumer
+        pipeline.coders.register_channel_consumer(yamcs_handler)
+        print("register_channel_consumer done")
+
+        # Run until CTRL-C shutdown
         while True:
             pass
-        
-    # try:
-    #     # Initialize the SpecificChannel data handler with the pipeline's loaded 
-    #     # "channel_name" dictionary and the channel_name argument parsed on the command line
-    #     #channel_handler = SpecificChannel(pipeline.dictionaries.channel_name, arguments.channel_name)
-    #     yamcs_handler = SpecificChannel(yamcs_connection)
-
-    #     # Register the channel_handler as a channel consumer
-    #     pipeline.coders.register_channel_consumer(yamcs_handler)
-    #     print("register_channel_consumer done")
-
-    #     # Run until CTRL-C shutdown
-    #     while True:
-    #         pass
         
     except KeyboardInterrupt:
         # Ignore Keyboard interrupt (CTRL-C) as this is a normal shutdown
