@@ -184,7 +184,7 @@ class ChannelNameParser(ParserBase):
                 "action": "store",
                 "type": str,
                 "help": "yamcs downlink ip address",
-                "default": "0.0.0.0",
+                "default": "127.0.0.1",
             },
             ("--yamcs-dwn-ip-port",): {
                 "dest": "yamcs_dwn_ip_port",
