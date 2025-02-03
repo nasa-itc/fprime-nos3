@@ -10,7 +10,6 @@
 
 extern "C"{
 #include "generic_radio_device.h"
-// #include "generic_radio_app.h"
 }
 
 /*
@@ -50,6 +49,7 @@ void init_socket_data() {
     RadioSocket.connected = false;
 
     status = socket_create(&RadioSocket);
+    
     if (status != SOCKET_SUCCESS)
     {
         printf("GENERIC_RADIO: Radio interface create error %d\n", status);
@@ -120,8 +120,6 @@ namespace Components {
     uint32_t  DeviceConfig;
     uint32_t  ProxySignal;
     int32_t status = OS_SUCCESS;
-    // uint32_t  DeviceCounter;
-    // uint32_t DeviceConfig;
 
     status = GENERIC_RADIO_RequestHK(&RadioSocket, &RadioHK);
     
@@ -146,16 +144,10 @@ namespace Components {
     DeviceConfig =  RadioHK.DeviceConfig;
     ProxySignal = RadioHK.ProxSignal;
 
-    // DeviceCounter = Generic_radioHK.DeviceCounter;
-    // DeviceCounter = GENERIC_RADIO_AppData.HkTelemetryPkt.DeviceCounter;
-    // DeviceConfig =  Generic_radioHK.DeviceConfig;
-    // DeviceStatus = Generic_radioHK.DeviceStatus;
-    // DeviceCounter = SampleHK.DeviceCounter;
 
     this->tlmWrite_DeviceCounter(DeviceCounter);
-    // this->tlmWrite_DeviceConfig(DeviceConfig);
-    // this->tlmWrite_ProxySignal(ProxySignal);
-    // this->tlmWrite_DeviceStatus(DeviceStatus);
+    this->tlmWrite_DeviceConfig(DeviceConfig);
+    this->tlmWrite_ProxySignal(ProxySignal);
     
     // Tell the fprime command system that we have completed the processing of the supplied command with OK status
     this->cmdResponse_out(opCode, cmdSeq, Fw::CmdResponse::OK);
