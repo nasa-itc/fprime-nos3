@@ -88,5 +88,7 @@
         <channel name="sampleSim.DeviceStatus"/>
         <channel name="generic_star_tracker.DeviceCounter"/>
         <channel name="generic_radio.DeviceCounter"/>
+        <channel name="generic_radio.DeviceConfig"/>
+        <channel name="generic_radio.ProxySignal"/>
     </ignore>
 </packets>

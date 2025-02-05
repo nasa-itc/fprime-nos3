@@ -7,15 +7,11 @@
 #
 ####
 #ITC Changes
-include_directories("../../../../../components/generic_radio/fsw/fprime/src")
-include_directories("../../../../../components/generic_radio/support/") #device_cfg.h
-include_directories("../../../../../fsw/apps/hwlib/fsw/public_inc")
+
 include_directories("../../../../../components/generic_radio/fsw/fprime/platform_inc")
-include_directories("../../../../../components/generic_radio/fsw/fprime/mission_inc")
-# include_directories("../../../../../fsw/cfe/modules/core_api/fsw/inc/") #cfe_endian.h
-# include_directories("../../../../../fsw/osal/src/os/inc/") #common_types.h
-# include_directories("../../../../../fsw/osal/") #osconfig.h
-# # include_directories("../../../../../fsw/osal/") #osconfig.h
+include_directories("../../../../../components/generic_radio/fsw/shared")
+include_directories("../../../../../components/generic_radio/fsw/standalone") #device_cfg.h
+include_directories("../../../../../fsw/apps/hwlib/fsw/public_inc")
 
 
 
@@ -23,11 +19,7 @@ set(SOURCE_FILES
   "${CMAKE_CURRENT_LIST_DIR}/Generic_radio.fpp"
   "${CMAKE_CURRENT_LIST_DIR}/Generic_radio.cpp"
 
-  "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_radio/fsw/fprime/src/generic_radio_device.c" 
-  # "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_radio/fsw/fprime/src/generic_radio_app.c"
-  # "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_radio/support/device_cfg.h"
-  # "${CMAKE_CURRENT_LIST_DIR}/../../../../../fsw/apps/hwlib/fsw/public_inc/hwlib.h"
-  # "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_radio/fsw/platform_inc/generic_radio_platform_cfg.h"
+  "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_radio/fsw/shared/generic_radio_device.c" 
 
 )
 
