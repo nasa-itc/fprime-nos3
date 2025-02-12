@@ -55,13 +55,13 @@ void Generic_eps :: REQUEST_HOUSEKEEPING_cmdHandler(FwOpcodeType opCode, U32 cmd
   uint16_t  EPSTemperature;
   uint16_t  SolarArrayVoltage;
   uint16_t  SolarArrayTemperature;
-  GENERIC_EPS_Switch_tlm_t  Switch[8];
+  // GENERIC_EPS_Switch_tlm_t  Switch[8];
 
    /* Open device specific protocols */
-  Generic_epsI2C.handle = GENERIC_EPS_CFG_I2C_HANDLE;
-  Generic_epsI2C.addr = GENERIC_EPS_CFG_I2C_ADDRESS;
-  Generic_epsI2C.isOpen = I2C_CLOSED;
-  Generic_epsI2C.speed = GENERIC_EPS_CFG_I2C_SPEED;
+  Generic_epsI2c.handle = GENERIC_EPS_CFG_I2C_HANDLE;
+  Generic_epsI2c.addr = GENERIC_EPS_CFG_I2C_ADDRESS;
+  Generic_epsI2c.isOpen = I2C_CLOSED;
+  Generic_epsI2c.speed = GENERIC_EPS_CFG_I2C_SPEED;
   status = i2c_master_init(&Generic_epsI2c);
   
   status = GENERIC_EPS_RequestHK(&Generic_epsI2c, &Generic_epsHK);
@@ -82,7 +82,7 @@ void Generic_eps :: REQUEST_HOUSEKEEPING_cmdHandler(FwOpcodeType opCode, U32 cmd
   EPSTemperature =  Generic_epsHK.EPSTemperature;
   SolarArrayVoltage = Generic_epsHK.SolarArrayVoltage;
   SolarArrayTemperature =  Generic_epsHK.SolarArrayTemperature;
-  Switch = Generic_epsHK.Switch;
+  // Switch = Generic_epsHK.Switch;
 
   this->tlmWrite_BatteryVoltage(BatteryVoltage);
   this->tlmWrite_BatteryTemperature(BatteryTemperature);
@@ -92,7 +92,7 @@ void Generic_eps :: REQUEST_HOUSEKEEPING_cmdHandler(FwOpcodeType opCode, U32 cmd
   this->tlmWrite_EPSTemperature(EPSTemperature);
   this->tlmWrite_SolarArrayVoltage(SolarArrayVoltage);
   this->tlmWrite_SolarArrayTemperature(SolarArrayTemperature);
-  this->tlmWrite_Switch(Switch);
+  // this->tlmWrite_Switch(Switch);
 
   
   // Tell the fprime command system that we have completed the processing of the supplied command with OK status

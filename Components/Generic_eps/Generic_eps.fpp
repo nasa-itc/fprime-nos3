@@ -11,20 +11,38 @@ module Components {
         #### Uncomment the following examples to start customizing your component ####
         ##############################################################################
 
-        # @ Example async command
-        # async command COMMAND_NAME(param_name: U32)
+        @ Command to Request Housekeeping
+        async command REQUEST_HOUSEKEEPING(
+        )
 
-        # @ Example telemetry counter
-        # telemetry ExampleCounter: U64
+        @ Greeting event with maximum greeting length of 30 characters
+        event TELEM(
+            log_info: string size 30 @< 
+        ) severity activity high format "SampleSim: {}"
 
-        # @ Example event
-        # event ExampleStateEvent(example_state: Fw.On) severity activity high id 0 format "State set to {}"
+         @ Battery Voltage Parameter
+        telemetry BatteryVoltage: U16
 
-        # @ Example port: receiving calls from the rate group
-        # sync input port run: Svc.Sched
+         @ Battery Temperature Parameter
+        telemetry BatteryTemperature: U16
 
-        # @ Example parameter
-        # param PARAMETER_NAME: U32
+         @ Bus 3p3 Voltage Parameter
+        telemetry Bus3p3Voltage: U16
+
+         @ Bus 5p0 Voltage Parameter
+        telemetry Bus5p0Voltage: U16
+
+         @ Bus 12 Voltage Parameter
+        telemetry Bus12Voltage: U16
+
+         @ EPS Temperature Parameter
+        telemetry EPSTemperature: U16
+
+         @ Solar Array Voltage Parameter
+        telemetry SolarArrayVoltage: U16
+
+         @ Solar Array Temperature Parameter
+        telemetry SolarArrayTemperature: U16
 
         ###############################################################################
         # Standard AC Ports: Required for Channels, Events, Commands, and Parameters  #
