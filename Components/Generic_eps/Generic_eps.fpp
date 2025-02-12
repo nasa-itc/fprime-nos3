@@ -2,15 +2,6 @@ module Components {
     @ generic_eps
     active component Generic_eps {
 
-        # One async command/port is required for active components
-        # This should be overridden by the developers with a useful command/port
-        @ TODO
-        async command TODO opcode 0
-
-        ##############################################################################
-        #### Uncomment the following examples to start customizing your component ####
-        ##############################################################################
-
         @ Command to Request Housekeeping
         async command REQUEST_HOUSEKEEPING(
         )
