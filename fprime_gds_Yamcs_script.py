@@ -36,7 +36,7 @@ import fprime_gds.common.logger
 import fprime_gds.executables.cli
 
 #todo create python module or class or function to mimimc ampcs_frame and framer/deframer
-from fprime_gds.common.communication.framing import FramerDeframer
+from fprime_gds.common.communication.framing import FpFramerDeframer
 
 class SpecificChannel(DataHandler):
     """ Handel a specific channel by name
@@ -70,7 +70,7 @@ class SpecificChannel(DataHandler):
         
     def __init__(self, yamcs_connection):
         # todo use new Framer, change ampcs Framer
-        self.yamcs_framer_framer = FramerDeframer()
+        self.yamcs_framer = FpFramerDeframer()
         self.connection = yamcs_connection
 
     def data_callback(self, data, sender=None):
@@ -145,10 +145,10 @@ class SpecificChannel(DataHandler):
         # primary header (6 bytes) + secondary header/timestamp (6 bytes) +
         # payload=meas_id (2 bytes) + EHA value (4 bytes)
         yamcs_frame = self.yamcs_framer.frame(packet_data)
-        print("ampcs_frame = [", ampcs_frame.hex(), "], len = ",
-                len(ampcs_frame))
+        print("yamcs_frame = [", yamcs_frame.hex(), "], len = ",
+                len(yamcs_frame))
 
-        self.connection.send(ampcs_frame)
+        self.connection.send(yamcs_frame)
         print("packet sent")
 
 
@@ -184,7 +184,7 @@ class ChannelNameParser(ParserBase):
                 "action": "store",
                 "type": str,
                 "help": "yamcs downlink ip address",
-                "default": "127.0.0.1",
+                "default": "172.20.0.14",
             },
             ("--yamcs-dwn-ip-port",): {
                 "dest": "yamcs_dwn_ip_port",
@@ -218,22 +218,37 @@ class YamcsConnection():
             ampcs_dwn_ip_port: ampcs downlink ip port number
         """
         
-        print(ampcs_dwn_ip_addr)
-        print(ampcs_dwn_ip_port)
-        serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        serversocket.bind((ampcs_dwn_ip_addr, ampcs_dwn_ip_port))
-        print("socket bound")
-        serversocket.listen(1) # become a server socket, maximum 1 connections
-        print("socket listening")
-        # print("Before Connection accepted from " + repr(address[1]))
-        self.connection, address = serversocket.accept()
-        print("Connection accepted from " + repr(address[1]))
+    # #TCP:
+        # print(ampcs_dwn_ip_addr)
+        # print(ampcs_dwn_ip_port)
+        # serversocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        # serversocket.bind((ampcs_dwn_ip_addr, ampcs_dwn_ip_port))
+        # print("socket bound")
+        # serversocket.listen(1) # become a server socket, maximum 1 connections
+        # print("socket listening")
+        # # print("Before Connection accepted from " + repr(address[1]))
+        # self.connection, address = serversocket.accept()
+        # print("Connection accepted from " + repr(address[1]))
+        
+    # def send(self, frame):
+    #     self.connection.send(frame)
 
+    # def close(self):
+    #     self.connection.close()
+    
+    #UDP
+    yamcs_dwn_ip_addr = "172.23.0.12"
+    yamcs_dwn_ip_port = 5013
+    serversocket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        
     def send(self, frame):
-        self.connection.send(frame)
+        
+        self.serversocket.sendto(frame, ("172.23.0.12", 5013))
+        # self.serversocket.sendto(frame, (yamcs_dwn_ip_addr, yamcs_dwn_ip_port))
 
     def close(self):
-        self.connection.close()    
+        self.serversocket.close()
+        
 
 
 def main():
