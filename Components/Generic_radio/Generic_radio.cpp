@@ -5,79 +5,89 @@
 // ======================================================================
 
 #include "Components/Generic_radio/Generic_radio.hpp"
+#include <Fw/Logger/Logger.hpp>
 #include "FpConfig.hpp"
 
 extern "C"{
 #include "generic_radio_device.h"
-#include "generic_radio_app.h"
-#include "libuart.h"
 }
 
 /*
 ** Global Variables
 */
-// socket_info_t Generic_radioUart;
-uart_info_t Generic_radioUart;
-GENERIC_RADIO_Device_HK_tlm_t Generic_radioHK;
-// GENERIC_RADIO_Device_Data_tlm_t Generic_radioData;
+socket_info_t RadioSocket;
+socket_info_t ProxSocket;
+GENERIC_RADIO_Device_HK_tlm_t RadioHK;
+uint8_t RadioData;
+uint16_t SCID = 0x42;
 
-/*
-** Global Data
-*/
-GENERIC_RADIO_AppData_t GENERIC_RADIO_AppData;
 
 void init_socket_data() {
 
-  int32_t status = OS_SUCCESS;
+  int status = OS_SUCCESS;
+  uint8_t run_status = OS_SUCCESS;
 
-  /*
-    ** Initialize application data
-    ** Note that counters are excluded as they were reset in the previous code block
-    */
-    GENERIC_RADIO_AppData.HkTelemetryPkt.DeviceCounter = 0; //was HKTelemetryPKT.DeviceHK instead of hktelemtrypkt
-    GENERIC_RADIO_AppData.HkTelemetryPkt.DeviceConfig = 0;
-    GENERIC_RADIO_AppData.HkTelemetryPkt.ProxSignal = 0;
+  /* Initialize HWLIB */
+    #ifdef _NOS_ENGINE_LINK_
+        nos_init_link();
+    #endif
 
     /*
     ** Initialize sockets
     */
-    GENERIC_RADIO_AppData.RadioSocket.sockfd = -1;
-    GENERIC_RADIO_AppData.RadioSocket.port_num = GENERIC_RADIO_CFG_UDP_RADIO_TO_FSW;
-    GENERIC_RADIO_AppData.RadioSocket.ip_address = GENERIC_RADIO_CFG_FSW_IP;
-    GENERIC_RADIO_AppData.RadioSocket.address_family = ip_ver_4;
-    GENERIC_RADIO_AppData.RadioSocket.type = dgram;
-    GENERIC_RADIO_AppData.RadioSocket.category = client;
-    GENERIC_RADIO_AppData.RadioSocket.block = false;
-    GENERIC_RADIO_AppData.RadioSocket.keep_alive = false;
-    GENERIC_RADIO_AppData.RadioSocket.created = false;
-    GENERIC_RADIO_AppData.RadioSocket.bound = false;
-    GENERIC_RADIO_AppData.RadioSocket.listening = false;
-    GENERIC_RADIO_AppData.RadioSocket.connected = false;
+    RadioSocket.sockfd = -1;
+    RadioSocket.port_num = GENERIC_RADIO_CFG_UDP_RADIO_TO_FSW;
+    RadioSocket.ip_address = GENERIC_RADIO_CFG_FSW_IP;
+    RadioSocket.address_family = ip_ver_4;
+    RadioSocket.type = dgram;
+    RadioSocket.category = client;
+    RadioSocket.block = false;
+    RadioSocket.keep_alive = false;
+    RadioSocket.created = false;
+    RadioSocket.bound = false;
+    RadioSocket.listening = false;
+    RadioSocket.connected = false;
 
-    status = socket_create(&GENERIC_RADIO_AppData.RadioSocket);
+    status = socket_create(&RadioSocket);
+    
     if (status != SOCKET_SUCCESS)
     {
-       printf("radio socket failed to create");
+        printf("GENERIC_RADIO: Radio interface create error %d\n", status);
+        run_status = OS_ERROR;
     }
-
-    GENERIC_RADIO_AppData.ProxySocket.sockfd = -1;
-    GENERIC_RADIO_AppData.ProxySocket.port_num = GENERIC_RADIO_CFG_UDP_PROX_TO_FSW;
-    GENERIC_RADIO_AppData.ProxySocket.ip_address = GENERIC_RADIO_CFG_FSW_IP;
-    GENERIC_RADIO_AppData.ProxySocket.address_family = ip_ver_4;
-    GENERIC_RADIO_AppData.ProxySocket.type = dgram;
-    GENERIC_RADIO_AppData.ProxySocket.category = client;
-    GENERIC_RADIO_AppData.ProxySocket.block = false;
-    GENERIC_RADIO_AppData.ProxySocket.keep_alive = false;
-    GENERIC_RADIO_AppData.ProxySocket.created = false;
-    GENERIC_RADIO_AppData.ProxySocket.bound = false;
-    GENERIC_RADIO_AppData.ProxySocket.listening = false;
-    GENERIC_RADIO_AppData.ProxySocket.connected = false;
-
-  status = socket_create(&GENERIC_RADIO_AppData.ProxySocket);
-  if (status != SOCKET_SUCCESS)
+    else
     {
-       printf("proxy socket failed to create");
+        printf("GENERIC_RADIO: Radio Interface %d created successfully!\n", RadioSocket.sockfd);
     }
+
+    OS_printf("port: %d; IP: %s \n", RadioSocket.port_num, RadioSocket.ip_address);
+
+    ProxSocket.sockfd = -1;
+    ProxSocket.port_num = GENERIC_RADIO_CFG_UDP_PROX_TO_FSW;
+    ProxSocket.ip_address = GENERIC_RADIO_CFG_FSW_IP;
+    ProxSocket.address_family = ip_ver_4;
+    ProxSocket.type = dgram;
+    ProxSocket.category = client;
+    ProxSocket.block = false;
+    ProxSocket.keep_alive = false;
+    ProxSocket.created = false;
+    ProxSocket.bound = false;
+    ProxSocket.listening = false;
+    ProxSocket.connected = false;
+
+    status = socket_create(&ProxSocket);
+    if (status != SOCKET_SUCCESS)
+    {
+        printf("GENERIC_RADIO: Proximity interface create error %d\n", status);
+        run_status = OS_ERROR;
+    }
+    else
+    {
+        printf("GENERIC_RADIO: Proximity Interface %d created successfully!\n", ProxSocket.sockfd);
+    }
+
+    OS_printf("port: %d; IP: %s \n", ProxSocket.port_num, ProxSocket.ip_address);
+
 
 }
 
@@ -91,7 +101,7 @@ namespace Components {
     Generic_radio(const char* const compName) :
       Generic_radioComponentBase(compName)
   {
-
+        init_socket_data();
   }
 
   Generic_radio ::
@@ -104,61 +114,40 @@ namespace Components {
   // Handler implementations for commands
   // ----------------------------------------------------------------------
 
-  // void Generic_radio ::
-  //   TODO_cmdHandler(
-  //       FwOpcodeType opCode,
-  //       U32 cmdSeq
-  //   )star
-  // {
-  //   // TODO
-  //   this->cmdResponse_out(opCode, cmdSeq, Fw::CmdResponse::OK);
-  // }
-
-
   // GENERIC_radio_RequestHK
   void Generic_radio :: REQUEST_HOUSEKEEPING_cmdHandler(FwOpcodeType opCode, U32 cmdSeq) {
-
-    int32_t status = OS_SUCCESS;
     uint32_t  DeviceCounter;
+    uint32_t  DeviceConfig;
+    uint32_t  ProxySignal;
+    int32_t status = OS_SUCCESS;
 
-    init_socket_data();
-
-     /* Open device specific protocols */ //needs to be changed for socket_infot_t
-    Generic_radioUart.deviceString = GENERIC_RADIO_CFG_STRING;
-    Generic_radioUart.handle = GENERIC_RADIO_CFG_HANDLE;
-    Generic_radioUart.isOpen = PORT_CLOSED;
-    Generic_radioUart.baud = GENERIC_RADIO_CFG_BAUDRATE_HZ;
-    status = uart_init_port(&Generic_radioUart);
+    status = GENERIC_RADIO_RequestHK(&RadioSocket, &RadioHK);
+    
     if (status == OS_SUCCESS)
     {
-        printf("UART device %s configured with baudrate %d \n", Generic_radioUart.deviceString, Generic_radioUart.baud);
+        this->log_ACTIVITY_HI_TELEM("RequestHK command success\n");
     }
     else
     {
-        printf("UART device %s failed to initialize! \n", Generic_radioUart.deviceString);
-    }
-    
-    status = GENERIC_RADIO_RequestHK(&GENERIC_RADIO_AppData.RadioSocket, &GENERIC_RADIO_AppData.HkTelemetryPkt);
-    if (status == OS_SUCCESS)
-    {
-        // this->log_ACTIVITY_HI_TELEM("RequestHK command success\n");
-    }
-    else
-    {
-        // this->log_ACTIVITY_HI_TELEM("RequestHK command failed!\n");
+        this->log_ACTIVITY_HI_TELEM("RequestHK command failed!\n");
     }
 
     
+    // OS_printf("GENERIC_RADIO_RequestHK command success!\n");
+    // OS_printf("GENERIC_RADIO_DEVICE_HK:\n");
+    // OS_printf("  Device Counter:  %u\n", RadioHK.DeviceCounter);
+    // OS_printf("  Device Config: 0x%07X\n", RadioHK.DeviceConfig);
+    // OS_printf("  Prox Signal:     %u\n", RadioHK.ProxSignal);
+    // OS_printf("\n");
 
-    // DeviceCounter = Generic_radioHK.DeviceCounter;
-    DeviceCounter = GENERIC_RADIO_AppData.HkTelemetryPkt.DeviceCounter;
-    // DeviceConfig =  Generic_radioHK.DeviceConfig;
-    // DeviceStatus = Generic_radioHK.DeviceStatus;
-    // DeviceCounter = SampleHK.DeviceCounter;
+    DeviceCounter = RadioHK.DeviceCounter;
+    DeviceConfig =  RadioHK.DeviceConfig;
+    ProxySignal = RadioHK.ProxSignal;
+
 
     this->tlmWrite_DeviceCounter(DeviceCounter);
-    // this->tlmWrite_DeviceConfig(DeviceConfig);
-    // this->tlmWrite_DeviceStatus(DeviceStatus);
+    this->tlmWrite_DeviceConfig(DeviceConfig);
+    this->tlmWrite_ProxySignal(ProxySignal);
     
     // Tell the fprime command system that we have completed the processing of the supplied command with OK status
     this->cmdResponse_out(opCode, cmdSeq, Fw::CmdResponse::OK);

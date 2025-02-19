@@ -6,16 +6,16 @@
 # UT_SOURCE_FILES: list of source files for unit tests
 #
 ####
-include_directories("../../../../../components/sample/fsw/cfs/src")
-include_directories("../../../../../components/sample/support/") #device_cfg.h
+include_directories("../../../../../components/sample/fsw/shared")
+include_directories("../../../../../components/sample/fsw/standalone") #device_cfg.h
 include_directories("../../../../../fsw/apps/hwlib/fsw/public_inc")
-include_directories("../../../../../components/sample/fsw/cfs/platform_inc")
+include_directories("../../../../../components/sample/fsw/fprime/platform_inc")
 
 
 set(SOURCE_FILES
   "${CMAKE_CURRENT_LIST_DIR}/SampleSim.fpp"
   "${CMAKE_CURRENT_LIST_DIR}/SampleSim.cpp"
-  "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/sample/fsw/cfs/src/sample_device.c"
+  "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/sample/fsw/shared/sample_device.c"
   # "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/sample/support/device_cfg.h"
   # "${CMAKE_CURRENT_LIST_DIR}/../../../../../fsw/apps/hwlib/fsw/public_inc/hwlib.h"
   # "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/sample/fsw/platform_inc/sample_platform_cfg.h"

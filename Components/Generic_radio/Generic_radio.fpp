@@ -1,5 +1,5 @@
 module Components {
-    @ generic_radion from nos3
+    @ generic_radio from nos3
     active component Generic_radio {
 
         # One async command/port is required for active components
@@ -9,6 +9,10 @@ module Components {
         async command REQUEST_HOUSEKEEPING(
         )
 
+        #@ Command to Request Noop
+        #async command NOOP(
+        #)
+
         @ event with maximum length of 30 characters
         event TELEM(
             log_info: string size 30 @< 
@@ -16,6 +20,12 @@ module Components {
 
         @ A count of the number of greetings issued
         telemetry DeviceCounter: U32
+
+         @ A count of the number of greetings issued
+        telemetry DeviceConfig: U32
+
+         @ A count of the number of greetings issued
+        telemetry ProxySignal: U32
 
         ##############################################################################
         #### Uncomment the following examples to start customizing your component ####

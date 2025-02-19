@@ -134,8 +134,24 @@ namespace Components {
     Generic_magUart.baud = GENERIC_MAG_CFG_BAUDRATE_HZ;
     
     status_2 = uart_init_port(&Generic_magUart);
+    if (status_2 == OS_SUCCESS)
+    {
+        printf("UART device %s configured with baudrate %d \n", Generic_magUart.deviceString, Generic_magUart.baud);
+    }
+    else
+    {
+        printf("UART device %s failed to initialize! \n", Generic_magUart.deviceString);
+    }
     
     status_2 = GENERIC_MAG_CommandDevice(&Generic_magUart, SAMPLE_DEVICE_NOOP_CMD, 0);
+    if (status_2 == OS_SUCCESS)
+    {
+        this->log_ACTIVITY_HI_TELEM("Star Tracker NOOP command success\n");
+    }
+    else
+    {
+        this->log_ACTIVITY_HI_TELEM("Star Tracker NOOP command failed!\n");
+    }
     this->log_ACTIVITY_HI_TELEM("NOOP SENT");
     // Tell the fprime command system that we have completed the processing of the supplied command with OK status
     // this->cmdResponse_out(opCode, cmdSeq, Fw::CmdResponse::OK);

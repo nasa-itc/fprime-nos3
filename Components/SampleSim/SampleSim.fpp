@@ -22,10 +22,21 @@ module Components {
         async command NOOP(
         )
 
+        @ Command to initialize Sequence Sample HK
+        async command SAMPLE_SEQ(
+        )
+
+        #@ Command to initialize Sequence Sample HK
+        #async command SAMPLE_SEQ_CANCEL(
+        #)priority 10
+
         @ Greeting event with maximum greeting length of 30 characters
         event TELEM(
             log_info: string size 30 @< 
         ) severity activity high format "SampleSim: {}"
+
+        #@ text event with maximum length of 30 characters
+        #event TEXTTELEM severity diagnostic format "This is testing noop"
 
         @ A count of the number of greetings issued
         telemetry GreetingCount: U32
@@ -74,6 +85,7 @@ module Components {
         command resp port cmdResponseOut
 
         @ Port for sending textual representation of events
+        #text event port textEventOut
         text event port logTextOut
 
         @ Port for sending events to downlink
