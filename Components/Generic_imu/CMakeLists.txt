@@ -7,26 +7,20 @@
 #
 ####
 #ITC Changes
-include_directories("../../../../../components/generic_imu/fsw/fprime/src")
-include_directories("../../../../../components/generic_imu/support/") #device_cfg.h
+include_directories("../../../../../components/generic_imu/fsw/shared")
+include_directories("../../../../../components/generic_imu/fsw/standalone/") #device_cfg.h
 include_directories("../../../../../fsw/apps/hwlib/fsw/public_inc")
 include_directories("../../../../../components/generic_imu/fsw/fprime/platform_inc")
 include_directories("../../../../../components/generic_imu/fsw/fprime/mission_inc")
-# include_directories("../../../../../fsw/cfe/modules/core_api/fsw/inc/") #cfe_endian.h
-# include_directories("../../../../../fsw/osal/src/os/inc/") #common_types.h
-# include_directories("../../../../../fsw/osal/") #osconfig.h
-# include_directories("../../../../../cfg/nos3_defs/") #cfe_mission_cfg.h
-# /home/jstar/dev/nos3/cfg/nos3_defs
-# /home/jstar/dev/nos3/fsw/osal/src/os/inc
+include_directories("../../../../../components/generic_imu/fsw/fprime/src") 
+
 
 set(SOURCE_FILES
   "${CMAKE_CURRENT_LIST_DIR}/Generic_imu.fpp"
   "${CMAKE_CURRENT_LIST_DIR}/Generic_imu.cpp"
 
-  "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_imu/fsw/fprime/src/generic_imu_device.c" #need to fix undeclared errors
-  # "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_imu/support/device_cfg.h"
-  # "${CMAKE_CURRENT_LIST_DIR}/../../../../../fsw/apps/hwlib/fsw/public_inc/hwlib.h"
-  "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_imu/fsw/fprime/platform_inc/generic_imu_platform_cfg.h"
+  "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_imu/fsw/shared/generic_imu_device.c" #need to fix undeclared errors
+  
 )
 
 # Uncomment and add any modules that this component depends on, else
