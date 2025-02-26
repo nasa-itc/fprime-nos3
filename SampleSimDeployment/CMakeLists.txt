@@ -45,6 +45,10 @@ include_directories("../../../../components/generic_radio/fsw/shared")
 include_directories("../../../../components/generic_radio/fsw/standalone") #device_cfg.h
 include_directories("../../../../components/generic_radio/fsw/fprime/platform_inc")
 
+include_directories("../../../../../components/generic_css/fsw/shared")
+include_directories("../../../../../components/generic_css/fsw/standalone") #device_cfg.h
+include_directories("../../../../../components/generic_css/fsw/fprime/platform_inc")
+
 set(SOURCE_FILES 
 "${CMAKE_CURRENT_LIST_DIR}/Main.cpp"
 
