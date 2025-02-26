@@ -7,6 +7,11 @@
 #include "Components/Generic_css/Generic_css.hpp"
 #include "FpConfig.hpp"
 
+#include "generic_css_device.h"
+#include "libuart.h"
+
+i2c_bus_info_t Generic_CSSI2c;
+GENERIC_CSS_Device_Data_tlm_t Generic_CSSData;
 namespace Components {
 
   // ----------------------------------------------------------------------
@@ -17,27 +22,59 @@ namespace Components {
     Generic_css(const char* const compName) :
       Generic_cssComponentBase(compName)
   {
-
+    int32_t status = OS_SUCCESS;
+    /* Open device specific protocols */
+    Generic_CSSI2c.handle = GENERIC_CSS_CFG_HANDLE;
+    Generic_CSSI2c.isOpen = PORT_CLOSED;
+    Generic_CSSI2c.speed = GENERIC_CSS_CFG_BAUDRATE_HZ;
+    Generic_CSSI2c.addr = GENERIC_CSS_I2C_ADDRESS;
+    status = i2c_master_init(&Generic_CSSI2c);
+    if (status == OS_SUCCESS)
+    {
+        printf("I2C device %d configured with speed %d \n", Generic_CSSI2c.handle, Generic_CSSI2c.speed);
+    }
+    else
+    {
+        printf("I2C device %d failed to initialize! \n", Generic_CSSI2c.handle);
+        status = OS_ERROR;
+    }
   }
 
   Generic_css ::
     ~Generic_css()
   {
-
+    // Close the device 
+    i2c_master_close(&Generic_CSSI2c);
   }
 
   // ----------------------------------------------------------------------
   // Handler implementations for commands
   // ----------------------------------------------------------------------
 
-  void Generic_css ::
-    TODO_cmdHandler(
-        FwOpcodeType opCode,
-        U32 cmdSeq
-    )
-  {
-    // TODO
-    this->cmdResponse_out(opCode, cmdSeq, Fw::CmdResponse::OK);
-  }
+//   void Generic_css ::
+//     TODO_cmdHandler(
+//         FwOpcodeType opCode,
+//         U32 cmdSeq
+//     )
+//   {
+//     // TODO
+//     this->cmdResponse_out(opCode, cmdSeq, Fw::CmdResponse::OK);
 
+
+//   }
+
+// }
+
+void Generic_CSS:: NOOP_cmdHandler(FwOpcodeType opCode, U32 cmdSeq) {
+  int32_t status = OS_SUCCESS;
+  uint32_t DeviceCounter;
+
+  status = GENERIC_CSS_CommandDevice(&Generic_CSSI2c, GENERIC_CSS_DEVICE_NOOP_CMD, 0);
+  if (status == OS_SUCCESS) {
+    this->log_ACTIVITY_HI_TELEM("Star Tracker NOOP command success\n");
+  }
+  else {
+    this->log_ACTIVITY_HI_TELEM("Star Tracker NOOP command failed\n");
+  }
+  this->cmdResponse_out(opCode, cmdSeq, FW::CMDResponse::OK);
 }

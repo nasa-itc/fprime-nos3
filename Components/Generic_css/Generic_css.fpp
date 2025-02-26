@@ -5,6 +5,27 @@ module Components {
         # One async command/port is required for active components
         # This should be overridden by the developers with a useful command/port
         @ TODO
+        @ Command to Request Housekeeping
+        async command REQUEST_HOUSEKEEPING()
+        @ Command to send NOOP
+        async command NOOP(
+        )
+
+        @ event with maximum greeting length of 30 characters
+        event TELEM(
+            log_info: string size 30 @<
+        ) severity activity high formt "Generic_css: {}"
+
+        @ A count of the number of greetings issues
+        telemetry DeviceCounter: U32
+
+        #@ A count of the number of greetings issued
+        #telemetry DeviceConfig: U32
+
+        #@ A count of the number of greetings issued
+        #telemetry DeviceConfig: U32
+
+        
         async command TODO opcode 0
 
         ##############################################################################
