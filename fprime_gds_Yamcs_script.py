@@ -14,6 +14,7 @@ This script is designed to connect to the GDS system using standard GDS argument
 
 @author lestarch
 """
+import os
 import sys
 from typing import Any, Dict, Tuple
 
@@ -37,6 +38,8 @@ import fprime_gds.executables.cli
 
 #todo create python module or class or function to mimimc ampcs_frame and framer/deframer
 from fprime_gds.common.communication.framing import FpFramerDeframer
+
+urlIP_yamcs = os.environ.get("URLIP_YAMCS")
 
 class SpecificChannel(DataHandler):
     """ Handel a specific channel by name
@@ -237,13 +240,13 @@ class YamcsConnection():
     #     self.connection.close()
     
     #UDP
-    yamcs_dwn_ip_addr = "172.23.0.12"
-    yamcs_dwn_ip_port = 5013
+    # yamcs_dwn_ip_addr = "172.21.0.12"
+    # yamcs_dwn_ip_port = 5013
     serversocket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         
     def send(self, frame):
         
-        self.serversocket.sendto(frame, ("172.23.0.12", 5013))
+        self.serversocket.sendto(frame, (urlIP_yamcs, 5013))
         # self.serversocket.sendto(frame, (yamcs_dwn_ip_addr, yamcs_dwn_ip_port))
 
     def close(self):
