@@ -14,7 +14,7 @@ module Components {
         @ event with maximum greeting length of 30 characters
         event TELEM(
             log_info: string size 30 @<
-        ) severity activity high formt "Generic_css: {}"
+        ) severity activity high format "Generic_css: {}"
 
         @ A count of the number of greetings issues
         telemetry DeviceCounter: U32
@@ -26,7 +26,7 @@ module Components {
         #telemetry DeviceConfig: U32
 
         
-        async command TODO opcode 0
+        #async command TODO opcode 0
 
         ##############################################################################
         #### Uncomment the following examples to start customizing your component ####

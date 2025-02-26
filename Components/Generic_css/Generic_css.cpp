@@ -36,7 +36,6 @@ namespace Components {
     else
     {
         printf("I2C device %d failed to initialize! \n", Generic_CSSI2c.handle);
-        status = OS_ERROR;
     }
   }
 
@@ -65,16 +64,26 @@ namespace Components {
 
 // }
 
-void Generic_CSS:: NOOP_cmdHandler(FwOpcodeType opCode, U32 cmdSeq) {
-  int32_t status = OS_SUCCESS;
-  uint32_t DeviceCounter;
+ // GENERIC_CSS_RequestData
+ void Generic_css :: REQUEST_DATA_cmdHandler(FwOpcodeType opCode, U32 cmdSeq) {
 
-  status = GENERIC_CSS_CommandDevice(&Generic_CSSI2c, GENERIC_CSS_DEVICE_NOOP_CMD, 0);
-  if (status == OS_SUCCESS) {
-    this->log_ACTIVITY_HI_TELEM("Star Tracker NOOP command success\n");
+  int32_t status = OS_SUCCESS;
+  uint32_t  DeviceCounter;
+
+  status = GENERIC_CSS_RequestData(&Generic_CSSI2c, &Generic_CSSData);
+  if (status == OS_SUCCESS)
+  {
+    this->log_ACTIVITY_HI_TELEM("GENERIC_CSS_RequestData command success\n");
   }
-  else {
-    this->log_ACTIVITY_HI_TELEM("Star Tracker NOOP command failed\n");
+  else
+  {
+    this->log_ACTIVITY_HI_TELEM("GENERIC_CSS_RequestData command failed!\n");
   }
-  this->cmdResponse_out(opCode, cmdSeq, FW::CMDResponse::OK);
+  // Tell the fprime command system that we have completed the processing of the supplied command with OK status
+  this->cmdResponse_out(opCode, cmdSeq, Fw::CmdResponse::OK);
 }
+
+
+}
+
+ 
