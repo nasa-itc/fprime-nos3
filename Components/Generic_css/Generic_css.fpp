@@ -1,15 +1,9 @@
 module Components {
     @ generic_css
     active component Generic_css {
-
-        # One async command/port is required for active components
-        # This should be overridden by the developers with a useful command/port
-        @ TODO
-        @ Command to Request Housekeeping
-        async command REQUEST_HOUSEKEEPING()
-        @ Command to send NOOP
-        async command NOOP(
-        )
+        
+        @ Command to Request Data
+        async command REQUEST_DATA()
 
         @ event with maximum greeting length of 30 characters
         event TELEM(
@@ -17,16 +11,7 @@ module Components {
         ) severity activity high format "Generic_css: {}"
 
         @ A count of the number of greetings issues
-        telemetry DeviceCounter: U32
-
-        #@ A count of the number of greetings issued
-        #telemetry DeviceConfig: U32
-
-        #@ A count of the number of greetings issued
-        #telemetry DeviceConfig: U32
-
-        
-        #async command TODO opcode 0
+        telemetry Voltage: U32
 
         ##############################################################################
         #### Uncomment the following examples to start customizing your component ####

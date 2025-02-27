@@ -45,7 +45,7 @@ namespace Components {
       void REQUEST_DATA_cmdHandler(
         FwOpcodeType opCode, 
         U32 cmdSeq
-      ) ;
+      ) override;
 
   };
 

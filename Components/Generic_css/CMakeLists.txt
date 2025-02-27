@@ -17,9 +17,9 @@ set(SOURCE_FILES
   "${CMAKE_CURRENT_LIST_DIR}/Generic_css.cpp"
 
   "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_css/fsw/shared/generic_css_device.c"
-  "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_css/fsw/standalone/device_cfg.h"
-  "${CMAKE_CURRENT_LIST_DIR}/../../../../../fsw/apps/hwlib/fsw/public_inc/hwlib.h"
-  "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_css/fsw/fprime/platform_inc/generic_css_platform_cfg.h"
+  # "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_css/fsw/standalone/device_cfg.h"
+  # "${CMAKE_CURRENT_LIST_DIR}/../../../../../fsw/apps/hwlib/fsw/public_inc/hwlib.h"
+  # "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_css/fsw/fprime/platform_inc/generic_css_platform_cfg.h"
 )
 # Uncomment and add any modules that this component depends on, else
 # they might not be available when cmake tries to build this component.

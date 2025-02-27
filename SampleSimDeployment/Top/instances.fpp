@@ -112,6 +112,7 @@ module SampleSimDeployment {
     stack size Default.STACK_SIZE \
     priority 50
 
+
   # ----------------------------------------------------------------------
   # Queued component instances
   # ----------------------------------------------------------------------
