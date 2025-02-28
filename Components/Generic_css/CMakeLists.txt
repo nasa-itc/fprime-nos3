@@ -11,12 +11,15 @@ include_directories("../../../../../components/generic_css/fsw/shared")
 include_directories("../../../../../components/generic_css/fsw/standalone") #device_cfg.h
 include_directories("../../../../../fsw/apps/hwlib/fsw/public_inc")
 include_directories("../../../../../components/generic_css/fsw/fprime/platform_inc")
+include_directories("../../../../../fsw/apps/hwlib/sim/inc")
+
 
 set(SOURCE_FILES
   "${CMAKE_CURRENT_LIST_DIR}/Generic_css.fpp"
   "${CMAKE_CURRENT_LIST_DIR}/Generic_css.cpp"
 
   "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_css/fsw/shared/generic_css_device.c"
+  "${CMAKE_CURRENT_LIST_DIR}/../../../../../fsw/apps/hwlib/sim/src/nos_link.c"
   # "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_css/fsw/standalone/device_cfg.h"
   # "${CMAKE_CURRENT_LIST_DIR}/../../../../../fsw/apps/hwlib/fsw/public_inc/hwlib.h"
   # "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_css/fsw/fprime/platform_inc/generic_css_platform_cfg.h"

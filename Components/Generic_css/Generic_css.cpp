@@ -12,6 +12,8 @@ extern "C"{
 #include "libi2c.h"
 }
 
+#include "nos_link.h"
+
 
 i2c_bus_info_t Generic_CSSI2c;
 GENERIC_CSS_Device_Data_tlm_t Generic_CSSData;
@@ -25,6 +27,10 @@ namespace Components {
     Generic_css(const char* const compName) :
       Generic_cssComponentBase(compName)
   {
+
+    /* Initialize HWLIB */
+    nos_init_link();
+
     int32_t status = OS_SUCCESS;
     uint16_t Voltage[GENERIC_CSS_NUM_CHANNELS];
 
