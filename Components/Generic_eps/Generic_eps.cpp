@@ -12,6 +12,8 @@ extern "C"{
   #include "libi2c.h"
   }
   
+#include "nos_link.h"
+  
   i2c_bus_info_t Generic_epsI2c;
   GENERIC_EPS_Device_HK_tlm_t Generic_epsHK;
   // int32_t status = OS_SUCCESS;
@@ -31,11 +33,38 @@ namespace Components {
       Generic_epsComponentBase(compName)
   {
 
+    /* Initialize HWLIB */
+    nos_init_link();
+    
+    int32_t status = OS_SUCCESS;
+     /* Open device specific protocols */
+    Generic_epsI2c.handle = GENERIC_EPS_CFG_I2C_HANDLE;
+    Generic_epsI2c.addr = GENERIC_EPS_CFG_I2C_ADDRESS;
+    Generic_epsI2c.isOpen = I2C_CLOSED;
+    Generic_epsI2c.speed = GENERIC_EPS_CFG_I2C_SPEED;
+    status = i2c_master_init(&Generic_epsI2c);
+
+    if (status == OS_SUCCESS)
+    {
+        printf("I2C device 0x%02x configured with speed %d \n", Generic_epsI2c.addr, Generic_epsI2c.speed);
+    }
+    else
+    {
+        printf("I2C device 0x%02x failed to initialize! \n", Generic_epsI2c.addr);
+        status = OS_ERROR;
+    }
+
   }
 
   Generic_eps ::
     ~Generic_eps()
   {
+
+    i2c_master_close(&Generic_epsI2c);
+
+    #ifdef _NOS_ENGINE_LINK_
+        nos_destroy_link();
+    #endif
 
   }
 
@@ -57,12 +86,6 @@ void Generic_eps :: REQUEST_HOUSEKEEPING_cmdHandler(FwOpcodeType opCode, U32 cmd
   uint16_t  SolarArrayTemperature;
   // GENERIC_EPS_Switch_tlm_t  Switch[8];
 
-   /* Open device specific protocols */
-  Generic_epsI2c.handle = GENERIC_EPS_CFG_I2C_HANDLE;
-  Generic_epsI2c.addr = GENERIC_EPS_CFG_I2C_ADDRESS;
-  Generic_epsI2c.isOpen = I2C_CLOSED;
-  Generic_epsI2c.speed = GENERIC_EPS_CFG_I2C_SPEED;
-  status = i2c_master_init(&Generic_epsI2c);
   
   status = GENERIC_EPS_RequestHK(&Generic_epsI2c, &Generic_epsHK);
   if (status == OS_SUCCESS)
