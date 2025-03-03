@@ -1,4 +1,4 @@
-# Components::Generic_FSS
+# Components::Generic_fss
 
 fine sun sensor component from NOS3
 

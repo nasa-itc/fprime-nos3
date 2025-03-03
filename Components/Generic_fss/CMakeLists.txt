@@ -7,8 +7,8 @@
 #
 ####
 set(SOURCE_FILES
-  "${CMAKE_CURRENT_LIST_DIR}/Generic_FSS.fpp"
-  "${CMAKE_CURRENT_LIST_DIR}/Generic_FSS.cpp"
+  "${CMAKE_CURRENT_LIST_DIR}/Generic_fss.fpp"
+  "${CMAKE_CURRENT_LIST_DIR}/Generic_fss.cpp"
 )
 
 # Uncomment and add any modules that this component depends on, else

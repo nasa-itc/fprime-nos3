@@ -1,6 +1,6 @@
 module Components {
     @ fine sun sensor component from NOS3
-    active component Generic_FSS {
+    active component Generic_fss {
 
         # One async command/port is required for active components
         # This should be overridden by the developers with a useful command/port

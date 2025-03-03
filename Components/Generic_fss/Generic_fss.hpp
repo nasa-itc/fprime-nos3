@@ -1,18 +1,18 @@
 // ======================================================================
-// \title  Generic_FSS.hpp
+// \title  Generic_fss.hpp
 // \author jstar
-// \brief  hpp file for Generic_FSS component implementation class
+// \brief  hpp file for Generic_fss component implementation class
 // ======================================================================
 
-#ifndef Components_Generic_FSS_HPP
-#define Components_Generic_FSS_HPP
+#ifndef Components_Generic_fss_HPP
+#define Components_Generic_fss_HPP
 
-#include "Components/Generic_FSS/Generic_FSSComponentAc.hpp"
+#include "Components/Generic_fss/Generic_fssComponentAc.hpp"
 
 namespace Components {
 
-  class Generic_FSS :
-    public Generic_FSSComponentBase
+  class Generic_fss :
+    public Generic_fssComponentBase
   {
 
     public:
@@ -21,13 +21,13 @@ namespace Components {
       // Component construction and destruction
       // ----------------------------------------------------------------------
 
-      //! Construct Generic_FSS object
-      Generic_FSS(
+      //! Construct Generic_fss object
+      Generic_fss(
           const char* const compName //!< The component name
       );
 
-      //! Destroy Generic_FSS object
-      ~Generic_FSS();
+      //! Destroy Generic_fss object
+      ~Generic_fss();
 
     PRIVATE:
 

@@ -1,10 +1,10 @@
 // ======================================================================
-// \title  Generic_FSS.cpp
+// \title  Generic_fss.cpp
 // \author jstar
-// \brief  cpp file for Generic_FSS component implementation class
+// \brief  cpp file for Generic_fss component implementation class
 // ======================================================================
 
-#include "Components/Generic_FSS/Generic_FSS.hpp"
+#include "Components/Generic_fss/Generic_fss.hpp"
 #include "FpConfig.hpp"
 
 namespace Components {
@@ -13,15 +13,15 @@ namespace Components {
   // Component construction and destruction
   // ----------------------------------------------------------------------
 
-  Generic_FSS ::
-    Generic_FSS(const char* const compName) :
-      Generic_FSSComponentBase(compName)
+  Generic_fss ::
+    Generic_fss(const char* const compName) :
+      Generic_fssComponentBase(compName)
   {
 
   }
 
-  Generic_FSS ::
-    ~Generic_FSS()
+  Generic_fss ::
+    ~Generic_fss()
   {
 
   }
@@ -30,7 +30,7 @@ namespace Components {
   // Handler implementations for commands
   // ----------------------------------------------------------------------
 
-  void Generic_FSS ::
+  void Generic_fss ::
     TODO_cmdHandler(
         FwOpcodeType opCode,
         U32 cmdSeq
