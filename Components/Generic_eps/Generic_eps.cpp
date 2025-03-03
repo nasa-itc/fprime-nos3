@@ -62,9 +62,8 @@ namespace Components {
 
     i2c_master_close(&Generic_epsI2c);
 
-    #ifdef _NOS_ENGINE_LINK_
-        nos_destroy_link();
-    #endif
+    nos_destroy_link();
+
 
   }
 
