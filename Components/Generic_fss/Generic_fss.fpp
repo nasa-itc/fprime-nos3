@@ -2,14 +2,27 @@ module Components {
     @ fine sun sensor component from NOS3
     active component Generic_fss {
 
-        # One async command/port is required for active components
-        # This should be overridden by the developers with a useful command/port
-        @ TODO
-        async command TODO opcode 0
-
         ##############################################################################
         #### Uncomment the following examples to start customizing your component ####
         ##############################################################################
+
+        @ Command to request data
+        async command REQUEST_DATA(
+        )
+
+        @ Telemetry event
+        event TELEM(
+            log_info: string size 30
+        ) severity activity high format "Generic_fss: {}"
+
+        @ Angle alpha
+        telemetry ALPHA: U32
+
+        @ Angle beta
+        telemetry BETA: U32
+
+        @ errorcode
+        telemetry ERRORCODE: U8
 
         # @ Example async command
         # async command COMMAND_NAME(param_name: U32)
