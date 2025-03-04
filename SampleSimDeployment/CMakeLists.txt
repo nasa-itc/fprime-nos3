@@ -45,11 +45,20 @@ include_directories("../../../../components/generic_radio/fsw/shared")
 include_directories("../../../../components/generic_radio/fsw/standalone") #device_cfg.h
 include_directories("../../../../components/generic_radio/fsw/fprime/platform_inc")
 
+include_directories("../../../../components/generic_css/fsw/shared")
+include_directories("../../../../components/generic_css/fsw/standalone") #device_cfg.h
+include_directories("../../../../components/generic_css/fsw/fprime/platform_inc")
+
+include_directories("../../../../../components/generic_css/fsw/shared")
+include_directories("../../../../../components/generic_css/fsw/standalone") #device_cfg.h
+include_directories("../../../../../components/generic_css/fsw/fprime/platform_inc")
+
 set(SOURCE_FILES 
 "${CMAKE_CURRENT_LIST_DIR}/Main.cpp"
 
 #ITC STUFF
 "${CMAKE_CURRENT_LIST_DIR}/../../../../components/sample/fsw/shared/sample_device.c"
+"${CMAKE_CURRENT_LIST_DIR}/../../../../components/generic_css/fsw/shared/generic_css_device.c"
 "${CMAKE_CURRENT_LIST_DIR}/../../../../components/generic_star_tracker/fsw/fprime/src/generic_star_tracker_device.c"
 "${CMAKE_CURRENT_LIST_DIR}/../../../../components/generic_radio/fsw/shared/generic_radio_device.c"
 
