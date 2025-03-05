@@ -9,10 +9,11 @@
 
 extern "C"{
 #include "generic_imu_device.h"
-#include "generic_imu_app.h"
 #include "generic_imu_platform_cfg.h"
-#include "libuart.h"
+#include "libcan.h"
 }
+
+#include "nos_link.h"
 
 /*
 ** Global Variables
@@ -25,8 +26,7 @@ GENERIC_IMU_Device_Data_tlm_t Generic_IMUData;
 /*
 ** Global Data
 */
-GENERIC_IMU_AppData_t GENERIC_IMU_AppData;
-int32_t status = OS_SUCCESS;
+// int32_t status = OS_SUCCESS;
 
 namespace Components {
 
@@ -92,7 +92,7 @@ void Generic_imu :: REQUEST_HOUSEKEEPING_cmdHandler(FwOpcodeType opCode, U32 cmd
   uint32_t DeviceCounter;
   uint32_t DeviceStatus;
 
-  status = GENERIC_IMU_RequestHK(Generic_IMUcan, Generic_IMUHK);
+  status = GENERIC_IMU_RequestHK(&Generic_IMUcan, &Generic_IMUHK);
   if (status == OS_SUCCESS)
   {
       this->log_ACTIVITY_HI_TELEM("RequestHK command success\n");
@@ -124,7 +124,7 @@ void Generic_imu :: REQUEST_DATA_cmdHandler(FwOpcodeType opCode, U32 cmdSeq) {
   float Z_Axis_LinearAcc;
   float Z_Axis_AngularAcc;
 
-  status = GENERIC_IMU_RequestData(Generic_IMUcan, Generic_IMUData);
+  status = GENERIC_IMU_RequestData(&Generic_IMUcan, &Generic_IMUData);
   if (status == OS_SUCCESS)
   {
       this->log_ACTIVITY_HI_TELEM("RequestData command success\n");
@@ -154,6 +154,7 @@ void Generic_imu :: REQUEST_DATA_cmdHandler(FwOpcodeType opCode, U32 cmdSeq) {
 }
 
 void Generic_imu :: NOOP_cmdHandler(FwOpcodeType opCode, U32 cmdSeq) {
+  uint32_t status = OS_SUCCESS;
 
   status = GENERIC_IMU_CommandDevice(&Generic_IMUcan, GENERIC_IMU_DEVICE_NOOP_CMD);
   this->log_ACTIVITY_HI_TELEM("NOOP SENT");
