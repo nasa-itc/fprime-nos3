@@ -7,6 +7,13 @@
 #include "Components/Generic_fss/Generic_fss.hpp"
 #include "FpConfig.hpp"
 
+extern "C"{
+  #include "generic_fss_device.h"
+  #include "generic_fss_platform_cfg.h"
+  #include "libuart.h"
+  }
+
+  #include "nos_link.h"
 /*
 ** Global Variables
 */
@@ -23,6 +30,8 @@ namespace Components {
     Generic_fss(const char* const compName) :
       Generic_fssComponentBase(compName)
   {
+    int32_t status = OS_SUCCESS;
+
     /* Initialize HWLIB */
     nos_init_link();
 
@@ -46,7 +55,7 @@ namespace Components {
     else
     {
         printf("SPI device %s failed to initialize! \n", FssSpi.deviceString);
-        run_status = OS_ERROR;
+        status = OS_ERROR;
     }
 
   }
@@ -69,9 +78,31 @@ namespace Components {
   void Generic_fss :: REQUEST_DATA_cmdHandler(FwOpcodeType opCode, U32 cmdSeq)
   {
     int32_t status = OS_SUCCESS;
+    float   Alpha;
+    float   Beta;
+    uint8_t ErrorCode;
     uint8_t read_data[GENERIC_FSS_DEVICE_DATA_SIZE];
     uint8_t write_data[GENERIC_FSS_DEVICE_DATA_SIZE];
-    // TODO
+  
+    status = GENERIC_FSS_RequestData(&FssSpi, &FSSData);
+    if (status == OS_SUCCESS)
+    {
+        this->log_ACTIVITY_HI_TELEM("RequestData command success\n");
+        
+    }
+    else
+    {
+        this->log_ACTIVITY_HI_TELEM("RequestData command failed\n");
+    }
+
+    Alpha = FSSData.Alpha;
+    Beta = FSSData.Beta;
+    ErrorCode = FSSData.ErrorCode;
+
+    this->tlmWrite_ALPHA(Alpha);
+    this->tlmWrite_BETA(Beta);
+    this->tlmWrite_ERRORCODE(ErrorCode);
+
     this->cmdResponse_out(opCode, cmdSeq, Fw::CmdResponse::OK);
   }
 

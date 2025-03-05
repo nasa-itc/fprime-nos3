@@ -35,10 +35,7 @@ namespace Components {
       // Handler implementations for commands
       // ----------------------------------------------------------------------
 
-      //! Handler implementation for command TODO
-      //!
-      //! TODO
-      void TODO_cmdHandler(
+      void REQUEST_DATA_cmdHandler(
           FwOpcodeType opCode, //!< The opcode
           U32 cmdSeq //!< The command sequence number
       ) override;

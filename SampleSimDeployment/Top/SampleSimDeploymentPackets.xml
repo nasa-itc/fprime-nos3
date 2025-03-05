@@ -90,5 +90,8 @@
         <channel name="generic_radio.DeviceCounter"/>
         <channel name="generic_radio.DeviceConfig"/>
         <channel name="generic_radio.ProxySignal"/>
+        <channel name="generic_fss.ALPHA"/>
+        <channel name="generic_fss.BETA"/>
+        <channel name="generic_fss.ERRORCODE"/>
     </ignore>
 </packets>
