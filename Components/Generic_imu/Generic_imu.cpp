@@ -105,8 +105,8 @@ void Generic_imu :: REQUEST_HOUSEKEEPING_cmdHandler(FwOpcodeType opCode, U32 cmd
   DeviceCounter = Generic_IMUHK.DeviceCounter;
   DeviceStatus =  Generic_IMUHK.DeviceStatus;
 
-  this->tlmWrite_BatteryVoltage(DeviceCounter);
-  this->tlmWrite_BatteryTemperature(DeviceStatus);
+  this->tlmWrite_DeviceCounter(DeviceCounter);
+  this->tlmWrite_DeviceStatus(DeviceStatus);
 
   
   // Tell the fprime command system that we have completed the processing of the supplied command with OK status
@@ -141,12 +141,12 @@ void Generic_imu :: REQUEST_DATA_cmdHandler(FwOpcodeType opCode, U32 cmdSeq) {
   Z_Axis_LinearAcc = Generic_IMUData.Z_Data.LinearAcc;
   Z_Axis_AngularAcc = Generic_IMUData.Z_Data.AngularAcc;
 
-  this->tlmWrite_BatteryVoltage(X_Axis_LinearAcc);
-  this->tlmWrite_BatteryTemperature(X_Axis_AngularAcc);
-  this->tlmWrite_BatteryVoltage(Y_Axis_LinearAcc);
-  this->tlmWrite_BatteryTemperature(Y_Axis_AngularAcc);
-  this->tlmWrite_BatteryVoltage(Z_Axis_LinearAcc);
-  this->tlmWrite_BatteryTemperature(Z_Axis_AngularAcc);
+  this->tlmWrite_X_Axis_LinearAcc(X_Axis_LinearAcc);
+  this->tlmWrite_X_Axis_AngularAcc(X_Axis_AngularAcc);
+  this->tlmWrite_Y_Axis_LinearAcc(Y_Axis_LinearAcc);
+  this->tlmWrite_Y_Axis_AngularAcc(Y_Axis_AngularAcc);
+  this->tlmWrite_Z_Axis_LinearAcc(Z_Axis_LinearAcc);
+  this->tlmWrite_Z_Axis_AngularAcc(Z_Axis_AngularAcc);
 
   
   // Tell the fprime command system that we have completed the processing of the supplied command with OK status
