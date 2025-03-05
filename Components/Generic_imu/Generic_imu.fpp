@@ -10,7 +10,11 @@ module Components {
         async command REQUEST_HOUSEKEEPING(
         )
 
-        @ Command to Request Housekeeping
+        @ Command to Request Data
+        async command REQUEST_DATA(
+        )
+
+        @ NOOP Command
         async command NOOP(
         )
 
@@ -19,8 +23,29 @@ module Components {
             log_info: string size 30 @< 
         ) severity activity high format "Generic_imu: {}"
 
-        @ A count of the number of greetings issued
+         @ Device Command Counter Parameter 
         telemetry DeviceCounter: U32
+
+         @ Device Status Parameter
+        telemetry DeviceStatus: U32
+
+         @ X Axis Linear Acceleration
+        telemetry X_Axis_LinearAcc: F32
+
+         @ X Axis Angular Acceleration
+        telemetry X_Axis_AngularAcc: F32
+
+         @ Y Axis Linear Acceleration
+        telemetry Y_Axis_LinearAcc: F32
+
+         @ Y Axis Angular Acceleration
+        telemetry Y_Axis_AngularAcc: F32
+
+         @ Z Axis Linear Acceleration
+        telemetry Z_Axis_LinearAcc: F32
+
+         @ Z Axis Angular Acceleration
+        telemetry Z_Axis_AngularAcc: F32
 
         ##############################################################################
         #### Uncomment the following examples to start customizing your component ####
