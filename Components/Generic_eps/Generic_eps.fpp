@@ -9,7 +9,7 @@ module Components {
         @ Greeting event with maximum greeting length of 30 characters
         event TELEM(
             log_info: string size 30 @< 
-        ) severity activity high format "SampleSim: {}"
+        ) severity activity high format "Generic_eps: {}"
 
          @ Battery Voltage Parameter
         telemetry BatteryVoltage: U16

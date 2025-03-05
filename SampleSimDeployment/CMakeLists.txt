@@ -58,7 +58,7 @@ set(SOURCE_FILES
 "${CMAKE_CURRENT_LIST_DIR}/../../../../components/generic_radio/fsw/shared/generic_radio_device.c"
 "${CMAKE_CURRENT_LIST_DIR}/../../../../components/generic_eps/fsw/shared/generic_eps_device.c"
 
-
+"${CMAKE_CURRENT_LIST_DIR}/../../../../fsw/apps/hwlib/sim/src/libsocket.c"
 "${CMAKE_CURRENT_LIST_DIR}/../../../../fsw/apps/hwlib/sim/src/libuart.c"
 "${CMAKE_CURRENT_LIST_DIR}/../../../../fsw/apps/hwlib/sim/src/libcan.c"
 "${CMAKE_CURRENT_LIST_DIR}/../../../../fsw/apps/hwlib/sim/src/libi2c.c"
