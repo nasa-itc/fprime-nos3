@@ -66,12 +66,11 @@ namespace Components {
   // Handler implementations for commands
   // ----------------------------------------------------------------------
 
-  void Generic_fss ::
-    TODO_cmdHandler(
-        FwOpcodeType opCode,
-        U32 cmdSeq
-    )
+  void Generic_fss :: REQUEST_DATA_cmdHandler(FwOpcodeType opCode, U32 cmdSeq)
   {
+    int32_t status = OS_SUCCESS;
+    uint8_t read_data[GENERIC_FSS_DEVICE_DATA_SIZE];
+    uint8_t write_data[GENERIC_FSS_DEVICE_DATA_SIZE];
     // TODO
     this->cmdResponse_out(opCode, cmdSeq, Fw::CmdResponse::OK);
   }
