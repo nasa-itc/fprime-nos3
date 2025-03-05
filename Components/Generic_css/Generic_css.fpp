@@ -11,7 +11,7 @@ module Components {
         ) severity activity high format "Generic_css: {}"
 
         @ A count of the number of greetings issues
-        telemetry Voltage: U32
+        telemetry Voltage: U16
 
         ##############################################################################
         #### Uncomment the following examples to start customizing your component ####

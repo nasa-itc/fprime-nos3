@@ -107,7 +107,7 @@ module SampleSimDeployment {
     stack size Default.STACK_SIZE \
     priority 50
     
-  instance generic_css: Components.Generic_css base id 0xE200 \
+  instance generic_css: Components.Generic_css base id 0xE300 \
     queue size Default.QUEUE_SIZE \
     stack size Default.STACK_SIZE \
     priority 50

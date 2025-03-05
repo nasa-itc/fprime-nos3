@@ -79,6 +79,8 @@ namespace Components {
  void Generic_css :: REQUEST_DATA_cmdHandler(FwOpcodeType opCode, U32 cmdSeq) {
 
   int32_t status = OS_SUCCESS;
+  uint16_t Voltage[GENERIC_CSS_NUM_CHANNELS];
+
 
   status = GENERIC_CSS_RequestData(&Generic_CSSI2c, &Generic_CSSData);
   if (status == OS_SUCCESS)
@@ -89,6 +91,13 @@ namespace Components {
   {
     this->log_ACTIVITY_HI_TELEM("GENERIC_CSS command failed!\n");
   }
+
+  for(int i = 0; i < GENERIC_CSS_NUM_CHANNELS; i++) {
+    Voltage[i] = Generic_CSSData.Voltage[i];
+    this->tlmWrite_Voltage(Voltage[i]);
+  }
+
+
   // Tell the fprime command system that we have completed the processing of the supplied command with OK status
   this->cmdResponse_out(opCode, cmdSeq, Fw::CmdResponse::OK);
 }
