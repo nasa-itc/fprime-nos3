@@ -98,5 +98,8 @@
         <channel name="generic_eps.EPSTemperature"/>
         <channel name="generic_eps.SolarArrayVoltage"/>
         <channel name="generic_eps.SolarArrayTemperature"/>
+        <channel name="generic_mag.MagneticIntensityX"/>
+        <channel name="generic_mag.MagneticIntensityY"/>
+        <channel name="generic_mag.MagneticIntensityZ"/>
     </ignore>
 </packets>
