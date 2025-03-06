@@ -33,8 +33,8 @@ include_directories("../../../../../components/sample/fsw/fprime/platform_inc")
 
 include_directories("../../../../../fsw/apps/hwlib/sim/inc")
 
-include_directories("../../../../../components/generic_star_tracker/fsw/fprime/src")
-include_directories("../../../../../components/generic_star_tracker/support/") #device_cfg.
+include_directories("../../../../../components/generic_star_tracker/fsw/shared")
+include_directories("../../../../../components/generic_star_tracker/fsw/standalone/") #device_cfg.
 include_directories("../../../../../components/generic_star_tracker/fsw/fprime/platform_inc")
 
 include_directories("../../../../../components/generic_radio/fsw/shared")
@@ -52,12 +52,13 @@ set(SOURCE_FILES
   "${CMAKE_CURRENT_LIST_DIR}/SampleSimDeploymentTopology.cpp"
 
   #ITC STUFF
-  "${CMAKE_CURRENT_LIST_DIR}/../../../../../fsw/apps/hwlib/sim/src/libsocket.c"
+  
   "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_mag/fsw/shared/generic_mag_device.c"
-  "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_star_tracker/fsw/fprime/src/generic_star_tracker_device.c"
+  "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_star_tracker/fsw/shared/generic_star_tracker_device.c"
   "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_radio/fsw/shared/generic_radio_device.c" 
   "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/sample/fsw/shared/sample_device.c"
-
+  
+  "${CMAKE_CURRENT_LIST_DIR}/../../../../../fsw/apps/hwlib/sim/src/libsocket.c"
   "${CMAKE_CURRENT_LIST_DIR}/../../../../../fsw/apps/hwlib/sim/src/libuart.c"
   "${CMAKE_CURRENT_LIST_DIR}/../../../../../fsw/apps/hwlib/sim/src/libcan.c"
   "${CMAKE_CURRENT_LIST_DIR}/../../../../../fsw/apps/hwlib/sim/src/libi2c.c"

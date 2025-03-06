@@ -37,26 +37,34 @@ include_directories("../../../../components/sample/fsw/fprime/platform_inc")
 
 include_directories("../../../../fsw/apps/hwlib/sim/inc")
 
-include_directories("../../../../components/generic_star_tracker/fsw/fprime/src")
-include_directories("../../../../components/generic_star_tracker/support/") #device_cfg.
+include_directories("../../../../components/generic_star_tracker/fsw/shared")
+include_directories("../../../../components/generic_star_tracker/fsw/standalone/") #device_cfg.
 include_directories("../../../../components/generic_star_tracker/fsw/fprime/platform_inc")
 
 include_directories("../../../../components/generic_radio/fsw/shared")
 include_directories("../../../../components/generic_radio/fsw/standalone") #device_cfg.h
 include_directories("../../../../components/generic_radio/fsw/fprime/platform_inc")
 
+<<<<<<< HEAD
 include_directories("../../../../components/generic_torquer/fsw/shared")
 include_directories("../../../../components/generic_torquer/fsw/standalone") #device_cfg.h
 include_directories("../../../../components/generic_torquer/fsw/fprime/platform_inc")
+=======
+include_directories("../../../../components/generic_eps/fsw/shared")
+include_directories("../../../../components/generic_eps/fsw/standalone") #device_cfg.h
+include_directories("../../../../components/generic_eps/fsw/fprime/platform_inc")
+>>>>>>> 120c4e0aff94f56cc5a2a83bdadcf806aec72951
 
 set(SOURCE_FILES 
 "${CMAKE_CURRENT_LIST_DIR}/Main.cpp"
 
 #ITC STUFF
 "${CMAKE_CURRENT_LIST_DIR}/../../../../components/sample/fsw/shared/sample_device.c"
-"${CMAKE_CURRENT_LIST_DIR}/../../../../components/generic_star_tracker/fsw/fprime/src/generic_star_tracker_device.c"
+"${CMAKE_CURRENT_LIST_DIR}/../../../../components/generic_star_tracker/fsw/shared/generic_star_tracker_device.c"
 "${CMAKE_CURRENT_LIST_DIR}/../../../../components/generic_radio/fsw/shared/generic_radio_device.c"
+"${CMAKE_CURRENT_LIST_DIR}/../../../../components/generic_eps/fsw/shared/generic_eps_device.c"
 
+"${CMAKE_CURRENT_LIST_DIR}/../../../../fsw/apps/hwlib/sim/src/libsocket.c"
 "${CMAKE_CURRENT_LIST_DIR}/../../../../fsw/apps/hwlib/sim/src/libuart.c"
 "${CMAKE_CURRENT_LIST_DIR}/../../../../fsw/apps/hwlib/sim/src/libcan.c"
 "${CMAKE_CURRENT_LIST_DIR}/../../../../fsw/apps/hwlib/sim/src/libi2c.c"

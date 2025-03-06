@@ -90,5 +90,13 @@
         <channel name="generic_radio.DeviceCounter"/>
         <channel name="generic_radio.DeviceConfig"/>
         <channel name="generic_radio.ProxySignal"/>
+        <channel name="generic_eps.BatteryVoltage"/>
+        <channel name="generic_eps.BatteryTemperature"/>
+        <channel name="generic_eps.Bus3p3Voltage"/>
+        <channel name="generic_eps.Bus5p0Voltage"/>
+        <channel name="generic_eps.Bus12Voltage"/>
+        <channel name="generic_eps.EPSTemperature"/>
+        <channel name="generic_eps.SolarArrayVoltage"/>
+        <channel name="generic_eps.SolarArrayTemperature"/>
     </ignore>
 </packets>
