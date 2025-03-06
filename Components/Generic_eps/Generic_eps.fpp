@@ -2,29 +2,38 @@ module Components {
     @ generic_eps
     active component Generic_eps {
 
-        # One async command/port is required for active components
-        # This should be overridden by the developers with a useful command/port
-        @ TODO
-        async command TODO opcode 0
+        @ Command to Request Housekeeping
+        async command REQUEST_HOUSEKEEPING(
+        )
 
-        ##############################################################################
-        #### Uncomment the following examples to start customizing your component ####
-        ##############################################################################
+        @ Greeting event with maximum greeting length of 30 characters
+        event TELEM(
+            log_info: string size 30 @< 
+        ) severity activity high format "Generic_eps: {}"
 
-        # @ Example async command
-        # async command COMMAND_NAME(param_name: U32)
+         @ Battery Voltage Parameter
+        telemetry BatteryVoltage: U16
 
-        # @ Example telemetry counter
-        # telemetry ExampleCounter: U64
+         @ Battery Temperature Parameter
+        telemetry BatteryTemperature: U16
 
-        # @ Example event
-        # event ExampleStateEvent(example_state: Fw.On) severity activity high id 0 format "State set to {}"
+         @ Bus 3p3 Voltage Parameter
+        telemetry Bus3p3Voltage: U16
 
-        # @ Example port: receiving calls from the rate group
-        # sync input port run: Svc.Sched
+         @ Bus 5p0 Voltage Parameter
+        telemetry Bus5p0Voltage: U16
 
-        # @ Example parameter
-        # param PARAMETER_NAME: U32
+         @ Bus 12 Voltage Parameter
+        telemetry Bus12Voltage: U16
+
+         @ EPS Temperature Parameter
+        telemetry EPSTemperature: U16
+
+         @ Solar Array Voltage Parameter
+        telemetry SolarArrayVoltage: U16
+
+         @ Solar Array Temperature Parameter
+        telemetry SolarArrayTemperature: U16
 
         ###############################################################################
         # Standard AC Ports: Required for Channels, Events, Commands, and Parameters  #

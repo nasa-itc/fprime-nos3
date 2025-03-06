@@ -131,7 +131,7 @@ namespace Components {
     Generic_magUart.deviceString = GENERIC_MAG_CFG_STRING;
     Generic_magUart.handle = GENERIC_MAG_CFG_HANDLE;
     Generic_magUart.isOpen = PORT_CLOSED;
-    Generic_magUart.baud = GENERIC_MAG_CFG_BAUDRATE_HZ;
+    Generic_magUart.baud = GENERIC_MAG_CFG_BAUD;
     
     status_2 = uart_init_port(&Generic_magUart);
     if (status_2 == OS_SUCCESS)
