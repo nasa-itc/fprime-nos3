@@ -5,7 +5,28 @@ module Components {
         # One async command/port is required for active components
         # This should be overridden by the developers with a useful command/port
         @ TODO
-        async command TODO opcode 0
+        @ Command to Request Momentum from all wheels
+        async command REQUEST_MOMENTUM(
+        )
+        @ Command to Set Reaction Wheel Torque
+        async command SET_TORQUE(
+            wheel_num: string size 1 @< Reaction Wheel Number (0-2) to set torque of
+            torque: string size 20 @< Torque to set reaction wheel to
+        )
+
+        @ event with maximum greeting length of 30 characters
+        event TELEM(
+            log_info: string size 30 @< 
+        ) severity activity high format "Generic_reaction_wheel: {}"
+
+        @ Momentum of Reaction Wheel 0
+        telemetry RW0_Data: F64
+
+        @ Momentum of Reaction Wheel 1
+        telemetry RW1_Data: F64
+
+        @ Momentum of Reaction Wheel 2
+        telemetry RW2_Data: F64
 
         ##############################################################################
         #### Uncomment the following examples to start customizing your component ####

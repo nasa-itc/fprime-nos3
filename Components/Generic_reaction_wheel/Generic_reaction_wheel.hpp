@@ -35,12 +35,22 @@ namespace Components {
       // Handler implementations for commands
       // ----------------------------------------------------------------------
 
-      //! Handler implementation for command TODO
+      //! Handler implementation for command GET_MOMENTUM
       //!
-      //! TODO
-      void TODO_cmdHandler(
-          FwOpcodeType opCode, //!< The opcode
-          U32 cmdSeq //!< The command sequence number
+      //! Gets the Momentum Values from all 3 reaction wheels
+      void GET_MOMENTUM_cmdHandler(
+        FwOpcodeType opCode, 
+        U32 cmdSeq
+      ) override;
+    
+      //! Handler implementation for command SET_TORQUE
+      //!
+      //! Sets the torque of a given reaction wheel. Takes input of reaction wheel number (0-2) and torque
+      void SET_TORQUE_cmdHandler(
+        FwOpcodeType opCode, //!< The opcode
+        U32 cmdSeq, //!< The command sequence number
+        const Fw::CmdStringArg& wheel_num, //!< Reaction Wheel Number to set torque of
+        const Fw::CmdStringArg& torque //!< Torque to set reaction wheel to
       ) override;
 
   };
