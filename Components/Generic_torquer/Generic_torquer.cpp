@@ -67,7 +67,6 @@ namespace Components {
   {
     trq_close(&trqDevice);
     nos_destroy_link();
-
   }
 
   // ----------------------------------------------------------------------
@@ -84,16 +83,15 @@ namespace Components {
     this->cmdResponse_out(opCode, cmdSeq, Fw::CmdResponse::OK);
   }*/
 
-  void Generic_torquer :: GENERIC_TORQUER_CONFIG_cmdHandler(FwOpcodeType opCode, U32 cmdSeq, const Fw::CmdStringArg& greeting, const Fw::CmdStringArg& greeting2) {
+  void Generic_torquer :: GENERIC_TORQUER_CONFIG_cmdHandler(FwOpcodeType opCode, U32 cmdSeq, const Fw::CmdStringArg& Percent, const Fw::CmdStringArg& Direction) {
     int32_t status = OS_SUCCESS;
     uint8_t req_percent, req_direction;
     // Copy the command string input into an event string for the Hello event
     //Fw::LogStringArg eventGreeting(greeting.toChar());  
     //Fw::LogStringArg eventGreeting2(greeting2.toChar());  
 
-
-    req_percent = atoi(greeting.toChar());
-    req_direction = atoi(greeting2.toChar());
+    req_percent = atoi(Percent.toChar());
+    req_direction = atoi(Direction.toChar());
 
     // TODO - add error checking to the above
 
