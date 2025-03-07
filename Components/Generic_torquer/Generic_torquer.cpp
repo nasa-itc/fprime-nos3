@@ -4,6 +4,7 @@
 // \brief  cpp file for Generic_torquer component implementation class
 // ======================================================================
 
+#include <string>
 #include "Components/Generic_torquer/Generic_torquer.hpp"
 #include <Fw/Logger/Logger.hpp>
 #include "FpConfig.hpp"
@@ -12,6 +13,8 @@ extern "C"{
 #include "generic_torquer_device.h"
 #include "libuart.h"
 }
+
+#include "nos_link.h"
 
 trq_info_t trqDevice;
 GENERIC_TORQUER_Device_tlm_t trqHk;
@@ -30,6 +33,10 @@ namespace Components {
       Generic_torquerComponentBase(compName), m_greetingCount(0)
 
   {
+
+    /* Initialize HWLIB */
+    nos_init_link();
+
     int32_t status = OS_SUCCESS;
     status = trq_init(&trqDevice);
     if (status == OS_SUCCESS)
@@ -57,6 +64,8 @@ namespace Components {
     ~Generic_torquer()
   {
     trq_close(&trqDevice);
+    nos_destroy_link();
+
   }
 
   // ----------------------------------------------------------------------
@@ -78,18 +87,15 @@ namespace Components {
     uint8_t req_percent, req_direction;
     // Copy the command string input into an event string for the Hello event
     Fw::LogStringArg eventGreeting(greeting.toChar());
-    //std::string tokens = greeting.toChar();
-    //const char rp = tokens[0];
-    //const char rd = tokens[1];
-   
-
-    req_percent = 0;
-    req_direction = 0;
-    req_percent = atoi(greeting.toChar());
-
+    std::string tokens = greeting.toChar();
+    remove_if(tokens.begin(), tokens.end(), isspace);
+    const char rp = tokens[0];
+    const char rd = tokens[1];
+    req_percent = atoi(&rp);
+    req_direction = atoi(&rd);
     // TODO - add error checking to the above
 
-    status = GENERIC_TORQUER_Config(&trqHk, &trqDevice, 1, 1);
+    status = GENERIC_TORQUER_Config(&trqHk, &trqDevice, req_percent, req_direction);
     if (status == OS_SUCCESS)
     {
         this->log_ACTIVITY_HI_TELEM("trq command success\n");
@@ -103,8 +109,14 @@ namespace Components {
     
     this->tlmWrite_GreetingCount(++this->m_greetingCount);
  
+
+    trqHk.PercentOn = req_percent;
+    trqHk.Direction = req_direction;
+
+
+    this->tlmWrite_Percent(trqHk.PercentOn);
     this->tlmWrite_Direction(trqHk.Direction);
-    this->tlmWrite_Percent(3);
+   
 
 
     // Tell the fprime command system that we have completed the processing of the supplied command with OK status
