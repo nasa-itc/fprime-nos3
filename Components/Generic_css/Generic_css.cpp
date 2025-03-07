@@ -32,7 +32,14 @@ namespace Components {
     nos_init_link();
 
     int32_t status = OS_SUCCESS;
-    uint16_t Voltage[GENERIC_CSS_NUM_CHANNELS];
+    uint16_t Voltage1;
+    uint16_t Voltage2;
+    uint16_t Voltage3;
+    uint16_t Voltage4;
+    uint16_t Voltage5;
+    uint16_t Voltage6;
+
+
 
     /* Open device specific protocols */
     Generic_CSSI2c.handle = GENERIC_CSS_CFG_HANDLE;
@@ -79,8 +86,12 @@ namespace Components {
  void Generic_css :: REQUEST_DATA_cmdHandler(FwOpcodeType opCode, U32 cmdSeq) {
 
   int32_t status = OS_SUCCESS;
-  uint16_t Voltage[GENERIC_CSS_NUM_CHANNELS];
-
+  uint16_t Voltage1;
+  uint16_t Voltage2;
+  uint16_t Voltage3;
+  uint16_t Voltage4;
+  uint16_t Voltage5;
+  uint16_t Voltage6;
 
   status = GENERIC_CSS_RequestData(&Generic_CSSI2c, &Generic_CSSData);
   if (status == OS_SUCCESS)
@@ -92,10 +103,24 @@ namespace Components {
     this->log_ACTIVITY_HI_TELEM("GENERIC_CSS command failed!\n");
   }
 
-  for(int i = 0; i < GENERIC_CSS_NUM_CHANNELS; i++) {
-    Voltage[i] = Generic_CSSData.Voltage[i];
-    this->tlmWrite_Voltage(Voltage[i]);
-  }
+  Voltage1 = Generic_CSSData.Voltage[0];
+  this->tlmWrite_Voltage1(Voltage1);
+
+  Voltage2 = Generic_CSSData.Voltage[1];
+  this->tlmWrite_Voltage2(Voltage2);
+
+  Voltage3 = Generic_CSSData.Voltage[2];
+  this->tlmWrite_Voltage3(Voltage3);
+  
+  Voltage4 = Generic_CSSData.Voltage[3];
+  this->tlmWrite_Voltage4(Voltage4);
+  
+  Voltage5 = Generic_CSSData.Voltage[4];
+  this->tlmWrite_Voltage5(Voltage5);
+  
+  Voltage6 = Generic_CSSData.Voltage[5];
+  this->tlmWrite_Voltage6(Voltage6);
+
 
 
   // Tell the fprime command system that we have completed the processing of the supplied command with OK status

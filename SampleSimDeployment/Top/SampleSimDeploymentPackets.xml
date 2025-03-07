@@ -90,6 +90,11 @@
         <channel name="generic_radio.DeviceCounter"/>
         <channel name="generic_radio.DeviceConfig"/>
         <channel name="generic_radio.ProxySignal"/>
-        <channel name="generic_css.Voltage"/>
+        <channel name="generic_css.Voltage1"/>
+        <channel name="generic_css.Voltage2"/>
+        <channel name="generic_css.Voltage3"/>
+        <channel name="generic_css.Voltage4"/>
+        <channel name="generic_css.Voltage5"/>
+        <channel name="generic_css.Voltage6"/>
     </ignore>
 </packets>
