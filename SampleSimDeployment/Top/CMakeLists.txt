@@ -41,9 +41,9 @@ include_directories("../../../../../components/generic_radio/fsw/shared")
 include_directories("../../../../../components/generic_radio/fsw/standalone") #device_cfg.h
 include_directories("../../../../../components/generic_radio/fsw/fprime/platform_inc")
 
-include_directories("../../../../components/generic_torquer/fsw/shared")
-include_directories("../../../../components/generic_torquer/fsw/standalone") #device_cfg.h
-include_directories("../../../../components/generic_torquer/fsw/fprime/platform_inc")
+include_directories("../../../../../components/generic_torquer/fsw/shared")
+include_directories("../../../../../components/generic_torquer/fsw/standalone") #device_cfg.h
+include_directories("../../../../../components/generic_torquer/fsw/fprime/platform_inc")
 
 set(SOURCE_FILES
   "${CMAKE_CURRENT_LIST_DIR}/instances.fpp"
