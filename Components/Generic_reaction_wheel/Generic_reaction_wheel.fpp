@@ -2,12 +2,10 @@ module Components {
     @ reaction wheel device control and monitoring
     active component Generic_reaction_wheel {
 
-        # One async command/port is required for active components
-        # This should be overridden by the developers with a useful command/port
-        @ TODO
         @ Command to Request Momentum from all wheels
-        async command REQUEST_MOMENTUM(
+        async command GET_MOMENTUM(
         )
+
         @ Command to Set Reaction Wheel Torque
         async command SET_TORQUE(
             wheel_num: string size 1 @< Reaction Wheel Number (0-2) to set torque of

@@ -49,9 +49,10 @@ include_directories("../../../../components/generic_eps/fsw/shared")
 include_directories("../../../../components/generic_eps/fsw/standalone") #device_cfg.h
 include_directories("../../../../components/generic_eps/fsw/fprime/platform_inc")
 
-include_directories("../../../../../components/generic_reaction_wheel/fsw/shared")
-include_directories("../../../../../components/generic_reaction_wheel/fsw/standalone") #device_cfg.h
-include_directories("../../../../../components/generic_reaction_wheel/fsw/fprime/platform_inc")
+include_directories("../../../../components/generic_reaction_wheel/fsw/shared")
+include_directories("../../../../components/generic_reaction_wheel/fsw/standalone") #device_cfg.h
+include_directories("../../../../components/generic_reaction_wheel/fsw/fprime/platform_inc")
+
 
 set(SOURCE_FILES 
 "${CMAKE_CURRENT_LIST_DIR}/Main.cpp"

@@ -7,6 +7,7 @@
 #
 ####
 #ITC Changes
+include_directories("../../../../../components/generic_reaction_wheel/fsw/fprime/platform_inc") #platform_cfg.h
 include_directories("../../../../../components/generic_reaction_wheel/fsw/shared/") #device.h
 include_directories("../../../../../components/generic_reaction_wheel/fsw/standalone/") #device_cfg.h
 include_directories("../../../../../fsw/apps/hwlib/fsw/public_inc")
