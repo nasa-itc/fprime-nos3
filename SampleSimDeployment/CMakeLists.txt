@@ -45,15 +45,13 @@ include_directories("../../../../components/generic_radio/fsw/shared")
 include_directories("../../../../components/generic_radio/fsw/standalone") #device_cfg.h
 include_directories("../../../../components/generic_radio/fsw/fprime/platform_inc")
 
-<<<<<<< HEAD
 include_directories("../../../../components/generic_torquer/fsw/shared")
 include_directories("../../../../components/generic_torquer/fsw/standalone") #device_cfg.h
 include_directories("../../../../components/generic_torquer/fsw/fprime/platform_inc")
-=======
+
 include_directories("../../../../components/generic_eps/fsw/shared")
 include_directories("../../../../components/generic_eps/fsw/standalone") #device_cfg.h
 include_directories("../../../../components/generic_eps/fsw/fprime/platform_inc")
->>>>>>> 120c4e0aff94f56cc5a2a83bdadcf806aec72951
 
 set(SOURCE_FILES 
 "${CMAKE_CURRENT_LIST_DIR}/Main.cpp"

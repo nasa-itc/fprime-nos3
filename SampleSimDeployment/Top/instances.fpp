@@ -107,18 +107,16 @@ module SampleSimDeployment {
     stack size Default.STACK_SIZE \
     priority 50
 
-<<<<<<< HEAD
   instance generic_torquer: Components.Generic_torquer base id 0xE400 \
     queue size Default.QUEUE_SIZE \
     stack size Default.STACK_SIZE \
     priority 50
-=======
+    
   instance generic_eps: Components.Generic_eps base id 0xE200 \
     queue size Default.QUEUE_SIZE \
     stack size Default.STACK_SIZE \
     priority 50
 
->>>>>>> 120c4e0aff94f56cc5a2a83bdadcf806aec72951
   # ----------------------------------------------------------------------
   # Queued component instances
   # ----------------------------------------------------------------------
