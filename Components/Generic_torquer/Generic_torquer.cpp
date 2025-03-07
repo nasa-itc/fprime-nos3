@@ -38,15 +38,7 @@ namespace Components {
     nos_init_link();
 
     int32_t status = OS_SUCCESS;
-    status = trq_init(&trqDevice);
-    if (status == OS_SUCCESS)
-    {
-        printf("Torquer initialized successfully \n");
-    }
-    else
-    {
-        printf("Torquer device failed to initialize with error %d!\n", status);
-    }
+    
     /* Open device specific protocols */
     trqHk.Direction = 0;
     trqHk.PercentOn = 0;
@@ -58,6 +50,16 @@ namespace Components {
     trqDevice.timer_high_ns = 0;
     trqDevice.positive_direction = false;
     trqDevice.enabled = false;
+
+    status = trq_init(&trqDevice);
+    if (status == OS_SUCCESS)
+    {
+        printf("Torquer initialized successfully \n");
+    }
+    else
+    {
+        printf("Torquer device failed to initialize with error %d!\n", status);
+    }
   }
 
   Generic_torquer ::
@@ -82,17 +84,17 @@ namespace Components {
     this->cmdResponse_out(opCode, cmdSeq, Fw::CmdResponse::OK);
   }*/
 
-  void Generic_torquer :: GENERIC_TORQUER_CONFIG_cmdHandler(FwOpcodeType opCode, U32 cmdSeq, const Fw::CmdStringArg& greeting) {
+  void Generic_torquer :: GENERIC_TORQUER_CONFIG_cmdHandler(FwOpcodeType opCode, U32 cmdSeq, const Fw::CmdStringArg& greeting, const Fw::CmdStringArg& greeting2) {
     int32_t status = OS_SUCCESS;
     uint8_t req_percent, req_direction;
     // Copy the command string input into an event string for the Hello event
-    Fw::LogStringArg eventGreeting(greeting.toChar());
-    std::string tokens = greeting.toChar();
-    remove_if(tokens.begin(), tokens.end(), isspace);
-    const char rp = tokens[0];
-    const char rd = tokens[1];
-    req_percent = atoi(&rp);
-    req_direction = atoi(&rd);
+    //Fw::LogStringArg eventGreeting(greeting.toChar());  
+    //Fw::LogStringArg eventGreeting2(greeting2.toChar());  
+
+
+    req_percent = atoi(greeting.toChar());
+    req_direction = atoi(greeting2.toChar());
+
     // TODO - add error checking to the above
 
     status = GENERIC_TORQUER_Config(&trqHk, &trqDevice, req_percent, req_direction);
@@ -105,7 +107,9 @@ namespace Components {
         this->log_ACTIVITY_HI_TELEM("trq command failed!\n");
     }
     // Emit the Hello event with the copied string
-    this->log_ACTIVITY_HI_Hello(eventGreeting);
+    //this->log_ACTIVITY_HI_Hello(eventGreeting);
+    //this->log_ACTIVITY_HI_Hello(eventGreeting2);
+
     
     this->tlmWrite_GreetingCount(++this->m_greetingCount);
  

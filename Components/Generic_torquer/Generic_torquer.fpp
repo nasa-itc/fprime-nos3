@@ -9,12 +9,14 @@ module Components {
         @ Command to issue greeting with maximum length of 20 characters
         async command GENERIC_TORQUER_CONFIG(
             greeting: string size 20 @< Greeting to repeat in the Hello event
+            greeting2: string size 20 @< Greeting to repeat in the Hello event
         )
-        
+
         @ Greeting event with maximum greeting length of 20 characters
         event Hello(
             greeting: string size 20 @< Greeting supplied from the GENERIC_TORQUER_CONFIG command
-        ) severity activity high format "I say: {}"
+            greeting2:  string size 20 @< Greeting supplied from the GENERIC_TORQUER_CONFIG command
+        ) severity activity high format "I say: {} {}"
 
         @ Greeting event with maximum greeting length of 30 characters
         event TELEM(
