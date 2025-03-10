@@ -46,6 +46,7 @@ module SampleSimDeployment {
     instance generic_star_tracker
     instance generic_radio
     instance generic_eps
+    instance generic_thruster
     # ----------------------------------------------------------------------
     # Pattern graph specifiers
     # ----------------------------------------------------------------------
