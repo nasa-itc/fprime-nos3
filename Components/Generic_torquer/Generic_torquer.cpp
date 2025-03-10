@@ -112,8 +112,8 @@ namespace Components {
     this->tlmWrite_GreetingCount(++this->m_greetingCount);
  
 
-    trqHk.PercentOn = req_percent;
-    trqHk.Direction = req_direction;
+    //trqHk.PercentOn = req_percent;
+    //rqHk.Direction = req_direction;
 
 
     this->tlmWrite_Percent(trqHk.PercentOn);
