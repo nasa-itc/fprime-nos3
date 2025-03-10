@@ -42,14 +42,15 @@ namespace Components {
         FwOpcodeType opCode, 
         U32 cmdSeq
       ) override;
+      
       //! Handler implementation for command SET_TORQUE
       //!
       //! Sets the torque of a given reaction wheel. Takes input of reaction wheel number (0-2) and torque
       void SET_TORQUE_cmdHandler(
         FwOpcodeType opCode, //!< The opcode
         U32 cmdSeq, //!< The command sequence number
-        const Fw::CmdStringArg& wheel_num, //!< Reaction Wheel Number to set torque of
-        const Fw::CmdStringArg& torque //!< Torque to set reaction wheel to
+        const I16 wheel_num, //!< Reaction Wheel Number to set torque of
+        const F64 torque //!< Torque to set reaction wheel to
       ) override;
 
   };

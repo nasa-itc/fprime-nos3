@@ -124,25 +124,32 @@ namespace Components {
   }
 
   // GENERIC_REACTION_WHEEL_Set_Torque
-  void Generic_reaction_wheel :: SET_TORQUE_cmdHandler(FwOpcodeType opCode, U32 cmdSeq, const Fw::CmdStringArg& wheel_num, const Fw::CmdStringArg& torque) 
+  void Generic_reaction_wheel :: SET_TORQUE_cmdHandler(FwOpcodeType opCode, U32 cmdSeq, const I16 wheel_num, const F64 torque) 
   {
 
     int32_t status = OS_SUCCESS;
-    int wheel = atoi(wheel_num.toChar());
-    double torqueVal = atof(torque.toChar());
-    
-    status = SetRWTorque(&RW_UART[wheel], torqueVal);
-    if (status < 0)
-    {   
-        OS_printf("GENERIC_REACTION_WHEEL_SetTorque command failed for RW %d!\n", wheel);
+
+    if (wheel_num > 2 || wheel_num < 0)
+    {
+      OS_printf("GENERIC_REACTION_WHEEL_SetTorque command failed, Wheel %d, invalid! Pick 0, 1, or 2.\n", wheel_num);
+      status = OS_ERROR;
     }
     else
     {
-        OS_printf("RW %d torque successfully set to %lf\n", wheel, torqueVal);
-    }    
+      status = SetRWTorque(&RW_UART[wheel_num], torque);
+      if (status < 0)
+      {   
+          OS_printf("GENERIC_REACTION_WHEEL_SetTorque command failed for RW %d!\n", wheel_num);
+      }
+      else
+      {
+          OS_printf("RW %d torque successfully set to %lf\n", wheel_num, torque);
+      }    
+      
+      // Tell the fprime command system that we have completed the processing of the supplied command with OK status
+      this->cmdResponse_out(opCode, cmdSeq, Fw::CmdResponse::OK);
+    }
     
-    // Tell the fprime command system that we have completed the processing of the supplied command with OK status
-    this->cmdResponse_out(opCode, cmdSeq, Fw::CmdResponse::OK);
   }
 
 }

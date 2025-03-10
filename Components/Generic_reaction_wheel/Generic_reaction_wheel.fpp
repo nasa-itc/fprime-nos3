@@ -8,8 +8,8 @@ module Components {
 
         @ Command to Set Reaction Wheel Torque
         async command SET_TORQUE(
-            wheel_num: string size 1 @< Reaction Wheel Number (0-2) to set torque of
-            torque: string size 20 @< Torque to set reaction wheel to
+            wheel_num: I16 @< Reaction Wheel Number (0-2) to set torque of
+            torque: F64 @< Torque to set reaction wheel to
         )
 
         @ event with maximum greeting length of 30 characters
