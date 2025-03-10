@@ -67,9 +67,10 @@ namespace Components {
   // ----------------------------------------------------------------------
 
   void Generic_thruster ::
-    TODO_cmdHandler(
+    GENERIC_THRUSTER_SetPercentage_cmdHandler(
         FwOpcodeType opCode,
-        U32 cmdSeq
+        U32 cmdSeq,
+        const Fw::CmdStringArg& greeting //!< Greeting to repeat in the Hello event
     )
   {
     int32_t status = OS_SUCCESS;

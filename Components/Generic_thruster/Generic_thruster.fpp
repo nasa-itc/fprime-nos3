@@ -4,8 +4,27 @@ module Components {
 
         # One async command/port is required for active components
         # This should be overridden by the developers with a useful command/port
-        @ TODO
-        async command TODO opcode 0
+        #@ TODO
+        #async command TODO opcode 0
+
+        @ Command to issue greeting with maximum length of 20 characters
+        async command GENERIC_THRUSTER_SetPercentage_cmdHandler(
+            greeting: string size 20 @< Greeting to repeat in the Hello event
+        )
+
+        @ Greeting event with maximum greeting length of 20 characters
+        event Hello(
+            greeting: string size 20 @< Greeting supplied from the SAY_HELLO command
+        ) severity activity high format "I say: {}"
+
+        @ A count of the number of greetings issued
+        telemetry GreetingCount: U32
+
+        @ A count of the number of greetings issued
+        telemetry thruster_number: U8
+
+        @ A count of the number of greetings issued
+        telemetry percentage: U8
 
         ##############################################################################
         #### Uncomment the following examples to start customizing your component ####
