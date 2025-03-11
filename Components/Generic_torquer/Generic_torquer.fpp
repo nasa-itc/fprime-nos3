@@ -8,7 +8,7 @@ module Components {
         #Greeting 1
         @ Command to issue greeting with maximum length of 20 characters
         async command GENERIC_TORQUER_CONFIG(
-            Percent: string size 20 @< Percent speed of rotation: 0 <= x <= 100
+            Percent: string size 20 @< Percent speed of rotation: 0 - 100
             Direction: string size 20 @< Direction of rotation
         )
 
