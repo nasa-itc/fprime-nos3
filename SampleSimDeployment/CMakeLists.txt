@@ -53,6 +53,9 @@ include_directories("../../../../components/generic_eps/fsw/shared")
 include_directories("../../../../components/generic_eps/fsw/standalone") #device_cfg.h
 include_directories("../../../../components/generic_eps/fsw/fprime/platform_inc")
 
+include_directories("../../../../components/generic_imu/fsw/shared")
+include_directories("../../../../components/generic_imu/fsw/standalone") #device_cfg.h
+include_directories("../../../../components/generic_imu/fsw/fprime/platform_inc")
 include_directories("../../../../components/generic_mag/fsw/shared")
 include_directories("../../../../components/generic_mag/fsw/standalone") #device_cfg.h
 include_directories("../../../../components/generic_mag/fsw/fprime/platform_inc")
@@ -70,6 +73,7 @@ set(SOURCE_FILES
 "${CMAKE_CURRENT_LIST_DIR}/../../../../components/generic_star_tracker/fsw/shared/generic_star_tracker_device.c"
 "${CMAKE_CURRENT_LIST_DIR}/../../../../components/generic_radio/fsw/shared/generic_radio_device.c"
 "${CMAKE_CURRENT_LIST_DIR}/../../../../components/generic_eps/fsw/shared/generic_eps_device.c"
+"${CMAKE_CURRENT_LIST_DIR}/../../../../components/generic_imu/fsw/shared/generic_imu_device.c"
 "${CMAKE_CURRENT_LIST_DIR}/../../../../components/generic_mag/fsw/shared/generic_mag_device.c"
 "${CMAKE_CURRENT_LIST_DIR}/../../../../components/generic_reaction_wheel/fsw/shared/generic_reaction_wheel_device.c"
 

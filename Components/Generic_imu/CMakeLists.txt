@@ -13,6 +13,7 @@ include_directories("../../../../../fsw/apps/hwlib/fsw/public_inc")
 include_directories("../../../../../components/generic_imu/fsw/fprime/platform_inc")
 include_directories("../../../../../components/generic_imu/fsw/fprime/mission_inc")
 include_directories("../../../../../components/generic_imu/fsw/fprime/src") 
+include_directories("../../../../../fsw/apps/hwlib/sim/inc")
 
 
 set(SOURCE_FILES
@@ -20,6 +21,7 @@ set(SOURCE_FILES
   "${CMAKE_CURRENT_LIST_DIR}/Generic_imu.cpp"
 
   "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_imu/fsw/shared/generic_imu_device.c" #need to fix undeclared errors
+  "${CMAKE_CURRENT_LIST_DIR}/../../../../../fsw/apps/hwlib/sim/src/nos_link.c"
   
 )
 

@@ -101,6 +101,14 @@
         <channel name="generic_eps.EPSTemperature"/>
         <channel name="generic_eps.SolarArrayVoltage"/>
         <channel name="generic_eps.SolarArrayTemperature"/>
+        <channel name="generic_imu.DeviceCounter"/>
+        <channel name="generic_imu.DeviceStatus"/>
+        <channel name="generic_imu.X_Axis_LinearAcc"/>
+        <channel name="generic_imu.X_Axis_AngularAcc"/>
+        <channel name="generic_imu.Y_Axis_LinearAcc"/>
+        <channel name="generic_imu.Y_Axis_AngularAcc"/>
+        <channel name="generic_imu.Z_Axis_LinearAcc"/>
+        <channel name="generic_imu.Z_Axis_AngularAcc"/>
         <channel name="generic_mag.MagneticIntensityX"/>
         <channel name="generic_mag.MagneticIntensityY"/>
         <channel name="generic_mag.MagneticIntensityZ"/>
