@@ -14,7 +14,7 @@ module Components {
 
         @ event with maximum greeting length of 30 characters
         event TELEM(
-            log_info: string size 30 @< 
+            log_info: string size 60 @< 
         ) severity activity high format "Generic_reaction_wheel: {}"
 
         @ Momentum of Reaction Wheel 0

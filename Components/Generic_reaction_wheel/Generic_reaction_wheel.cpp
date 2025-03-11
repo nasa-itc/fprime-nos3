@@ -89,29 +89,35 @@ namespace Components {
     status = GetCurrentMomentum(&RW_UART[0], &RW0_Data);
     if (status < 0)
     {
-        OS_printf("GENERIC_REACTION_WHEEL_RequestData command failed for RW 0!\n");
+      this->log_ACTIVITY_HI_TELEM("RW_GetCurrentMomentum: Command Failed for RW 0!");  
+      OS_printf("GENERIC_REACTION_WHEEL_RequestData command failed for RW 0!\n");
     }
     else
     {
-        OS_printf("RW_GetCurrentMomentum: Success for RW 0! Momentum: %lf\n", RW0_Data);
+      this->log_ACTIVITY_HI_TELEM("RW_GetCurrentMomentum: Success for RW 0!");
+      OS_printf("RW_GetCurrentMomentum: Success for RW 0! Momentum: %lf\n", RW0_Data);
     }
     status = GetCurrentMomentum(&RW_UART[1], &RW1_Data);
     if (status < 0)
     {
-        OS_printf("GENERIC_REACTION_WHEEL_RequestData command failed for RW 1!\n");
+      this->log_ACTIVITY_HI_TELEM("RW_GetCurrentMomentum: Command Failed for RW 1!");  
+      OS_printf("GENERIC_REACTION_WHEEL_RequestData command failed for RW 1!\n");
     }
     else
     {
-        OS_printf("RW_GetCurrentMomentum: Success for RW 1! Momentum: %lf\n", RW1_Data);
+      this->log_ACTIVITY_HI_TELEM("RW_GetCurrentMomentum: Success for RW 1!");
+      OS_printf("RW_GetCurrentMomentum: Success for RW 1! Momentum: %lf\n", RW1_Data);
     }
     status = GetCurrentMomentum(&RW_UART[2], &RW2_Data);
     if (status < 0)
     {
-        OS_printf("GENERIC_REACTION_WHEEL_RequestData command failed for RW 2!\n");
+      this->log_ACTIVITY_HI_TELEM("RW_GetCurrentMomentum: Command Failed for RW 0!");  
+      OS_printf("GENERIC_REACTION_WHEEL_RequestData command failed for RW 2!\n");
     }
     else
     {
-        OS_printf("RW_GetCurrentMomentum: Success for RW 2! Momentum: %lf\n", RW2_Data);
+      this->log_ACTIVITY_HI_TELEM("RW_GetCurrentMomentum: Success for RW 2!");
+      OS_printf("RW_GetCurrentMomentum: Success for RW 2! Momentum: %lf\n", RW2_Data);
     }
 
 
@@ -139,11 +145,13 @@ namespace Components {
       status = SetRWTorque(&RW_UART[wheel_num], torque);
       if (status < 0)
       {   
-          OS_printf("GENERIC_REACTION_WHEEL_SetTorque command failed for RW %d!\n", wheel_num);
+        this->log_ACTIVITY_HI_TELEM("SetRWTorque: Command Failed!");  
+        OS_printf("GENERIC_REACTION_WHEEL_SetTorque command failed for RW %d!\n", wheel_num);
       }
       else
       {
-          OS_printf("RW %d torque successfully set to %lf\n", wheel_num, torque);
+        this->log_ACTIVITY_HI_TELEM("SetRWTorque: Command Success!");  
+        OS_printf("RW %d torque successfully set to %lf\n", wheel_num, torque);
       }    
       
       // Tell the fprime command system that we have completed the processing of the supplied command with OK status
