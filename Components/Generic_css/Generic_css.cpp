@@ -55,25 +55,13 @@ namespace Components {
   {
     // Close the device 
     i2c_master_close(&Generic_CSSI2c);
+
+    nos_destroy_link();
   }
 
   // ----------------------------------------------------------------------
   // Handler implementations for commands
   // ----------------------------------------------------------------------
-
-//   void Generic_css ::
-//     TODO_cmdHandler(
-//         FwOpcodeType opCode,
-//         U32 cmdSeq
-//     )
-//   {
-//     // TODO
-//     this->cmdResponse_out(opCode, cmdSeq, Fw::CmdResponse::OK);
-
-
-//   }
-
-// }
 
  // GENERIC_CSS_RequestData
  void Generic_css :: REQUEST_DATA_cmdHandler(FwOpcodeType opCode, U32 cmdSeq) {

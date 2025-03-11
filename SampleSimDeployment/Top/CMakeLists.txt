@@ -22,14 +22,13 @@ find_package(NOSENGINE REQUIRED QUIET COMPONENTS common transport client uart ca
 
 include_directories("../../../../../components/sample/fsw/shared")#sample_device.h
 include_directories("../../../../../components/sample/fsw/standalone") #device_cfg.h
+include_directories("../../../../../components/sample/fsw/fprime/platform_inc")
 
 include_directories("../../../../../components/generic_mag/fsw/standalone/") #device_cfg.h
 include_directories("../../../../../components/generic_mag/fsw/shared/")
 include_directories("../../../../../components/generic_mag/fsw/fprime/platform_inc")
 
 include_directories("../../../../../fsw/apps/hwlib/fsw/public_inc")
-
-include_directories("../../../../../components/sample/fsw/fprime/platform_inc")
 
 include_directories("../../../../../fsw/apps/hwlib/sim/inc")
 
