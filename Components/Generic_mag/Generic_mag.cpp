@@ -9,86 +9,17 @@
 
 extern "C"{
 #include "generic_mag_device.h"
-#include "sample_device.h"
-#include "libuart.h"
+#include "libspi.h"
 }
+
+  
+#include "nos_link.h"
 
 /*
 ** Global Variables
 */
-uart_info_t Generic_magUart;
-// GENERIC_MAG_Device_HK_tlm_t Generic_magHK;
-// GENERIC_MAG_Device_Data_tlm_t Generic_magData;
-int32_t status_2 = OS_SUCCESS;
-
-/* 
-** Generic command to device
-** Note that confirming the echoed response is specific to this implementation
-*/
-int32_t GENERIC_MAG_CommandDevice(uart_info_t* device, uint8_t cmd_code, uint32_t payload)
-{
-    int32_t status = OS_SUCCESS;
-    int32_t bytes = 0;
-    uint8_t write_data[SAMPLE_DEVICE_CMD_SIZE];
-    uint8_t read_data[SAMPLE_DEVICE_DATA_SIZE];
-
-    /* Prepare command */
-    write_data[0] = SAMPLE_DEVICE_HDR_0;
-    write_data[1] = SAMPLE_DEVICE_HDR_1;
-    write_data[2] = cmd_code;
-    write_data[3] = payload >> 24;
-    write_data[4] = payload >> 16;
-    write_data[5] = payload >> 8;
-    write_data[6] = payload;
-    write_data[7] = SAMPLE_DEVICE_TRAILER_0;
-    write_data[8] = SAMPLE_DEVICE_TRAILER_1;
-
-    /* Flush any prior data */
-    status = uart_flush(device);
-    if (status == UART_SUCCESS)
-    {
-        /* Write data */
-        bytes = uart_write_port(device, write_data, SAMPLE_DEVICE_CMD_SIZE);
-        #ifdef SAMPLE_CFG_DEBUG
-            OS_printf("  SAMPLE_CommandDevice[%d] = ", bytes);
-            for (uint32_t i = 0; i < SAMPLE_DEVICE_CMD_SIZE; i++)
-            {
-                OS_printf("%02x", write_data[i]);
-            }
-            OS_printf("\n");
-        #endif
-        if (bytes == SAMPLE_DEVICE_CMD_SIZE)
-        {
-            status = SAMPLE_ReadData(device, read_data, SAMPLE_DEVICE_CMD_SIZE);
-            if (status == OS_SUCCESS)
-            {
-                /* Confirm echoed response */
-                bytes = 0;
-                while ((bytes < (int32_t) SAMPLE_DEVICE_CMD_SIZE) && (status == OS_SUCCESS))
-                {
-                    if (read_data[bytes] != write_data[bytes])
-                    {
-                        status = OS_ERROR;
-                    }
-                    bytes++;
-                }
-            } /* SAMPLE_ReadData */
-            else
-            {
-                #ifdef SAMPLE_CFG_DEBUG
-                    OS_printf("SAMPLE_CommandDevice - SAMPLE_ReadData returned %d \n", status);
-                #endif
-            }
-        } 
-        else
-        {
-            #ifdef SAMPLE_CFG_DEBUG
-                OS_printf("SAMPLE_CommandDevice - uart_write_port returned %d, expected %d \n", bytes, SAMPLE_DEVICE_CMD_SIZE);
-            #endif
-        } /* uart_write */
-    } /* uart_flush*/
-    return status;
-}
+spi_info_t Generic_magSpi;
+GENERIC_MAG_Device_Data_tlm_t Generic_magData;
 
 
 namespace Components {
@@ -101,13 +32,40 @@ namespace Components {
     Generic_mag(const char* const compName) :
       Generic_magComponentBase(compName)
   {
+    uint32_t status = OS_SUCCESS;
 
+    nos_init_link();
+
+    /* Open device specific protocols */
+    Generic_magSpi.deviceString = GENERIC_MAG_CFG_STRING;
+    Generic_magSpi.handle = GENERIC_MAG_CFG_HANDLE;
+    Generic_magSpi.baudrate = GENERIC_MAG_CFG_BAUD;
+    Generic_magSpi.spi_mode = GENERIC_MAG_CFG_SPI_MODE;
+    Generic_magSpi.bits_per_word = GENERIC_MAG_CFG_BITS_PER_WORD;
+    Generic_magSpi.bus = GENERIC_MAG_CFG_BUS;
+    Generic_magSpi.cs = GENERIC_MAG_CFG_CS;
+    status = spi_init_dev(&Generic_magSpi);
+    if (status == OS_SUCCESS)
+    {
+        printf("SPI device %s configured with baudrate %d \n", Generic_magSpi.deviceString, Generic_magSpi.baudrate);
+    }
+    else
+    {
+        printf("SPI device %s failed to initialize! \n", Generic_magSpi.deviceString);
+        status = OS_ERROR;
+    }
   }
 
   Generic_mag ::
     ~Generic_mag()
   {
+    uint32_t status = OS_SUCCESS;
+    
+    status = spi_close_device(&Generic_magSpi);
 
+    nos_destroy_link();
+
+    OS_printf("Cleanly exiting generic_mag application...\n\n"); 
   }
 
   // ----------------------------------------------------------------------
@@ -125,36 +83,35 @@ namespace Components {
   // }
 
 
-  void Generic_mag :: NOOP_cmdHandler(FwOpcodeType opCode, U32 cmdSeq) {
-  
-    /* Open device specific protocols */
-    Generic_magUart.deviceString = GENERIC_MAG_CFG_STRING;
-    Generic_magUart.handle = GENERIC_MAG_CFG_HANDLE;
-    Generic_magUart.isOpen = PORT_CLOSED;
-    Generic_magUart.baud = GENERIC_MAG_CFG_BAUD;
+  void Generic_mag :: REQUEST_DATA_cmdHandler(FwOpcodeType opCode, U32 cmdSeq) 
+  {
+    int32_t status = OS_SUCCESS;
+    int32_t  MagneticIntensityX;
+    int32_t  MagneticIntensityY;
+    int32_t  MagneticIntensityZ;
+
     
-    status_2 = uart_init_port(&Generic_magUart);
-    if (status_2 == OS_SUCCESS)
+    status = GENERIC_MAG_RequestData(&Generic_magSpi, &Generic_magData);
+    if (status == OS_SUCCESS)
     {
-        printf("UART device %s configured with baudrate %d \n", Generic_magUart.deviceString, Generic_magUart.baud);
+        this->log_ACTIVITY_HI_TELEM("RequestData command success\n");
     }
     else
     {
-        printf("UART device %s failed to initialize! \n", Generic_magUart.deviceString);
+        this->log_ACTIVITY_HI_TELEM("RequestData command failed!\n");
     }
+
+    MagneticIntensityX = Generic_magData.MagneticIntensityX;
+    MagneticIntensityY = Generic_magData.MagneticIntensityY;
+    MagneticIntensityZ = Generic_magData.MagneticIntensityZ;
+
+    this->tlmWrite_MagneticIntensityX(MagneticIntensityX);
+    this->tlmWrite_MagneticIntensityY(MagneticIntensityY);
+    this->tlmWrite_MagneticIntensityZ(MagneticIntensityZ);
+
     
-    status_2 = GENERIC_MAG_CommandDevice(&Generic_magUart, SAMPLE_DEVICE_NOOP_CMD, 0);
-    if (status_2 == OS_SUCCESS)
-    {
-        this->log_ACTIVITY_HI_TELEM("Star Tracker NOOP command success\n");
-    }
-    else
-    {
-        this->log_ACTIVITY_HI_TELEM("Star Tracker NOOP command failed!\n");
-    }
-    this->log_ACTIVITY_HI_TELEM("NOOP SENT");
     // Tell the fprime command system that we have completed the processing of the supplied command with OK status
-    // this->cmdResponse_out(opCode, cmdSeq, Fw::CmdResponse::OK);
+    this->cmdResponse_out(opCode, cmdSeq, Fw::CmdResponse::OK);
   }
 
 }
