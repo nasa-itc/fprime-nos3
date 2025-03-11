@@ -117,6 +117,11 @@ module SampleSimDeployment {
     stack size Default.STACK_SIZE \
     priority 50
 
+  instance generic_reaction_wheel: Components.Generic_reaction_wheel base id 0xE700 \
+    queue size Default.QUEUE_SIZE \
+    stack size Default.STACK_SIZE \
+    priority 50
+
   # ----------------------------------------------------------------------
   # Queued component instances
   # ----------------------------------------------------------------------

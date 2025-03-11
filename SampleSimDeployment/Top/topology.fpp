@@ -47,6 +47,7 @@ module SampleSimDeployment {
     instance generic_radio
     instance generic_fss
     instance generic_eps
+    instance generic_reaction_wheel
     # ----------------------------------------------------------------------
     # Pattern graph specifiers
     # ----------------------------------------------------------------------
