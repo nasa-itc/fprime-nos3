@@ -1,18 +1,18 @@
 // ======================================================================
-// \title  Generic_mag.hpp
+// \title  Generic_fss.hpp
 // \author jstar
-// \brief  hpp file for Generic_mag component implementation class
+// \brief  hpp file for Generic_fss component implementation class
 // ======================================================================
 
-#ifndef Components_Generic_mag_HPP
-#define Components_Generic_mag_HPP
+#ifndef Components_Generic_fss_HPP
+#define Components_Generic_fss_HPP
 
-#include "Components/Generic_mag/Generic_magComponentAc.hpp"
+#include "Components/Generic_fss/Generic_fssComponentAc.hpp"
 
 namespace Components {
 
-  class Generic_mag :
-    public Generic_magComponentBase
+  class Generic_fss :
+    public Generic_fssComponentBase
   {
 
     public:
@@ -21,13 +21,13 @@ namespace Components {
       // Component construction and destruction
       // ----------------------------------------------------------------------
 
-      //! Construct Generic_mag object
-      Generic_mag(
+      //! Construct Generic_fss object
+      Generic_fss(
           const char* const compName //!< The component name
       );
 
-      //! Destroy Generic_mag object
-      ~Generic_mag();
+      //! Destroy Generic_fss object
+      ~Generic_fss();
 
     PRIVATE:
 
@@ -35,15 +35,7 @@ namespace Components {
       // Handler implementations for commands
       // ----------------------------------------------------------------------
 
-      //! Handler implementation for command TODO
-      //!
-      //! TODO
-      // void TODO_cmdHandler(
-      //     FwOpcodeType opCode, //!< The opcode
-      //     U32 cmdSeq //!< The command sequence number
-      // ) override;
-
-       void REQUEST_DATA_cmdHandler(
+      void REQUEST_DATA_cmdHandler(
           FwOpcodeType opCode, //!< The opcode
           U32 cmdSeq //!< The command sequence number
       ) override;

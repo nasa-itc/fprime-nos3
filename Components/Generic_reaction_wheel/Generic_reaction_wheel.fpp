@@ -1,27 +1,30 @@
 module Components {
-    @ generic mag component from nos3
-    active component Generic_mag {
+    @ reaction wheel device control and monitoring
+    active component Generic_reaction_wheel {
 
-        # One async command/port is required for active components
-        # This should be overridden by the developers with a useful command/port
-
-        @ Command to issue noop
-        async command REQUEST_DATA(
+        @ Command to Request Momentum from all wheels
+        async command GET_MOMENTUM(
         )
 
-        @ Greeting event with maximum greeting length of 30 characters
+        @ Command to Set Reaction Wheel Torque
+        async command SET_TORQUE(
+            wheel_num: I16 @< Reaction Wheel Number (0-2) to set torque of
+            torque: F64 @< Torque to set reaction wheel to
+        )
+
+        @ event with maximum greeting length of 30 characters
         event TELEM(
-            log_info: string size 30 @< 
-        ) severity activity high format "Generic_mag: {}"
+            log_info: string size 60 @< 
+        ) severity activity high format "Generic_reaction_wheel: {}"
 
-         @ Magnetic Intensity X-Axis Parameter
-        telemetry MagneticIntensityX: I32
+        @ Momentum of Reaction Wheel 0
+        telemetry RW0_Data: F64
 
-         @ Magnetic Intensity Y-Axis Parameter
-        telemetry MagneticIntensityY: I32
+        @ Momentum of Reaction Wheel 1
+        telemetry RW1_Data: F64
 
-         @ Magnetic Intensity Z-Axis Parameter
-        telemetry MagneticIntensityZ: I32
+        @ Momentum of Reaction Wheel 2
+        telemetry RW2_Data: F64
 
         ##############################################################################
         #### Uncomment the following examples to start customizing your component ####

@@ -7,18 +7,20 @@
 #
 ####
 #ITC Changes
-include_directories("../../../../../components/generic_mag/fsw/shared") #device.c
-include_directories("../../../../../components/generic_mag/fsw/standalone/") #device_cfg.h
+include_directories("../../../../../components/generic_reaction_wheel/fsw/fprime/platform_inc") #platform_cfg.h
+include_directories("../../../../../components/generic_reaction_wheel/fsw/shared/") #device.h
+include_directories("../../../../../components/generic_reaction_wheel/fsw/standalone/") #device_cfg.h
 include_directories("../../../../../fsw/apps/hwlib/fsw/public_inc")
-include_directories("../../../../../components/generic_mag/fsw/fprime/platform_inc")
+include_directories("../../../../../components/generic_reaction_wheel/fsw/fprime/platform_inc") #platform_cfg.h
 include_directories("../../../../../fsw/apps/hwlib/sim/inc")
 
 set(SOURCE_FILES
-  "${CMAKE_CURRENT_LIST_DIR}/Generic_mag.fpp"
-  "${CMAKE_CURRENT_LIST_DIR}/Generic_mag.cpp"
-  "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_mag/fsw/shared/generic_mag_device.c"
+  "${CMAKE_CURRENT_LIST_DIR}/Generic_reaction_wheel.fpp"
+  "${CMAKE_CURRENT_LIST_DIR}/Generic_reaction_wheel.cpp"
+
+  "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_reaction_wheel/fsw/shared/generic_reaction_wheel_device.c"
   "${CMAKE_CURRENT_LIST_DIR}/../../../../../fsw/apps/hwlib/sim/src/nos_link.c"
-)
+  )
 
 # Uncomment and add any modules that this component depends on, else
 # they might not be available when cmake tries to build this component.
@@ -26,7 +28,6 @@ set(SOURCE_FILES
 # set(MOD_DEPS
 #     Add your dependencies here
 # )
-
 set(MOD_DEPS
     ${ITC_Common_LIBRARIES}
     ${NOSENGINE_LIBRARIES}
