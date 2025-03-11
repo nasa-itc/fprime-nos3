@@ -40,7 +40,7 @@ namespace Components {
       //! Handler implementation for command TODO
       //!
       //! TODO
-      void TODO_cmdHandler(
+      void SetPercentage_cmdHandler(
           FwOpcodeType opCode, //!< The opcode
           U32 cmdSeq, //!< The command sequence number
           const Fw::CmdStringArg& percent, //!< Greeting to repeat in the Hello event

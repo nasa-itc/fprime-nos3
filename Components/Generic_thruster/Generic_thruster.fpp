@@ -8,7 +8,7 @@ module Components {
         #async command TODO opcode 0
 
         @ Command to issue greeting with maximum length of 20 characters
-        async command TODO(
+        async command SetPercentage(
             percent: string size 20 @< Percent speed of rotation
             thruster_number: string size 20 @< Direction of rotation
         )

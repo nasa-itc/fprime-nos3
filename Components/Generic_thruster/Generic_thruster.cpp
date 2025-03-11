@@ -67,7 +67,7 @@ namespace Components {
   // ----------------------------------------------------------------------
 
   void Generic_thruster ::
-    TODO_cmdHandler(
+    SetPercentage_cmdHandler(
         FwOpcodeType opCode,
         U32 cmdSeq,
         const Fw::CmdStringArg& percent, //!< Greeting to repeat in the Hello event
