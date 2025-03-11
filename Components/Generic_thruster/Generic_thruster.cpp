@@ -23,8 +23,8 @@ namespace Components {
   // ----------------------------------------------------------------------
 
   Generic_thruster ::
-    Generic_thruster(const char* const compName) :
-      Generic_thrusterComponentBase(compName)
+    Generic_thruster(const char* const compName) : Generic_thrusterComponentBase(compName),
+    m_greetingCount(0)
   {
 
     int status = OS_SUCCESS;
@@ -67,29 +67,36 @@ namespace Components {
   // ----------------------------------------------------------------------
 
   void Generic_thruster ::
-    GENERIC_THRUSTER_SetPercentage_cmdHandler(
+    TODO_cmdHandler(
         FwOpcodeType opCode,
         U32 cmdSeq,
-        const Fw::CmdStringArg& greeting //!< Greeting to repeat in the Hello event
+        const Fw::CmdStringArg& percent, //!< Greeting to repeat in the Hello event
+        const Fw::CmdStringArg& thruster_number //!< Greeting to repeat in the Hello event
     )
   {
     int32_t status = OS_SUCCESS;
     int32_t exit_status = OS_SUCCESS;
-    uint8_t thruster_number;
-    uint8_t percentage;
+    uint8_t tnum = atoi(thruster_number.toChar());
+    uint8_t perc = atoi(percent.toChar());
 
+
+    this->tlmWrite_thruster_number(tnum);
+    this->tlmWrite_percentage(perc);
     // TODO
     //thruster_number = atoi(tokens[0]);
     //percentage = atoi(tokens[1]);
-    status = GENERIC_THRUSTER_SetPercentage(&ThrusterUart, thruster_number, percentage, GENERIC_THRUSTER_DEVICE_CMD_SIZE);
+    status = GENERIC_THRUSTER_SetPercentage(&ThrusterUart, tnum, perc, GENERIC_THRUSTER_DEVICE_CMD_SIZE);
       if (status == OS_SUCCESS)
         {
-          OS_printf("Thruster %d command success with value %u\n", thruster_number, percentage);
+          //this->log_ACTIVITY_HI_TELEM("Thruster %d command success with value %u\n", tnum, perc);
+          this->log_ACTIVITY_HI_TELEM("Configuration command success!\n");
+
         }
         else
         {
-          OS_printf("Configuration command failed!\n");
+          this->log_ACTIVITY_HI_TELEM("Configuration command failed!\n");
         }
+    this->tlmWrite_GreetingCount(++this->m_greetingCount);
     this->cmdResponse_out(opCode, cmdSeq, Fw::CmdResponse::OK);
   }
 

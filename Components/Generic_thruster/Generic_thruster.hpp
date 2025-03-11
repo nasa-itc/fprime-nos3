@@ -31,6 +31,8 @@ namespace Components {
 
     PRIVATE:
 
+    U32 m_greetingCount;
+
       // ----------------------------------------------------------------------
       // Handler implementations for commands
       // ----------------------------------------------------------------------
@@ -38,10 +40,11 @@ namespace Components {
       //! Handler implementation for command TODO
       //!
       //! TODO
-      void GENERIC_THRUSTER_SetPercentage_cmdHandler(
+      void TODO_cmdHandler(
           FwOpcodeType opCode, //!< The opcode
           U32 cmdSeq, //!< The command sequence number
-          const Fw::CmdStringArg& greeting //!< Greeting to repeat in the Hello event
+          const Fw::CmdStringArg& percent, //!< Greeting to repeat in the Hello event
+          const Fw::CmdStringArg& thruster_number //!< Greeting to repeat in the Hello event
       );
 
   };

@@ -8,14 +8,21 @@ module Components {
         #async command TODO opcode 0
 
         @ Command to issue greeting with maximum length of 20 characters
-        async command GENERIC_THRUSTER_SetPercentage_cmdHandler(
-            greeting: string size 20 @< Greeting to repeat in the Hello event
+        async command TODO(
+            percent: string size 20 @< Percent speed of rotation
+            thruster_number: string size 20 @< Direction of rotation
         )
 
         @ Greeting event with maximum greeting length of 20 characters
         event Hello(
-            greeting: string size 20 @< Greeting supplied from the SAY_HELLO command
-        ) severity activity high format "I say: {}"
+            percent: string size 20 @< Greeting supplied from the GENERIC_TORQUER_CONFIG command
+            thruster_number:  string size 20 @< Greeting supplied from the GENERIC_TORQUER_CONFIG command
+        ) severity activity high format "I say: {} {}"
+
+        @ Greeting event with maximum greeting length of 30 characters
+        event TELEM(
+            log_info: string size 30 @< 
+        ) severity activity high format "Generic_thruster: {}"
 
         @ A count of the number of greetings issued
         telemetry GreetingCount: U32
