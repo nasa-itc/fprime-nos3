@@ -90,6 +90,9 @@
         <channel name="generic_radio.DeviceCounter"/>
         <channel name="generic_radio.DeviceConfig"/>
         <channel name="generic_radio.ProxySignal"/>
+        <channel name="generic_fss.ALPHA"/>
+        <channel name="generic_fss.BETA"/>
+        <channel name="generic_fss.ERRORCODE"/>
         <channel name="generic_eps.BatteryVoltage"/>
         <channel name="generic_eps.BatteryTemperature"/>
         <channel name="generic_eps.Bus3p3Voltage"/>
@@ -101,5 +104,8 @@
         <channel name="generic_mag.MagneticIntensityX"/>
         <channel name="generic_mag.MagneticIntensityY"/>
         <channel name="generic_mag.MagneticIntensityZ"/>
+        <channel name="generic_reaction_wheel.RW0_Data"/>
+        <channel name="generic_reaction_wheel.RW1_Data"/>
+        <channel name="generic_reaction_wheel.RW2_Data"/>
     </ignore>
 </packets>
