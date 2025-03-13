@@ -16,6 +16,7 @@ set(SOURCE_FILES
   "${CMAKE_CURRENT_LIST_DIR}/Generic_torquer.fpp"
   "${CMAKE_CURRENT_LIST_DIR}/Generic_torquer.cpp"
   "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_torquer/fsw/shared/generic_torquer_device.c"
+  "${CMAKE_CURRENT_LIST_DIR}/../../../../../fsw/apps/hwlib/sim/src/libsocket.c"
   "${CMAKE_CURRENT_LIST_DIR}/../../../../../fsw/apps/hwlib/sim/src/libtrq.c"
   "${CMAKE_CURRENT_LIST_DIR}/../../../../../fsw/apps/hwlib/sim/src/nos_link.c"
 )
@@ -24,6 +25,7 @@ set(SOURCE_FILES
 # they might not be available when cmake tries to build this component.
 
 set(MOD_DEPS
+  ${ITC_Common_LIBRARIES}
   ${NOSENGINE_LIBRARIES}
 )
 

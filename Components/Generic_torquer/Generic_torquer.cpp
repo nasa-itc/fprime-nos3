@@ -11,7 +11,7 @@
 
 extern "C"{
 #include "generic_torquer_device.h"
-#include "libuart.h"
+#include "libtrq.h"
 }
 
 #include "nos_link.h"
@@ -33,11 +33,9 @@ namespace Components {
       Generic_torquerComponentBase(compName), m_greetingCount(0)
 
   {
-
+    int32_t status = OS_SUCCESS;
     /* Initialize HWLIB */
     nos_init_link();
-
-    int32_t status = OS_SUCCESS;
     
     /* Open device specific protocols */
     trqHk.Direction = 0;
@@ -50,7 +48,7 @@ namespace Components {
     trqDevice.timer_high_ns = 0;
     trqDevice.positive_direction = false;
     trqDevice.enabled = false;
-
+    
     status = trq_init(&trqDevice);
     if (status == OS_SUCCESS)
     {
