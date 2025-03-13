@@ -75,7 +75,6 @@ set(SOURCE_FILES
 "${CMAKE_CURRENT_LIST_DIR}/../../../../components/generic_fss/fsw/shared/generic_fss_device.c"
 "${CMAKE_CURRENT_LIST_DIR}/../../../../components/sample/fsw/shared/sample_device.c"
 "${CMAKE_CURRENT_LIST_DIR}/../../../../components/generic_css/fsw/shared/generic_css_device.c"
-"${CMAKE_CURRENT_LIST_DIR}/../../../../components/generic_star_tracker/fsw/fprime/src/generic_star_tracker_device.c"
 "${CMAKE_CURRENT_LIST_DIR}/../../../../components/generic_star_tracker/fsw/shared/generic_star_tracker_device.c"
 "${CMAKE_CURRENT_LIST_DIR}/../../../../components/generic_radio/fsw/shared/generic_radio_device.c"
 "${CMAKE_CURRENT_LIST_DIR}/../../../../components/generic_eps/fsw/shared/generic_eps_device.c"
