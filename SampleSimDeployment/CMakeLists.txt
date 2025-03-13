@@ -32,8 +32,9 @@ find_package(NOSENGINE REQUIRED QUIET COMPONENTS common transport client uart ca
 
 include_directories("../../../../components/sample/fsw/shared")#sample_device.h
 include_directories("../../../../components/sample/fsw/standalone") #device_cfg.h
-include_directories("../../../../fsw/apps/hwlib/fsw/public_inc")
 include_directories("../../../../components/sample/fsw/fprime/platform_inc")
+
+include_directories("../../../../fsw/apps/hwlib/fsw/public_inc")
 
 include_directories("../../../../fsw/apps/hwlib/sim/inc")
 
@@ -45,6 +46,9 @@ include_directories("../../../../components/generic_radio/fsw/shared")
 include_directories("../../../../components/generic_radio/fsw/standalone") #device_cfg.h
 include_directories("../../../../components/generic_radio/fsw/fprime/platform_inc")
 
+include_directories("../../../../components/generic_css/fsw/shared")
+include_directories("../../../../components/generic_css/fsw/standalone") #device_cfg.h
+include_directories("../../../../components/generic_css/fsw/fprime/platform_inc")
 include_directories("../../../../components/generic_fss/fsw/shared/src")
 include_directories("../../../../components/generic_fss/fsw/standalone/") #device_cfg.h
 include_directories("../../../../components/generic_fss/fsw/fprime/platform_inc")
@@ -70,6 +74,7 @@ set(SOURCE_FILES
 #ITC STUFF
 "${CMAKE_CURRENT_LIST_DIR}/../../../../components/generic_fss/fsw/shared/generic_fss_device.c"
 "${CMAKE_CURRENT_LIST_DIR}/../../../../components/sample/fsw/shared/sample_device.c"
+"${CMAKE_CURRENT_LIST_DIR}/../../../../components/generic_css/fsw/shared/generic_css_device.c"
 "${CMAKE_CURRENT_LIST_DIR}/../../../../components/generic_star_tracker/fsw/shared/generic_star_tracker_device.c"
 "${CMAKE_CURRENT_LIST_DIR}/../../../../components/generic_radio/fsw/shared/generic_radio_device.c"
 "${CMAKE_CURRENT_LIST_DIR}/../../../../components/generic_eps/fsw/shared/generic_eps_device.c"

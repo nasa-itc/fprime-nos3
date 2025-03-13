@@ -90,6 +90,12 @@
         <channel name="generic_radio.DeviceCounter"/>
         <channel name="generic_radio.DeviceConfig"/>
         <channel name="generic_radio.ProxySignal"/>
+        <channel name="generic_css.ADCVoltage0"/>
+        <channel name="generic_css.ADCVoltage1"/>
+        <channel name="generic_css.ADCVoltage2"/>
+        <channel name="generic_css.ADCVoltage3"/>
+        <channel name="generic_css.ADCVoltage4"/>
+        <channel name="generic_css.ADCVoltage5"/>
         <channel name="generic_fss.ALPHA"/>
         <channel name="generic_fss.BETA"/>
         <channel name="generic_fss.ERRORCODE"/>
