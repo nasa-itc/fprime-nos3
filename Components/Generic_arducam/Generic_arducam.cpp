@@ -57,10 +57,28 @@ namespace Components {
     {   
         this->log_ACTIVITY_HI_TELEM("Arducam NOOP command failed!\n");
     }   
-                                                                                               
+
     // Tell the fprime command system that we have completed the processing of the supplied command with OK status
     this->cmdResponse_out(opCode, cmdSeq, Fw::CmdResponse::OK);
   }
+
+  void Generic_arducam :: I2C_cmdHandler(FwOpcodeType opCode, U32 cmdSeq) {
+    int32_t status = OS_SUCCESS;
+    uint32_t  DeviceCounter;
+    status = GENERIC_ARDUCAM_CommandDevice(&Generic_arducamUart, GENERIC_ARDUCAM_DEVICE_I2C_CMD, 0);
+    if (status == OS_SUCCESS)
+    {   
+        this->log_ACTIVITY_HI_TELEM("Arducam i2c bus connected\n");
+    }   
+    else
+    {   
+        this->log_ACTIVITY_HI_TELEM("Arducam i2c bus connection failed!\n");
+    }   
+
+    // Tell the fprime command system that we have completed the processing of the supplied command with OK status
+    this->cmdResponse_out(opCode, cmdSeq, Fw::CmdResponse::OK);
+  }
+
 
   void Generic_arducam ::
     TODO_cmdHandler(
