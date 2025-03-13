@@ -6,13 +6,22 @@ module Components {
         # This should be overridden by the developers with a useful command/port
 
         @ Command to issue noop
-        async command NOOP(
+        async command REQUEST_DATA(
         )
 
         @ Greeting event with maximum greeting length of 30 characters
         event TELEM(
             log_info: string size 30 @< 
         ) severity activity high format "Generic_mag: {}"
+
+         @ Magnetic Intensity X-Axis Parameter
+        telemetry MagneticIntensityX: I32
+
+         @ Magnetic Intensity Y-Axis Parameter
+        telemetry MagneticIntensityY: I32
+
+         @ Magnetic Intensity Z-Axis Parameter
+        telemetry MagneticIntensityZ: I32
 
         ##############################################################################
         #### Uncomment the following examples to start customizing your component ####

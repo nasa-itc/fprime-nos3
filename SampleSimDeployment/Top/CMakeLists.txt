@@ -32,8 +32,8 @@ include_directories("../../../../../fsw/apps/hwlib/fsw/public_inc")
 
 include_directories("../../../../../fsw/apps/hwlib/sim/inc")
 
-include_directories("../../../../../components/generic_star_tracker/fsw/fprime/src")
-include_directories("../../../../../components/generic_star_tracker/support/") #device_cfg.
+include_directories("../../../../../components/generic_star_tracker/fsw/shared")
+include_directories("../../../../../components/generic_star_tracker/fsw/standalone") #device_cfg.
 include_directories("../../../../../components/generic_star_tracker/fsw/fprime/platform_inc")
 
 include_directories("../../../../../components/generic_radio/fsw/shared")
@@ -43,6 +43,21 @@ include_directories("../../../../../components/generic_radio/fsw/fprime/platform
 include_directories("../../../../../components/generic_css/fsw/shared")
 include_directories("../../../../../components/generic_css/fsw/standalone") #device_cfg.h
 include_directories("../../../../../components/generic_css/fsw/fprime/platform_inc")
+include_directories("../../../../../components/generic_eps/fsw/shared")
+include_directories("../../../../../components/generic_eps/fsw/standalone") #device_cfg.h
+include_directories("../../../../../components/generic_eps/fsw/fprime/platform_inc")
+
+include_directories("../../../../../components/generic_imu/fsw/shared")
+include_directories("../../../../../components/generic_imu/fsw/standalone") #device_cfg.h
+include_directories("../../../../../components/generic_imu/fsw/fprime/platform_inc")
+include_directories("../../../../../components/generic_fss/fsw/shared")
+include_directories("../../../../../components/generic_fss/fsw/standalone/") #device_cfg.h
+include_directories("../../../../../components/generic_fss/fsw/fprime/platform_inc")
+
+include_directories("../../../../../components/generic_reaction_wheel/fsw/fprime/platform_inc")
+include_directories("../../../../../components/generic_reaction_wheel/fsw/shared")
+include_directories("../../../../../components/generic_reaction_wheel/fsw/standalone") #device_cfg.h
+
 
 set(SOURCE_FILES
   "${CMAKE_CURRENT_LIST_DIR}/instances.fpp"
@@ -53,11 +68,16 @@ set(SOURCE_FILES
   #ITC STUFF
   "${CMAKE_CURRENT_LIST_DIR}/../../../../../fsw/apps/hwlib/sim/src/libsocket.c"
   "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_css/fsw/shared/generic_css_device.c"
+  "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_fss/fsw/shared/generic_fss_device.c"
   "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_mag/fsw/shared/generic_mag_device.c"
-  "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_star_tracker/fsw/fprime/src/generic_star_tracker_device.c"
+  "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_star_tracker/fsw/shared/generic_star_tracker_device.c"
   "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_radio/fsw/shared/generic_radio_device.c" 
   "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/sample/fsw/shared/sample_device.c"
-
+  "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_eps/fsw/shared/generic_eps_device.c"
+  "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_imu/fsw/shared/generic_imu_device.c"
+  "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_reaction_wheel/fsw/shared/generic_reaction_wheel_device.c"
+  
+  "${CMAKE_CURRENT_LIST_DIR}/../../../../../fsw/apps/hwlib/sim/src/libsocket.c"
   "${CMAKE_CURRENT_LIST_DIR}/../../../../../fsw/apps/hwlib/sim/src/libuart.c"
   "${CMAKE_CURRENT_LIST_DIR}/../../../../../fsw/apps/hwlib/sim/src/libcan.c"
   "${CMAKE_CURRENT_LIST_DIR}/../../../../../fsw/apps/hwlib/sim/src/libi2c.c"

@@ -1,39 +1,33 @@
 module Components {
-    @ generic_eps
-    active component Generic_eps {
+    @ fine sun sensor component from NOS3
+    active component Generic_fss {
 
-        @ Command to Request Housekeeping
-        async command REQUEST_HOUSEKEEPING(
+        ##############################################################################
+        #### Uncomment the following examples to start customizing your component ####
+        ##############################################################################
+
+        @ Command to request data
+        async command REQUEST_DATA(
         )
 
-        @ Greeting event with maximum greeting length of 30 characters
+        @ Telemetry event
         event TELEM(
-            log_info: string size 30 @< 
-        ) severity activity high format "Generic_eps: {}"
+            log_info: string size 30
+        ) severity activity high format "Generic_fss: {}"
 
-         @ Battery Voltage Parameter
-        telemetry BatteryVoltage: U16
+        @ Angle alpha
+        telemetry ALPHA: U32
 
-         @ Battery Temperature Parameter
-        telemetry BatteryTemperature: U16
+        @ Angle beta
+        telemetry BETA: U32
 
-         @ Bus 3p3 Voltage Parameter
-        telemetry Bus3p3Voltage: U16
+        @ errorcode
+        telemetry ERRORCODE: U8
 
-         @ Bus 5p0 Voltage Parameter
-        telemetry Bus5p0Voltage: U16
 
-         @ Bus 12 Voltage Parameter
-        telemetry Bus12Voltage: U16
 
-         @ EPS Temperature Parameter
-        telemetry EPSTemperature: U16
-
-         @ Solar Array Voltage Parameter
-        telemetry SolarArrayVoltage: U16
-
-         @ Solar Array Temperature Parameter
-        telemetry SolarArrayTemperature: U16
+        # @ Example port: receiving calls from the rate group
+        # sync input port run: Svc.Sched
 
         ###############################################################################
         # Standard AC Ports: Required for Channels, Events, Commands, and Parameters  #

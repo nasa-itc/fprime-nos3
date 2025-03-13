@@ -43,6 +43,16 @@ namespace Components {
       //     U32 cmdSeq //!< The command sequence number
       // ) override;
 
+      void REQUEST_HOUSEKEEPING_cmdHandler(
+        FwOpcodeType opCode, 
+        U32 cmdSeq
+      ) override;
+
+      void REQUEST_DATA_cmdHandler(
+        FwOpcodeType opCode, 
+        U32 cmdSeq
+      ) override;
+
       void NOOP_cmdHandler(
         FwOpcodeType opCode, 
         U32 cmdSeq

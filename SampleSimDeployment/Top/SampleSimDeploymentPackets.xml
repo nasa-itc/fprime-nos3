@@ -96,5 +96,30 @@
         <channel name="generic_css.ADCVoltage3"/>
         <channel name="generic_css.ADCVoltage4"/>
         <channel name="generic_css.ADCVoltage5"/>
+        <channel name="generic_fss.ALPHA"/>
+        <channel name="generic_fss.BETA"/>
+        <channel name="generic_fss.ERRORCODE"/>
+        <channel name="generic_eps.BatteryVoltage"/>
+        <channel name="generic_eps.BatteryTemperature"/>
+        <channel name="generic_eps.Bus3p3Voltage"/>
+        <channel name="generic_eps.Bus5p0Voltage"/>
+        <channel name="generic_eps.Bus12Voltage"/>
+        <channel name="generic_eps.EPSTemperature"/>
+        <channel name="generic_eps.SolarArrayVoltage"/>
+        <channel name="generic_eps.SolarArrayTemperature"/>
+        <channel name="generic_imu.DeviceCounter"/>
+        <channel name="generic_imu.DeviceStatus"/>
+        <channel name="generic_imu.X_Axis_LinearAcc"/>
+        <channel name="generic_imu.X_Axis_AngularAcc"/>
+        <channel name="generic_imu.Y_Axis_LinearAcc"/>
+        <channel name="generic_imu.Y_Axis_AngularAcc"/>
+        <channel name="generic_imu.Z_Axis_LinearAcc"/>
+        <channel name="generic_imu.Z_Axis_AngularAcc"/>
+        <channel name="generic_mag.MagneticIntensityX"/>
+        <channel name="generic_mag.MagneticIntensityY"/>
+        <channel name="generic_mag.MagneticIntensityZ"/>
+        <channel name="generic_reaction_wheel.RW0_Data"/>
+        <channel name="generic_reaction_wheel.RW1_Data"/>
+        <channel name="generic_reaction_wheel.RW2_Data"/>
     </ignore>
 </packets>

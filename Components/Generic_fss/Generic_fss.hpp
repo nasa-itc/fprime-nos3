@@ -1,18 +1,18 @@
 // ======================================================================
-// \title  Generic_eps.hpp
+// \title  Generic_fss.hpp
 // \author jstar
-// \brief  hpp file for Generic_eps component implementation class
+// \brief  hpp file for Generic_fss component implementation class
 // ======================================================================
 
-#ifndef Components_Generic_eps_HPP
-#define Components_Generic_eps_HPP
+#ifndef Components_Generic_fss_HPP
+#define Components_Generic_fss_HPP
 
-#include "Components/Generic_eps/Generic_epsComponentAc.hpp"
+#include "Components/Generic_fss/Generic_fssComponentAc.hpp"
 
 namespace Components {
 
-  class Generic_eps :
-    public Generic_epsComponentBase
+  class Generic_fss :
+    public Generic_fssComponentBase
   {
 
     public:
@@ -21,13 +21,13 @@ namespace Components {
       // Component construction and destruction
       // ----------------------------------------------------------------------
 
-      //! Construct Generic_eps object
-      Generic_eps(
+      //! Construct Generic_fss object
+      Generic_fss(
           const char* const compName //!< The component name
       );
 
-      //! Destroy Generic_eps object
-      ~Generic_eps();
+      //! Destroy Generic_fss object
+      ~Generic_fss();
 
     PRIVATE:
 
@@ -35,17 +35,9 @@ namespace Components {
       // Handler implementations for commands
       // ----------------------------------------------------------------------
 
-      //! Handler implementation for command TODO
-      //!
-      //! TODO
-      // void TODO_cmdHandler(
-      //     FwOpcodeType opCode, //!< The opcode
-      //     U32 cmdSeq //!< The command sequence number
-      // ) override;
-
-      void REQUEST_HOUSEKEEPING_cmdHandler(
-        FwOpcodeType opCode, 
-        U32 cmdSeq
+      void REQUEST_DATA_cmdHandler(
+          FwOpcodeType opCode, //!< The opcode
+          U32 cmdSeq //!< The command sequence number
       ) override;
 
   };
