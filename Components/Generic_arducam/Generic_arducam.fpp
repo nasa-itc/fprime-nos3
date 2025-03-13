@@ -4,8 +4,29 @@ module Components {
 
         # One async command/port is required for active components
         # This should be overridden by the developers with a useful command/port
-        @ TODO
-        async command TODO opcode 0
+        @ Command to connect I2C
+        async command I2C(
+        )
+        @ Command to connect SPI
+        async command SPI(
+        )
+        @ Command to request a small image
+        async command SMALL(
+        )
+        @ Command to request a medium image
+        async command MEDIUM(
+        )
+        @ Command to request a large image
+        async command LARGE(
+        )
+        @ Command to send NOOP
+        async command NOOP(
+        )
+
+        @ Telemetry event 
+        event TELEM(
+            log_info: string size 30 
+        ) severity activity high format "Arducam: {}"
 
         ##############################################################################
         #### Uncomment the following examples to start customizing your component ####
