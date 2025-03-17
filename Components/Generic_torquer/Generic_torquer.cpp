@@ -81,15 +81,15 @@ namespace Components {
     this->cmdResponse_out(opCode, cmdSeq, Fw::CmdResponse::OK);
   }*/
 
-  void Generic_torquer :: GENERIC_TORQUER_CONFIG_cmdHandler(FwOpcodeType opCode, U32 cmdSeq, const Fw::CmdStringArg& Percent, const Fw::CmdStringArg& Direction) {
+  void Generic_torquer :: GENERIC_TORQUER_CONFIG_cmdHandler(FwOpcodeType opCode, U32 cmdSeq, const uint8_t Percent, const uint8_t Direction) {
     int32_t status = OS_SUCCESS;
     uint8_t req_percent, req_direction;
     // Copy the command string input into an event string for the Hello event
     //Fw::LogStringArg eventGreeting(greeting.toChar());  
     //Fw::LogStringArg eventGreeting2(greeting2.toChar());  
 
-    req_percent = atoi(Percent.toChar());
-    req_direction = atoi(Direction.toChar());
+    req_percent = Percent;
+    req_direction = Direction;
 
     // TODO - add error checking to the above
 

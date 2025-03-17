@@ -8,14 +8,14 @@ module Components {
         #Greeting 1
         @ Command to issue greeting with maximum length of 20 characters
         async command GENERIC_TORQUER_CONFIG(
-            Percent: string size 20 @< Percent speed of rotation: (0 - 100)
-            Direction: string size 20 @< Direction of rotation (0 or 1)
+            Percent: U8 @< Percent speed of rotation: (0 - 100)
+            Direction: U8 @< Direction of rotation (0 or 1)
         )
 
         @ Greeting event with maximum greeting length of 20 characters
         event Hello(
-            Percent: string size 20 @< Greeting supplied from the GENERIC_TORQUER_CONFIG command
-            Direction:  string size 20 @< Greeting supplied from the GENERIC_TORQUER_CONFIG command
+            Percent: U8 @< Greeting supplied from the GENERIC_TORQUER_CONFIG command
+            Direction:  U8 @< Greeting supplied from the GENERIC_TORQUER_CONFIG command
         ) severity activity high format "I say: {} {}"
 
         @ Greeting event with maximum greeting length of 30 characters

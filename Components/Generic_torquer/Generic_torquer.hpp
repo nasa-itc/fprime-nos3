@@ -50,8 +50,8 @@ namespace Components {
       void GENERIC_TORQUER_CONFIG_cmdHandler(
           FwOpcodeType opCode, //!< The opcode
           U32 cmdSeq, //!< The command sequence number
-          const Fw::CmdStringArg& Percent, //!< Greeting to repeat in the Hello event
-          const Fw::CmdStringArg& Direction
+          const uint8_t Percent, //!< Greeting to repeat in the Hello event
+          const uint8_t Direction
 
       ) ;
 
