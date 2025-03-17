@@ -43,6 +43,7 @@ namespace Components {
           U32 cmdSeq, //!< The command sequence number
           const U8 percent, //!< Percentage to set Thruster
           const U8 thruster_number //!< Thruster Number to set
+      ) override;
 
   };
 

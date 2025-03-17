@@ -5,14 +5,12 @@
 // ======================================================================
 
 #include "Components/Generic_thruster/Generic_thruster.hpp"
-#include <Fw/Logger/Logger.hpp>
 #include "FpConfig.hpp"
 
-
 extern "C"{
-  #include "generic_thruster_device.h"
-  #include "libuart.h"
-  }
+#include "generic_thruster_device.h"
+#include "libuart.h"
+}
 
 #include "nos_link.h"
 
@@ -25,7 +23,7 @@ namespace Components {
   // ----------------------------------------------------------------------
 
   Generic_thruster ::
-    Generic_thruster(const char* const compName) : Generic_thrusterComponentBase(compName),
+    Generic_thruster(const char* const compName) : Generic_thrusterComponentBase(compName)
   {
 
     int status = OS_SUCCESS;
@@ -75,22 +73,20 @@ namespace Components {
     int32_t status = OS_SUCCESS;
     int32_t exit_status = OS_SUCCESS;
 
-
-    this->tlmWrite_thruster_number(thruster_number);
-    this->tlmWrite_percentage(percent);
-    // TODO
-    //thruster_number = atoi(tokens[0]);
-    //percentage = atoi(tokens[1]);
     status = GENERIC_THRUSTER_SetPercentage(&ThrusterUart, thruster_number, percent, GENERIC_THRUSTER_DEVICE_CMD_SIZE);
       if (status == OS_SUCCESS)
         {
-          this->log_ACTIVITY_HI_TELEM("Thruster %u command success with value %u\n", thruster_number, percent);
-
+          this->log_ACTIVITY_HI_TELEM("Thruster SetPercentage Command Success!");
+          OS_printf("Thruster %u command success with value %u\n", thruster_number, percent);
+          this->tlmWrite_thruster_number(thruster_number);
+          this->tlmWrite_percentage(percent);
         }
         else
         {
-          this->log_ACTIVITY_HI_TELEM("Configuration command failed!\n");
+          this->log_ACTIVITY_HI_TELEM("Thruster SetPercentage Command Failure!");
+          OS_printf("Thruster %u command failure with value %u\n", thruster_number, percent);
         }
+        
     this->cmdResponse_out(opCode, cmdSeq, Fw::CmdResponse::OK);
   }
 

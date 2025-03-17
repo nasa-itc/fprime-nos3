@@ -60,12 +60,15 @@ include_directories("../../../../components/generic_eps/fsw/fprime/platform_inc"
 include_directories("../../../../components/generic_thruster/fsw/shared")
 include_directories("../../../../components/generic_thruster/fsw/standalone") #device_cfg.h
 include_directories("../../../../components/generic_thruster/fsw/fprime/platform_inc")
+
 include_directories("../../../../components/generic_imu/fsw/shared")
 include_directories("../../../../components/generic_imu/fsw/standalone") #device_cfg.h
 include_directories("../../../../components/generic_imu/fsw/fprime/platform_inc")
+
 include_directories("../../../../components/generic_mag/fsw/shared")
 include_directories("../../../../components/generic_mag/fsw/standalone") #device_cfg.h
 include_directories("../../../../components/generic_mag/fsw/fprime/platform_inc")
+
 include_directories("../../../../components/generic_reaction_wheel/fsw/shared")
 include_directories("../../../../components/generic_reaction_wheel/fsw/standalone") #device_cfg.h
 include_directories("../../../../components/generic_reaction_wheel/fsw/fprime/platform_inc")

@@ -15,16 +15,13 @@ module Components {
 
         @ Greeting event with maximum greeting length of 30 characters
         event TELEM(
-            log_info: string size 30 @< 
+            log_info: string size 60 @< 
         ) severity activity high format "Generic_thruster: {}"
 
-        @ A count of the number of greetings issued
-        telemetry GreetingCount: U32
-
-        @ A count of the number of greetings issued
+        @ Thurster Number being set
         telemetry thruster_number: U8
 
-        @ A count of the number of greetings issued
+        @ Percentage thruster is being set to
         telemetry percentage: U8
 
         ##############################################################################

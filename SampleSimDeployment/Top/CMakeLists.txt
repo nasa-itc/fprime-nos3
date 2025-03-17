@@ -43,9 +43,11 @@ include_directories("../../../../../components/generic_radio/fsw/fprime/platform
 include_directories("../../../../../components/generic_thruster/fsw/shared")
 include_directories("../../../../../components/generic_thruster/fsw/standalone") #device_cfg.h
 include_directories("../../../../../components/generic_thruster/fsw/fprime/platform_inc")
+
 include_directories("../../../../../components/generic_css/fsw/shared")
 include_directories("../../../../../components/generic_css/fsw/standalone") #device_cfg.h
 include_directories("../../../../../components/generic_css/fsw/fprime/platform_inc")
+
 include_directories("../../../../../components/generic_eps/fsw/shared")
 include_directories("../../../../../components/generic_eps/fsw/standalone") #device_cfg.h
 include_directories("../../../../../components/generic_eps/fsw/fprime/platform_inc")
