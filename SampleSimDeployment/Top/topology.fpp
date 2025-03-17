@@ -46,7 +46,11 @@ module SampleSimDeployment {
     instance generic_star_tracker
     instance generic_radio
     instance generic_torquer
+    instance generic_css
+    instance generic_fss
     instance generic_eps
+    instance generic_imu
+    instance generic_reaction_wheel
     # ----------------------------------------------------------------------
     # Pattern graph specifiers
     # ----------------------------------------------------------------------
