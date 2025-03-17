@@ -14,6 +14,8 @@ extern "C"{
   #include "libuart.h"
   }
 
+#include "nos_link.h"
+
 uart_info_t ThrusterUart;
 
 namespace Components {
@@ -24,16 +26,14 @@ namespace Components {
 
   Generic_thruster ::
     Generic_thruster(const char* const compName) : Generic_thrusterComponentBase(compName),
-    m_greetingCount(0)
   {
 
     int status = OS_SUCCESS;
 
 
-     /* Initialize HWLIB */
-    #ifdef _NOS_ENGINE_LINK_
-        nos_init_link();
-    #endif
+    /* Initialize HWLIB */
+    nos_init_link();
+
 
     /* Open device specific protocols */
     ThrusterUart.deviceString = GENERIC_THRUSTER_CFG_STRING;
@@ -56,9 +56,7 @@ namespace Components {
   {
     uart_close_port(&ThrusterUart);
 
-    #ifdef _NOS_ENGINE_LINK_
-        nos_destroy_link();
-    #endif
+    nos_destroy_link();
 
   }
 
@@ -70,33 +68,29 @@ namespace Components {
     SetPercentage_cmdHandler(
         FwOpcodeType opCode,
         U32 cmdSeq,
-        const Fw::CmdStringArg& percent, //!< Greeting to repeat in the Hello event
-        const Fw::CmdStringArg& thruster_number //!< Greeting to repeat in the Hello event
+        const U8 percent, 
+        const U8 thruster_number
     )
   {
     int32_t status = OS_SUCCESS;
     int32_t exit_status = OS_SUCCESS;
-    uint8_t tnum = atoi(thruster_number.toChar());
-    uint8_t perc = atoi(percent.toChar());
 
 
-    this->tlmWrite_thruster_number(tnum);
-    this->tlmWrite_percentage(perc);
+    this->tlmWrite_thruster_number(thruster_number);
+    this->tlmWrite_percentage(percent);
     // TODO
     //thruster_number = atoi(tokens[0]);
     //percentage = atoi(tokens[1]);
-    status = GENERIC_THRUSTER_SetPercentage(&ThrusterUart, tnum, perc, GENERIC_THRUSTER_DEVICE_CMD_SIZE);
+    status = GENERIC_THRUSTER_SetPercentage(&ThrusterUart, thruster_number, percent, GENERIC_THRUSTER_DEVICE_CMD_SIZE);
       if (status == OS_SUCCESS)
         {
-          //this->log_ACTIVITY_HI_TELEM("Thruster %d command success with value %u\n", tnum, perc);
-          this->log_ACTIVITY_HI_TELEM("Configuration command success!\n");
+          this->log_ACTIVITY_HI_TELEM("Thruster %u command success with value %u\n", thruster_number, percent);
 
         }
         else
         {
           this->log_ACTIVITY_HI_TELEM("Configuration command failed!\n");
         }
-    this->tlmWrite_GreetingCount(++this->m_greetingCount);
     this->cmdResponse_out(opCode, cmdSeq, Fw::CmdResponse::OK);
   }
 

@@ -31,8 +31,6 @@ namespace Components {
 
     PRIVATE:
 
-    U32 m_greetingCount;
-
       // ----------------------------------------------------------------------
       // Handler implementations for commands
       // ----------------------------------------------------------------------
@@ -43,9 +41,8 @@ namespace Components {
       void SetPercentage_cmdHandler(
           FwOpcodeType opCode, //!< The opcode
           U32 cmdSeq, //!< The command sequence number
-          const Fw::CmdStringArg& percent, //!< Greeting to repeat in the Hello event
-          const Fw::CmdStringArg& thruster_number //!< Greeting to repeat in the Hello event
-      );
+          const U8 percent, //!< Percentage to set Thruster
+          const U8 thruster_number //!< Thruster Number to set
 
   };
 

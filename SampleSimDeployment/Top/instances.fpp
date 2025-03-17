@@ -106,13 +106,34 @@ module SampleSimDeployment {
     queue size Default.QUEUE_SIZE \
     stack size Default.STACK_SIZE \
     priority 50
+    
+  instance generic_css: Components.Generic_css base id 0xE300 \
+    queue size Default.QUEUE_SIZE \
+    stack size Default.STACK_SIZE \
+    priority 50
+
 
   instance generic_eps: Components.Generic_eps base id 0xE200 \
     queue size Default.QUEUE_SIZE \
     stack size Default.STACK_SIZE \
     priority 50
 
-   instance generic_thruster: Components.Generic_thruster base id 0xE500 \
+  instance generic_thruster: Components.Generic_thruster base id 0xE500 \
+    queue size Default.QUEUE_SIZE \
+    stack size Default.STACK_SIZE \
+    priority 50
+
+  instance generic_fss: Components.Generic_fss base id 0xE400 \
+    queue size Default.QUEUE_SIZE \
+    stack size Default.STACK_SIZE \
+    priority 50
+
+  instance generic_imu: Components.Generic_imu base id 0xE600 \
+    queue size Default.QUEUE_SIZE \
+    stack size Default.STACK_SIZE \
+    priority 50
+
+  instance generic_reaction_wheel: Components.Generic_reaction_wheel base id 0xE700 \
     queue size Default.QUEUE_SIZE \
     stack size Default.STACK_SIZE \
     priority 50

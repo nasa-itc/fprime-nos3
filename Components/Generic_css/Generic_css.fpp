@@ -1,11 +1,32 @@
 module Components {
     @ generic_css
     active component Generic_css {
+        
+        @ Command to Request Data
+        async command REQUEST_DATA()
 
-        # One async command/port is required for active components
-        # This should be overridden by the developers with a useful command/port
-        @ TODO
-        async command TODO opcode 0
+        @ event with maximum greeting length of 30 characters
+        event TELEM(
+            log_info: string size 30 @<
+        ) severity activity high format "Generic_css: {}"
+
+        @ A count of the number of greetings issues
+        telemetry ADCVoltage0: U16
+
+        @ A count of the number of greetings issues
+        telemetry ADCVoltage1: U16
+
+        @ A count of the number of greetings issues
+        telemetry ADCVoltage2: U16
+
+        @ A count of the number of greetings issues
+        telemetry ADCVoltage3: U16
+
+        @ A count of the number of greetings issues
+        telemetry ADCVoltage4: U16
+
+        @ A count of the number of greetings issues
+        telemetry ADCVoltage5: U16
 
         ##############################################################################
         #### Uncomment the following examples to start customizing your component ####

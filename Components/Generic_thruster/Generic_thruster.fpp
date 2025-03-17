@@ -9,15 +9,9 @@ module Components {
 
         @ Command to issue greeting with maximum length of 20 characters
         async command SetPercentage(
-            percent: string size 20 @< Percent speed of rotation
-            thruster_number: string size 20 @< Direction of rotation
+            percent: U8 @< Percent speed of rotation
+            thruster_number: U8 @< Direction of rotation
         )
-
-        @ Greeting event with maximum greeting length of 20 characters
-        event Hello(
-            percent: string size 20 @< Greeting supplied from the GENERIC_TORQUER_CONFIG command
-            thruster_number:  string size 20 @< Greeting supplied from the GENERIC_TORQUER_CONFIG command
-        ) severity activity high format "I say: {} {}"
 
         @ Greeting event with maximum greeting length of 30 characters
         event TELEM(
