@@ -34,6 +34,26 @@ namespace Components {
       // ----------------------------------------------------------------------
       // Handler implementations for commands
       // ----------------------------------------------------------------------
+      void NOOP_cmdHandler(
+          FwOpcodeType opcode, // The opcode
+          U32 cmdSeq // The command sequence number
+      ) override;
+
+      void I2C_cmdHandler(
+          FwOpcodeType opcode, // The opcode
+          U32 cmdSeq // The command sequence number
+      ) override;
+
+      void SPI_cmdHandler(
+          FwOpcodeType opcode, // The opcode
+          U32 cmdSeq // The command sequence number
+      ) override;
+
+      void IMAGE_cmdHandler(
+          FwOpcodeType opcode, // The opcode
+          U32 cmdSeq, // The command sequence number
+          U32 size // A value for the size of the image
+      ) override;
 
       //! Handler implementation for command TODO
       //!

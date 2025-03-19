@@ -64,21 +64,66 @@ namespace Components {
 
   void Generic_arducam :: I2C_cmdHandler(FwOpcodeType opCode, U32 cmdSeq) {
     int32_t status = OS_SUCCESS;
-    uint32_t  DeviceCounter;
-    status = GENERIC_ARDUCAM_CommandDevice(&Generic_arducamUart, GENERIC_ARDUCAM_DEVICE_I2C_CMD, 0);
+    status = CAM_init_i2c();
     if (status == OS_SUCCESS)
     {   
-        this->log_ACTIVITY_HI_TELEM("Arducam i2c bus connected\n");
+        this->log_ACTIVITY_HI_TELEM("I2C Initialization Success\n");
     }   
     else
     {   
-        this->log_ACTIVITY_HI_TELEM("Arducam i2c bus connection failed!\n");
+        this->log_ACTIVITY_HI_TELEM("I2C Initialization Failed!\n");
     }   
 
     // Tell the fprime command system that we have completed the processing of the supplied command with OK status
     this->cmdResponse_out(opCode, cmdSeq, Fw::CmdResponse::OK);
   }
 
+  void Generic_arducam :: SPI_cmdHandler(FwOpcodeType opCode, U32 cmdSeq) {
+    int32_t status = OS_SUCCESS;
+    status = CAM_init_spi();
+    if (status == OS_SUCCESS)
+    {   
+        this->log_ACTIVITY_HI_TELEM("SPI Initialisation Success\n");
+    }   
+    else
+    {   
+        this->log_ACTIVITY_HI_TELEM("SPI Initialisation Failed!\n");
+    }   
+
+    // Tell the fprime command system that we have completed the processing of the supplied command with OK status
+    this->cmdResponse_out(opCode, cmdSeq, Fw::CmdResponse::OK);
+  }
+
+  void Generic_arducam :: IMAGE_cmdHandler(FwOpcodeType opCode, U32 cmdSeq, U32 size) {
+    int32_t status = OS_SUCCESS;
+    if (size == 0) //Small image
+    {
+        status = take_picture(size_320x240);
+    }
+    else if (size == 1)
+    {
+        status = take_picture(size_1600x1200);
+    }
+    else if (size == 2)
+    {
+        status = take_picture(size_2592x1944);
+    }
+    else
+    {
+        status = -1; //Illegal value for image size
+    }
+    if (status == OS_SUCCESS)
+    {   
+        this->log_ACTIVITY_HI_TELEM("Arducam image sent\n");
+    }   
+    else
+    {   
+        this->log_ACTIVITY_HI_TELEM("Arducam image send failed!\n");
+    }   
+
+    // Tell the fprime command system that we have completed the processing of the supplied command with OK status
+    this->cmdResponse_out(opCode, cmdSeq, Fw::CmdResponse::OK);
+  }
 
   void Generic_arducam ::
     TODO_cmdHandler(
