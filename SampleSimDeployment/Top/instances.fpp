@@ -112,6 +112,11 @@ module SampleSimDeployment {
     stack size Default.STACK_SIZE \
     priority 50
 
+  instance arducam: Components.Arducam base id 0xF900 \
+    queue size Default.QUEUE_SIZE \
+    stack size Default.STACK_SIZE \
+    priority 50
+
   # ----------------------------------------------------------------------
   # Queued component instances
   # ----------------------------------------------------------------------

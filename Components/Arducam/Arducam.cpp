@@ -9,10 +9,13 @@
 
 extern "C"{
 #include "cam_device.h"
+#include "cam_registers.h"
 }
 
-i2c_bus_info_t CAM_I2C;
-spi_info_t CAM_SPI;
+#include "nos_link.h"
+
+// i2c_bus_info_t CAM_I2C;
+// spi_info_t CAM_SPI;
 
 namespace Components {
 
@@ -24,9 +27,9 @@ namespace Components {
     Arducam(const char* const compName) :
       ArducamComponentBase(compName)
   {
-    #ifdef _NOS_ENGINE_LINK_
-        nos_init_link();
-    #endif
+    
+    nos_init_link();
+    
   }
 
   Arducam ::
@@ -36,9 +39,8 @@ namespace Components {
     i2c_master_close(&CAM_I2C);
     spi_close_device(&CAM_SPI);
 
-    #ifdef _NOS_ENGINE_LINK_
-        nos_destroy_link();
-    #endif
+    nos_destroy_link();
+    
 
     OS_printf("Cleanly exiting arducam application...\n\n");
   }
@@ -104,17 +106,17 @@ namespace Components {
     this->cmdResponse_out(opCode, cmdSeq, Fw::CmdResponse::OK);
   }
 
-  void Arducam :: IMAGE_cmdHandler(FwOpcodeType opCode, U32 cmdSeq, U32 size) {
+  void Arducam :: IMAGE_cmdHandler(FwOpcodeType opCode, U32 cmdSeq, const U32 image_size) {
     int32_t status = OS_SUCCESS;
-    if (size == 0) //Small image
+    if (image_size == 0) //Small image
     {
         status = take_picture(size_320x240);
     }
-    else if (size == 1)
+    else if (image_size == 1)
     {
         status = take_picture(size_1600x1200);
     }
-    else if (size == 2)
+    else if (image_size == 2)
     {
         status = take_picture(size_2592x1944);
     }
@@ -134,15 +136,5 @@ namespace Components {
     // Tell the fprime command system that we have completed the processing of the supplied command with OK status
     this->cmdResponse_out(opCode, cmdSeq, Fw::CmdResponse::OK);
   }
-
-//  void Arducam ::
-//    TODO_cmdHandler(
-//        FwOpcodeType opCode,
-//        U32 cmdSeq
-//    )
-//  {
-//    // TODO
-//    this->cmdResponse_out(opCode, cmdSeq, Fw::CmdResponse::OK);
-//  }
 
 }

@@ -49,10 +49,16 @@ include_directories("../../../../components/generic_eps/fsw/shared")
 include_directories("../../../../components/generic_eps/fsw/standalone") #device_cfg.h
 include_directories("../../../../components/generic_eps/fsw/fprime/platform_inc")
 
+include_directories("../../../../components/arducam/fsw/shared/") #device.h
+include_directories("../../../../components/arducam/fsw/standalone/") #device_cfg.h
+include_directories("../../../../components/arducam/fsw/fprime/platform_inc") #platform_cfg.h
+
 set(SOURCE_FILES 
 "${CMAKE_CURRENT_LIST_DIR}/Main.cpp"
 
 #ITC STUFF
+"${CMAKE_CURRENT_LIST_DIR}/../../../../components/arducam/fsw/shared/cam_device.c"
+"${CMAKE_CURRENT_LIST_DIR}/../../../../components/arducam/fsw/shared/cam_registers.c"
 "${CMAKE_CURRENT_LIST_DIR}/../../../../components/sample/fsw/shared/sample_device.c"
 "${CMAKE_CURRENT_LIST_DIR}/../../../../components/generic_star_tracker/fsw/shared/generic_star_tracker_device.c"
 "${CMAKE_CURRENT_LIST_DIR}/../../../../components/generic_radio/fsw/shared/generic_radio_device.c"

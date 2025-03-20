@@ -2,24 +2,27 @@ module Components {
     @ Arducam component from NOS3
     active component Arducam {
 
-        # One async command/port is required for active components
-        # This should be overridden by the developers with a useful command/port
+        
         @ Command to connect I2C
         async command I2C(
         )
+
         @ Command to connect SPI
         async command SPI(
         )
-        @ Command to request an image
+
+        @ Command to request an image 
         async command IMAGE(
+            image_size: U32 @< Specify 0, 1, or 2
         )
+
         @ Command to send NOOP
         async command NOOP(
         )
 
         @ Telemetry event 
         event TELEM(
-            log_info: string size 30 
+            log_info: string size 60 
         ) severity activity high format "Arducam: {}"
 
         ##############################################################################
