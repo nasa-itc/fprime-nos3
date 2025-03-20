@@ -1,18 +1,18 @@
 // ======================================================================
-// \title  Generic_arducam.hpp
+// \title  Arducam.hpp
 // \author jstar
-// \brief  hpp file for Generic_arducam component implementation class
+// \brief  hpp file for Arducam component implementation class
 // ======================================================================
 
-#ifndef Components_Generic_arducam_HPP
-#define Components_Generic_arducam_HPP
+#ifndef Components_Arducam_HPP
+#define Components_Arducam_HPP
 
-#include "Components/Generic_arducam/Generic_arducamComponentAc.hpp"
+#include "Components/Arducam/ArducamComponentAc.hpp"
 
 namespace Components {
 
-  class Generic_arducam :
-    public Generic_arducamComponentBase
+  class Arducam :
+    public ArducamComponentBase
   {
 
     public:
@@ -21,13 +21,13 @@ namespace Components {
       // Component construction and destruction
       // ----------------------------------------------------------------------
 
-      //! Construct Generic_arducam object
-      Generic_arducam(
+      //! Construct Arducam object
+      Arducam(
           const char* const compName //!< The component name
       );
 
-      //! Destroy Generic_arducam object
-      ~Generic_arducam();
+      //! Destroy Arducam object
+      ~Arducam();
 
     PRIVATE:
 
@@ -58,10 +58,10 @@ namespace Components {
       //! Handler implementation for command TODO
       //!
       //! TODO
-      void TODO_cmdHandler(
-          FwOpcodeType opCode, //!< The opcode
-          U32 cmdSeq //!< The command sequence number
-      ) override;
+//      void TODO_cmdHandler(
+//          FwOpcodeType opCode, //!< The opcode
+//          U32 cmdSeq //!< The command sequence number
+//      ) override;
 
   };
 

@@ -1,6 +1,6 @@
 module Components {
     @ Arducam component from NOS3
-    active component Generic_arducam {
+    active component Arducam {
 
         # One async command/port is required for active components
         # This should be overridden by the developers with a useful command/port
@@ -10,14 +10,8 @@ module Components {
         @ Command to connect SPI
         async command SPI(
         )
-        @ Command to request a small image
-        async command SMALL(
-        )
-        @ Command to request a medium image
-        async command MEDIUM(
-        )
-        @ Command to request a large image
-        async command LARGE(
+        @ Command to request an image
+        async command IMAGE(
         )
         @ Command to send NOOP
         async command NOOP(

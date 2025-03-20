@@ -1,14 +1,14 @@
 // ======================================================================
-// \title  Generic_arducam.cpp
+// \title  Arducam.cpp
 // \author jstar
-// \brief  cpp file for Generic_arducam component implementation class
+// \brief  cpp file for Arducam component implementation class
 // ======================================================================
 
-#include "Components/Generic_arducam/Generic_arducam.hpp"
+#include "Components/Arducam/Arducam.hpp"
 #include "FpConfig.hpp"
 
 extern "C"{
-
+#include "cam_device.h"
 }
 
 i2c_bus_info_t CAM_I2C;
@@ -20,15 +20,17 @@ namespace Components {
   // Component construction and destruction
   // ----------------------------------------------------------------------
 
-  Generic_arducam ::
-    Generic_arducam(const char* const compName) :
-      Generic_arducamComponentBase(compName)
+  Arducam ::
+    Arducam(const char* const compName) :
+      ArducamComponentBase(compName)
   {
-    nos_init_link();
+    #ifdef _NOS_ENGINE_LINK_
+        nos_init_link();
+    #endif
   }
 
-  Generic_arducam ::
-    ~Generic_arducam()
+  Arducam ::
+    ~Arducam()
   {
     // Close the device(s)
     i2c_master_close(&CAM_I2C);
@@ -45,24 +47,32 @@ namespace Components {
   // Handler implementations for commands
   // ----------------------------------------------------------------------
 
-  void Generic_arducam :: NOOP_cmdHandler(FwOpcodeType opCode, U32 cmdSeq) {
+  void Arducam :: NOOP_cmdHandler(FwOpcodeType opCode, U32 cmdSeq) {
     int32_t status = OS_SUCCESS;
     uint32_t  DeviceCounter;
-    status = GENERIC_ARDUCAM_CommandDevice(&Generic_arducamUart, GENERIC_ARDUCAM_DEVICE_NOOP_CMD, 0);
-    if (status == OS_SUCCESS)
+    status = CAM_init_i2c();
+    if (status != OS_SUCCESS)
     {   
-        this->log_ACTIVITY_HI_TELEM("Arducam NOOP command success\n");
+        this->log_ACTIVITY_HI_TELEM("I2C Failure!\n");
     }   
     else
     {   
-        this->log_ACTIVITY_HI_TELEM("Arducam NOOP command failed!\n");
+        status = CAM_init_spi();
+        if (status != OS_SUCCESS)
+        {
+            this->log_ACTIVITY_HI_TELEM("SPI Failure!\n");
+        }
+        else
+        {
+            this->log_ACTIVITY_HI_TELEM("CAM Hardware NOOP (I2C & SPI) Successful!\n");
+        }
     }   
 
     // Tell the fprime command system that we have completed the processing of the supplied command with OK status
     this->cmdResponse_out(opCode, cmdSeq, Fw::CmdResponse::OK);
   }
 
-  void Generic_arducam :: I2C_cmdHandler(FwOpcodeType opCode, U32 cmdSeq) {
+  void Arducam :: I2C_cmdHandler(FwOpcodeType opCode, U32 cmdSeq) {
     int32_t status = OS_SUCCESS;
     status = CAM_init_i2c();
     if (status == OS_SUCCESS)
@@ -78,7 +88,7 @@ namespace Components {
     this->cmdResponse_out(opCode, cmdSeq, Fw::CmdResponse::OK);
   }
 
-  void Generic_arducam :: SPI_cmdHandler(FwOpcodeType opCode, U32 cmdSeq) {
+  void Arducam :: SPI_cmdHandler(FwOpcodeType opCode, U32 cmdSeq) {
     int32_t status = OS_SUCCESS;
     status = CAM_init_spi();
     if (status == OS_SUCCESS)
@@ -94,7 +104,7 @@ namespace Components {
     this->cmdResponse_out(opCode, cmdSeq, Fw::CmdResponse::OK);
   }
 
-  void Generic_arducam :: IMAGE_cmdHandler(FwOpcodeType opCode, U32 cmdSeq, U32 size) {
+  void Arducam :: IMAGE_cmdHandler(FwOpcodeType opCode, U32 cmdSeq, U32 size) {
     int32_t status = OS_SUCCESS;
     if (size == 0) //Small image
     {
@@ -125,14 +135,14 @@ namespace Components {
     this->cmdResponse_out(opCode, cmdSeq, Fw::CmdResponse::OK);
   }
 
-  void Generic_arducam ::
-    TODO_cmdHandler(
-        FwOpcodeType opCode,
-        U32 cmdSeq
-    )
-  {
-    // TODO
-    this->cmdResponse_out(opCode, cmdSeq, Fw::CmdResponse::OK);
-  }
+//  void Arducam ::
+//    TODO_cmdHandler(
+//        FwOpcodeType opCode,
+//        U32 cmdSeq
+//    )
+//  {
+//    // TODO
+//    this->cmdResponse_out(opCode, cmdSeq, Fw::CmdResponse::OK);
+//  }
 
 }

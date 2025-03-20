@@ -1,4 +1,4 @@
-# Components::Generic_arducam
+# Components::Arducam
 
 Arducam component from NOS3
 
