@@ -13,7 +13,7 @@ module Components {
 
         @ Command to request an image 
         async command IMAGE(
-            image_size: U32 @< Specify 0, 1, or 2
+            image_size: U32 @< 0 (small), 1 (medium), or 2 (large)
         )
 
         @ Command to send NOOP
