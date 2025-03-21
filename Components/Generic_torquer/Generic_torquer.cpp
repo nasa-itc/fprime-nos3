@@ -71,22 +71,10 @@ namespace Components {
   // Handler implementations for commands
   // ----------------------------------------------------------------------
 
-  /*void Generic_torquer ::
-    TODO_cmdHandler(
-        FwOpcodeType opCode,
-        U32 cmdSeq
-    )
-  {
-    // TODO
-    this->cmdResponse_out(opCode, cmdSeq, Fw::CmdResponse::OK);
-  }*/
-
   void Generic_torquer :: GENERIC_TORQUER_CONFIG_cmdHandler(FwOpcodeType opCode, U32 cmdSeq, const uint8_t Percent, const uint8_t Direction) {
     int32_t status = OS_SUCCESS;
     uint8_t req_percent, req_direction;
-    // Copy the command string input into an event string for the Hello event
-    //Fw::LogStringArg eventGreeting(greeting.toChar());  
-    //Fw::LogStringArg eventGreeting2(greeting2.toChar());  
+      
 
     req_percent = Percent;
     req_direction = Direction;
@@ -102,13 +90,6 @@ namespace Components {
     {
         this->log_ACTIVITY_HI_TELEM("trq command failed!\n");
     }
-    // Emit the Hello event with the copied string
-    //this->log_ACTIVITY_HI_Hello(eventGreeting);
-    //this->log_ACTIVITY_HI_Hello(eventGreeting2);
-
-    
-    this->tlmWrite_GreetingCount(++this->m_greetingCount);
- 
 
     //trqHk.PercentOn = req_percent;
     //rqHk.Direction = req_direction;

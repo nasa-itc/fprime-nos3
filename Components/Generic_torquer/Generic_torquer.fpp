@@ -24,9 +24,6 @@ module Components {
         ) severity activity high format "Generic_torquer: {}"
 
         @ A count of the number of greetings issued
-        telemetry GreetingCount: U32
-
-        @ A count of the number of greetings issued
         telemetry Percent: U8
         
         @ A count of the number of greetings issued

@@ -107,7 +107,6 @@
         <channel name="generic_eps.EPSTemperature"/>
         <channel name="generic_eps.SolarArrayVoltage"/>
         <channel name="generic_eps.SolarArrayTemperature"/>
-        <channel name="generic_torquer.GreetingCount"/>
         <channel name="generic_torquer.Direction"/>
         <channel name="generic_torquer.Percent"/>
 
