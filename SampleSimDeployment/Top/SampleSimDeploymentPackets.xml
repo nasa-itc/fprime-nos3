@@ -107,6 +107,10 @@
         <channel name="generic_eps.EPSTemperature"/>
         <channel name="generic_eps.SolarArrayVoltage"/>
         <channel name="generic_eps.SolarArrayTemperature"/>
+        <channel name="generic_torquer.Direction"/>
+        <channel name="generic_torquer.Percent"/>
+
+
         <channel name="generic_imu.DeviceCounter"/>
         <channel name="generic_imu.DeviceStatus"/>
         <channel name="generic_imu.X_Axis_LinearAcc"/>

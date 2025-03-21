@@ -111,8 +111,7 @@ module SampleSimDeployment {
     queue size Default.QUEUE_SIZE \
     stack size Default.STACK_SIZE \
     priority 50
-
-
+    
   instance generic_eps: Components.Generic_eps base id 0xE200 \
     queue size Default.QUEUE_SIZE \
     stack size Default.STACK_SIZE \
@@ -129,6 +128,11 @@ module SampleSimDeployment {
     priority 50
 
   instance generic_reaction_wheel: Components.Generic_reaction_wheel base id 0xE700 \
+    queue size Default.QUEUE_SIZE \
+    stack size Default.STACK_SIZE \
+    priority 50
+
+  instance generic_torquer: Components.Generic_torquer base id 0xE900 \
     queue size Default.QUEUE_SIZE \
     stack size Default.STACK_SIZE \
     priority 50
