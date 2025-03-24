@@ -43,6 +43,9 @@ include_directories("../../../../../components/generic_radio/fsw/fprime/platform
 include_directories("../../../../../components/generic_thruster/fsw/shared")
 include_directories("../../../../../components/generic_thruster/fsw/standalone") #device_cfg.h
 include_directories("../../../../../components/generic_thruster/fsw/fprime/platform_inc")
+include_directories("../../../../../components/generic_torquer/fsw/shared")
+include_directories("../../../../../components/generic_torquer/fsw/standalone") #device_cfg.h
+include_directories("../../../../../components/generic_torquer/fsw/fprime/platform_inc")
 
 include_directories("../../../../../components/generic_css/fsw/shared")
 include_directories("../../../../../components/generic_css/fsw/standalone") #device_cfg.h
@@ -71,6 +74,8 @@ set(SOURCE_FILES
   "${CMAKE_CURRENT_LIST_DIR}/SampleSimDeploymentTopology.cpp"
 
   #ITC STUFF
+  
+  "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_torquer/fsw/shared/generic_torquer_device.c"
   "${CMAKE_CURRENT_LIST_DIR}/../../../../../fsw/apps/hwlib/sim/src/libsocket.c"
   "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_css/fsw/shared/generic_css_device.c"
   "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_fss/fsw/shared/generic_fss_device.c"
@@ -84,6 +89,7 @@ set(SOURCE_FILES
   "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_imu/fsw/shared/generic_imu_device.c"
   "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_reaction_wheel/fsw/shared/generic_reaction_wheel_device.c"
   
+  "${CMAKE_CURRENT_LIST_DIR}/../../../../../fsw/apps/hwlib/sim/src/libtrq.c"
   "${CMAKE_CURRENT_LIST_DIR}/../../../../../fsw/apps/hwlib/sim/src/libsocket.c"
   "${CMAKE_CURRENT_LIST_DIR}/../../../../../fsw/apps/hwlib/sim/src/libuart.c"
   "${CMAKE_CURRENT_LIST_DIR}/../../../../../fsw/apps/hwlib/sim/src/libcan.c"
