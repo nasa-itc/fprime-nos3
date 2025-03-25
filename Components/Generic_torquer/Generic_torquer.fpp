@@ -1,51 +1,33 @@
 module Components {
-    @ generic_imu
-    active component Generic_imu {
+    @ Satellite Torquer
+    active component Generic_torquer {
 
         # One async command/port is required for active components
         # This should be overridden by the developers with a useful command/port
-        @ TODO
-
-        @ Command to Request Housekeeping
-        async command REQUEST_HOUSEKEEPING(
+        
+        #Greeting 1
+        @ Command to issue greeting with maximum length of 20 characters
+        async command GENERIC_TORQUER_CONFIG(
+            Percent: U8 @< Percent speed of rotation: (0 - 100)
+            Direction: U8 @< Direction of rotation (0 or 1)
         )
 
-        @ Command to Request Data
-        async command REQUEST_DATA(
-        )
+        @ Greeting event with maximum greeting length of 20 characters
+        event Hello(
+            Percent: U8 @< Greeting supplied from the GENERIC_TORQUER_CONFIG command
+            Direction:  U8 @< Greeting supplied from the GENERIC_TORQUER_CONFIG command
+        ) severity activity high format "I say: {} {}"
 
-        @ NOOP Command
-        async command NOOP(
-        )
-
-        @ event with maximum length of 30 characters
+        @ Greeting event with maximum greeting length of 30 characters
         event TELEM(
             log_info: string size 30 @< 
-        ) severity activity high format "Generic_imu: {}"
+        ) severity activity high format "Generic_torquer: {}"
 
-         @ Device Command Counter Parameter 
-        telemetry DeviceCounter: U32
-
-         @ Device Status Parameter
-        telemetry DeviceStatus: U32
-
-         @ X Axis Linear Acceleration
-        telemetry X_Axis_LinearAcc: F32
-
-         @ X Axis Angular Acceleration
-        telemetry X_Axis_AngularAcc: F32
-
-         @ Y Axis Linear Acceleration
-        telemetry Y_Axis_LinearAcc: F32
-
-         @ Y Axis Angular Acceleration
-        telemetry Y_Axis_AngularAcc: F32
-
-         @ Z Axis Linear Acceleration
-        telemetry Z_Axis_LinearAcc: F32
-
-         @ Z Axis Angular Acceleration
-        telemetry Z_Axis_AngularAcc: F32
+        @ A count of the number of greetings issued
+        telemetry Percent: U8
+        
+        @ A count of the number of greetings issued
+        telemetry Direction: U8
 
         ##############################################################################
         #### Uncomment the following examples to start customizing your component ####

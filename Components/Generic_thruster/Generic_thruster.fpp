@@ -1,51 +1,28 @@
 module Components {
-    @ generic_imu
-    active component Generic_imu {
+    @ Satellite Thruster
+    active component Generic_thruster {
 
         # One async command/port is required for active components
         # This should be overridden by the developers with a useful command/port
-        @ TODO
+        #@ TODO
+        #async command TODO opcode 0
 
-        @ Command to Request Housekeeping
-        async command REQUEST_HOUSEKEEPING(
+        @ Command to issue greeting with maximum length of 20 characters
+        async command SetPercentage(
+            percent: U8 @< Percent speed of rotation
+            thruster_number: U8 @< Direction of rotation
         )
 
-        @ Command to Request Data
-        async command REQUEST_DATA(
-        )
-
-        @ NOOP Command
-        async command NOOP(
-        )
-
-        @ event with maximum length of 30 characters
+        @ Greeting event with maximum greeting length of 30 characters
         event TELEM(
-            log_info: string size 30 @< 
-        ) severity activity high format "Generic_imu: {}"
+            log_info: string size 60 @< 
+        ) severity activity high format "Generic_thruster: {}"
 
-         @ Device Command Counter Parameter 
-        telemetry DeviceCounter: U32
+        @ Thurster Number being set
+        telemetry thruster_number: U8
 
-         @ Device Status Parameter
-        telemetry DeviceStatus: U32
-
-         @ X Axis Linear Acceleration
-        telemetry X_Axis_LinearAcc: F32
-
-         @ X Axis Angular Acceleration
-        telemetry X_Axis_AngularAcc: F32
-
-         @ Y Axis Linear Acceleration
-        telemetry Y_Axis_LinearAcc: F32
-
-         @ Y Axis Angular Acceleration
-        telemetry Y_Axis_AngularAcc: F32
-
-         @ Z Axis Linear Acceleration
-        telemetry Z_Axis_LinearAcc: F32
-
-         @ Z Axis Angular Acceleration
-        telemetry Z_Axis_AngularAcc: F32
+        @ Percentage thruster is being set to
+        telemetry percentage: U8
 
         ##############################################################################
         #### Uncomment the following examples to start customizing your component ####
