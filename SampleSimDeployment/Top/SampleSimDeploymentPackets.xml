@@ -77,7 +77,7 @@
         <channel name="systemResources.CPU_14"/>
         <channel name="systemResources.CPU_15"/>
     </packet>
-    
+
     <!-- Ignored packets -->
 
     <ignore>
@@ -107,6 +107,8 @@
         <channel name="generic_eps.EPSTemperature"/>
         <channel name="generic_eps.SolarArrayVoltage"/>
         <channel name="generic_eps.SolarArrayTemperature"/>
+        <channel name="generic_thruster.percentage"/>
+        <channel name="generic_thruster.thruster_number"/>
         <channel name="generic_torquer.Direction"/>
         <channel name="generic_torquer.Percent"/>
 
