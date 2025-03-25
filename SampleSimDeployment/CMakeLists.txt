@@ -60,6 +60,9 @@ include_directories("../../../../components/generic_eps/fsw/shared")
 include_directories("../../../../components/generic_eps/fsw/standalone") #device_cfg.h
 include_directories("../../../../components/generic_eps/fsw/fprime/platform_inc")
 
+include_directories("../../../../components/arducam/fsw/shared/") #device.h
+include_directories("../../../../components/arducam/fsw/standalone/") #device_cfg.h
+include_directories("../../../../components/arducam/fsw/fprime/platform_inc") #platform_cfg.h
 include_directories("../../../../components/generic_thruster/fsw/shared")
 include_directories("../../../../components/generic_thruster/fsw/standalone") #device_cfg.h
 include_directories("../../../../components/generic_thruster/fsw/fprime/platform_inc")
@@ -81,6 +84,8 @@ set(SOURCE_FILES
 "${CMAKE_CURRENT_LIST_DIR}/Main.cpp"
 
 #ITC STUFF
+"${CMAKE_CURRENT_LIST_DIR}/../../../../components/arducam/fsw/shared/cam_device.c"
+"${CMAKE_CURRENT_LIST_DIR}/../../../../components/arducam/fsw/shared/cam_registers.c"
 "${CMAKE_CURRENT_LIST_DIR}/../../../../components/generic_torquer/fsw/shared/generic_torquer_device.c"
 "${CMAKE_CURRENT_LIST_DIR}/../../../../components/generic_fss/fsw/shared/generic_fss_device.c"
 "${CMAKE_CURRENT_LIST_DIR}/../../../../components/sample/fsw/shared/sample_device.c"

@@ -49,6 +49,7 @@ module SampleSimDeployment {
     instance generic_css
     instance generic_fss
     instance generic_eps
+    instance arducam
     instance generic_thruster
     instance generic_imu
     instance generic_reaction_wheel
