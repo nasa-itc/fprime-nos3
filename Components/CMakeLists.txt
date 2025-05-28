@@ -1,6 +1,5 @@
 # Include project-wide components here
 
-# add_fprime_subdirectory("${CMAKE_CURRENT_LIST_DIR}/MyComponent")
 # add_fprime_subdirectory("${CMAKE_CURRENT_LIST_DIR}/SampleSim/")
 add_fprime_subdirectory("${CMAKE_CURRENT_LIST_DIR}/Nos3Time/")
 add_fprime_subdirectory("${CMAKE_CURRENT_LIST_DIR}/Generic_mag/")
@@ -15,4 +14,4 @@ add_fprime_subdirectory("${CMAKE_CURRENT_LIST_DIR}/Generic_torquer/")
 add_fprime_subdirectory("${CMAKE_CURRENT_LIST_DIR}/Generic_fss/")
 add_fprime_subdirectory("${CMAKE_CURRENT_LIST_DIR}/Generic_reaction_wheel/")
 
-add_fprime_subdirectory("${CMAKE_CURRENT_LIST_DIR}/../../../../components/sample/fsw/fprime/src/SampleSim")
+# add_fprime_subdirectory("${CMAKE_CURRENT_LIST_DIR}/../../../../../components/sample/fsw/fprime/src/SampleSim")
