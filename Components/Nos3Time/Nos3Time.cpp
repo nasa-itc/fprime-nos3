@@ -17,7 +17,7 @@
 
 /* Constants used for NOS Engine Time and NOS Engine bus */
 
-#define ENGINE_SERVER_URI       "tcp://nos_engine_server:12000"
+#define ENGINE_SERVER_URI       "tcp://nos-engine-server:12000"
 #define ENGINE_BUS_NAME         "command"
 #define TICKS_PER_SECOND        100
 #define POSIX_EPOCH             1760776200 //ADVANCING TIME TO 2025-10-18:00:00 
