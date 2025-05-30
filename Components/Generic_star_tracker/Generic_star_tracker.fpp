@@ -12,6 +12,9 @@ module Components {
         async command NOOP(
         )
 
+        async command REQUEST_DATA (
+        )
+
         @ event with maximum greeting length of 30 characters
         event TELEM(
             log_info: string size 30 @< 
@@ -25,6 +28,21 @@ module Components {
 
         #@ A count of the number of greetings issued
         #telemetry DeviceStatus: U32
+
+        @ Quaternion 0
+        telemetry Q0_Data: F64
+
+        @ Quaternion 1
+        telemetry Q1_Data: F64
+
+        @ Quaternion 2
+        telemetry Q2_Data: F64
+
+        @ Quaternion 3
+        telemetry Q3_Data: F64
+
+        @ 8-bit Valid Flag
+        telemetry IsValid: U8
 
         ##############################################################################
         #### Uncomment the following examples to start customizing your component ####

@@ -116,4 +116,33 @@ namespace Components {
     this->cmdResponse_out(opCode, cmdSeq, Fw::CmdResponse::OK);
   }
 
+  //GENERIC_STAR_TRACKER_RequestData
+  void Generic_star_tracker :: REQUEST_DATA_cmdHandler(FwOpcodeType opCode, U32 cmdSeq) {
+    int32_t status = OS_SUCCESS;
+
+    status = GENERIC_STAR_TRACKER_RequestData(&Generic_star_trackerUart, &Generic_star_trackerData);
+    if(status < 0)
+    {
+      this->log_ACTIVITY_HI_TELEM("ST_RequestData: Command Failed");
+      OS_printf("GENERIC_STAR_TRACKER_RequestData command \n");
+    }
+    else{
+      this->log_ACTIVITY_HI_TELEM("ST_RequestData: Success!");
+      OS_printf("GENERIC_STAR_TRACKER_RequestData: Success for ST!");
+      OS_printf("Q0: %lf\n", Generic_star_trackerData.Q0);
+      OS_printf("Q1: %lf\n", Generic_star_trackerData.Q1);
+      OS_printf("Q2: %lf\n", Generic_star_trackerData.Q2);
+      OS_printf("Q3: %lf\n", Generic_star_trackerData.Q3);
+      OS_printf("IsValid: %d\n", Generic_star_trackerData.IsValid);
+    }
+
+    this->tlmWrite_Q0_Data(Generic_star_trackerData.Q0);
+    this->tlmWrite_Q1_Data(Generic_star_trackerData.Q1);
+    this->tlmWrite_Q2_Data(Generic_star_trackerData.Q2);
+    this->tlmWrite_Q3_Data(Generic_star_trackerData.Q3);
+    this->tlmWrite_IsValid(Generic_star_trackerData.IsValid);
+
+    this->cmdResponse_out(opCode, cmdSeq, Fw::CmdResponse::OK);
+  }
+
 }
