@@ -127,5 +127,10 @@
         <channel name="generic_reaction_wheel.RW0_Data"/>
         <channel name="generic_reaction_wheel.RW1_Data"/>
         <channel name="generic_reaction_wheel.RW2_Data"/>
+        <channel name="generic_star_tracker.Q0_Data"/>
+        <channel name="generic_star_tracker.Q1_Data"/>
+        <channel name="generic_star_tracker.Q2_Data"/>
+        <channel name="generic_star_tracker.Q3_Data"/>
+        <channel name="generic_star_tracker.IsValid"/>
     </ignore>
 </packets>
