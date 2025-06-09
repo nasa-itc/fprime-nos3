@@ -101,6 +101,11 @@
         <channel name="generic_css.ADCVoltage3"/>
         <channel name="generic_css.ADCVoltage4"/>
         <channel name="generic_css.ADCVoltage5"/>
+        <channel name="generic_fss.CommandCount"/>
+        <channel name="generic_fss.CommandErrorCount"/>
+        <channel name="generic_fss.DeviceCount"/>
+        <channel name="generic_fss.DeviceErrorCount"/>
+        <channel name="generic_fss.DeviceEnabled"/>
         <channel name="generic_fss.ALPHA"/>
         <channel name="generic_fss.BETA"/>
         <channel name="generic_fss.ERRORCODE"/>
