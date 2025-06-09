@@ -90,6 +90,11 @@
         <channel name="generic_radio.DeviceCounter"/>
         <channel name="generic_radio.DeviceConfig"/>
         <channel name="generic_radio.ProxySignal"/>
+        <channel name="generic_css.CommandCount"/>
+        <channel name="generic_css.CommandErrorCount"/>
+        <channel name="generic_css.DeviceCount"/>
+        <channel name="generic_css.DeviceErrorCount"/>
+        <channel name="generic_css.DeviceEnabled"/>
         <channel name="generic_css.ADCVoltage0"/>
         <channel name="generic_css.ADCVoltage1"/>
         <channel name="generic_css.ADCVoltage2"/>
