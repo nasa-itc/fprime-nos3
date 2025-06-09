@@ -122,8 +122,12 @@
         <channel name="generic_torquer.Direction"/>
         <channel name="generic_torquer.Percent"/>
 
-
-        <channel name="generic_imu.DeviceCounter"/>
+        <channel name="generic_imu.CommandCount"/>
+        <channel name="generic_imu.CommandErrorCount"/>
+        <channel name="generic_imu.DeviceCount"/>
+        <channel name="generic_imu.DeviceErrorCount"/>
+        <channel name="generic_imu.DeviceEnabled"/>
+        <channel name="generic_imu.ReportedComponentCount"/>
         <channel name="generic_imu.DeviceStatus"/>
         <channel name="generic_imu.X_Axis_LinearAcc"/>
         <channel name="generic_imu.X_Axis_AngularAcc"/>
