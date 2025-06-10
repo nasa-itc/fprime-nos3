@@ -135,6 +135,11 @@
         <channel name="generic_imu.Y_Axis_AngularAcc"/>
         <channel name="generic_imu.Z_Axis_LinearAcc"/>
         <channel name="generic_imu.Z_Axis_AngularAcc"/>
+        <channel name="generic_mag.CommandCount"/>
+        <channel name="generic_mag.CommandErrorCount"/>
+        <channel name="generic_mag.DeviceCount"/>
+        <channel name="generic_mag.DeviceErrorCount"/>
+        <channel name="generic_mag.DeviceEnabled"/>
         <channel name="generic_mag.MagneticIntensityX"/>
         <channel name="generic_mag.MagneticIntensityY"/>
         <channel name="generic_mag.MagneticIntensityZ"/>
