@@ -86,7 +86,6 @@
         <channel name="sampleSim.DeviceCounter"/>
         <channel name="sampleSim.DeviceConfig"/>
         <channel name="sampleSim.DeviceStatus"/>
-        <channel name="generic_star_tracker.DeviceCounter"/>
         <channel name="generic_radio.DeviceCounter"/>
         <channel name="generic_radio.DeviceConfig"/>
         <channel name="generic_radio.ProxySignal"/>
@@ -157,6 +156,12 @@
         <channel name="generic_reaction_wheel.DeviceErrorCountRW2"/>
         <channel name="generic_reaction_wheel.DeviceEnabledRW2"/>
         <channel name="generic_reaction_wheel.RW2_Data"/>
+        <channel name="generic_star_tracker.ReportedComponentCount"/>
+        <channel name="generic_star_tracker.CommandCount"/>
+        <channel name="generic_star_tracker.CommandErrorCount"/>
+        <channel name="generic_star_tracker.DeviceCount"/>
+        <channel name="generic_star_tracker.DeviceErrorCount"/>
+        <channel name="generic_star_tracker.DeviceEnabled"/>
         <channel name="generic_star_tracker.Q0_Data"/>
         <channel name="generic_star_tracker.Q1_Data"/>
         <channel name="generic_star_tracker.Q2_Data"/>
