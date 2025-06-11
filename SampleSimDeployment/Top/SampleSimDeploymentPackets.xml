@@ -86,7 +86,11 @@
         <channel name="sampleSim.DeviceCounter"/>
         <channel name="sampleSim.DeviceConfig"/>
         <channel name="sampleSim.DeviceStatus"/>
-        <channel name="generic_radio.DeviceCounter"/>
+        <channel name="generic_radio.CommandCount"/>
+        <channel name="generic_radio.CommandErrorCount"/>
+        <channel name="generic_radio.DeviceCount"/>
+        <channel name="generic_radio.DeviceErrorCount"/>
+        <channel name="generic_radio.ReportedComponentCount"/>
         <channel name="generic_radio.DeviceConfig"/>
         <channel name="generic_radio.ProxySignal"/>
         <channel name="generic_css.CommandCount"/>
