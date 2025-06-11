@@ -116,8 +116,15 @@
         <channel name="generic_eps.EPSTemperature"/>
         <channel name="generic_eps.SolarArrayVoltage"/>
         <channel name="generic_eps.SolarArrayTemperature"/>
-        <channel name="generic_thruster.percentage"/>
-        <channel name="generic_thruster.thruster_number"/>
+        <channel name="generic_thruster.CommandCount"/>
+        <channel name="generic_thruster.CommandErrorCount"/>
+        <channel name="generic_thruster.DeviceCount"/>
+        <channel name="generic_thruster.DeviceErrorCount"/>
+        <channel name="generic_thruster.DeviceEnabled"/>
+        <channel name="generic_thruster.Percentage_0"/>
+        <channel name="generic_thruster.Percentage_1"/>
+        <channel name="generic_thruster.Percentage_2"/>
+        <channel name="generic_thruster.Percentage_3"/>
         <channel name="generic_torquer.Direction"/>
         <channel name="generic_torquer.Percent"/>
 
