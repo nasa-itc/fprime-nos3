@@ -89,6 +89,7 @@
         <channel name="sampleSim.DeviceErrorCount"/>
         <channel name="sampleSim.CommandCount"/>
         <channel name="sampleSim.CommandErrorCount"/>
+        <channel name="sampleSim.DeviceEnabled"/>
         <channel name="generic_star_tracker.DeviceCounter"/>
         <channel name="generic_radio.DeviceCounter"/>
         <channel name="generic_radio.DeviceConfig"/>
