@@ -69,6 +69,8 @@ include_directories("../../../../../components/generic_reaction_wheel/fsw/fprime
 include_directories("../../../../../components/generic_reaction_wheel/fsw/shared")
 include_directories("../../../../../components/generic_reaction_wheel/fsw/standalone") #device_cfg.h
 
+include_directories("../../../../../components/generic_adcs/fsw/fprime/src")
+
 
 set(SOURCE_FILES
   "${CMAKE_CURRENT_LIST_DIR}/instances.fpp"
@@ -89,6 +91,7 @@ set(SOURCE_FILES
   "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_radio/fsw/shared/generic_radio_device.c" 
   "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/sample/fsw/shared/sample_device.c"
   "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_thruster/fsw/shared/generic_thruster_device.c"
+  "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_adcs/fsw/fprime/src/generic_adcs_utilities.c"
 
   "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_eps/fsw/shared/generic_eps_device.c"
   "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_imu/fsw/shared/generic_imu_device.c"

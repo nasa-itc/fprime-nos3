@@ -132,5 +132,6 @@
         <channel name="generic_star_tracker.Q2_Data"/>
         <channel name="generic_star_tracker.Q3_Data"/>
         <channel name="generic_star_tracker.IsValid"/>
+        <channel name="generic_adcs.PH"/>
     </ignore>
 </packets>
