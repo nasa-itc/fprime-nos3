@@ -7,6 +7,8 @@
 #include "Components/Generic_adcs/Generic_adcs.hpp"
 #include "FpConfig.hpp"
 
+#include <math.h>
+
 namespace Components {
 
   // ----------------------------------------------------------------------
@@ -203,6 +205,109 @@ namespace Components {
     DO->Rw.axis[2][0] = 0.0;
     DO->Rw.axis[2][1] = 0.0;
     DO->Rw.axis[2][2] = 1.0;
+  }
+
+  void Generic_adcs :: ingest_mag(I32 MagIntX, I32 MagIntY, I32 MagIntZ, Generic_ADCS_DI_Mag_Tlm_Payload_t *Mag)
+  {
+    double bvs[3] = {(double)MagIntX, (double)MagIntY, (double)MagIntZ};
+
+    QxV(Mag->qbs, bvs, Mag->bvb);
+
+    Mag->bvb[0] *= NANO;
+    Mag->bvb[1] *= NANO;
+    Mag->bvb[2] *= NANO;
+  }
+
+  void Generic_adcs :: ingest_fss(U32 Alpha, U32 Beta, U8 Error, Generic_ADCS_DI_Fss_Tlm_Payload_t *Fss)
+  {
+    Fss->valid = 0;
+    if(Error == 0) Fss->valid = 1;
+
+    if(Fss->valid == 1)
+    {
+      double svs[3];
+      double ta = tan(Alpha);
+      double tb = tan(Beta);
+      svs[2] = 1.0 / sqrt(1 + ta*tb + tb*tb);
+      svs[0] = svs[2] * ta;
+      svs[1] = svs[2] * tb;
+      QxV(Fss->qbs, svs, Fss->svb);
+    }
+    else
+    {
+      Fss->svb[0] = 0.0;
+      Fss->svb[1] = 0.0;
+      Fss->svb[2] = 0.0;
+    }
+  }
+
+  void Generic_adcs :: ingest_css(U16 ADCV0, U16 ADCV1, U16 ADCV2, U16 ADCV3, U16 ADCV4, U16 ADCV5, Generic_ADCS_DI_Css_Tlm_Payload_t *Css)
+  {
+    Css->Sensor[0].percenton      = ADCV0 * Css->Sensor[0].scale;
+    Css->Sensor[1].percenton      = ADCV1 * Css->Sensor[1].scale;
+    Css->Sensor[2].percenton      = ADCV2 * Css->Sensor[2].scale;
+    Css->Sensor[3].percenton      = ADCV3 * Css->Sensor[3].scale;
+    Css->Sensor[4].percenton      = ADCV4 * Css->Sensor[4].scale;
+    Css->Sensor[5].percenton      = ADCV5 * Css->Sensor[5].scale;
+
+    double svb[3] = {0.0, 0.0, 0.0};
+    for (int i = 0; i < 6; i++)
+    {
+        svb[0] += Css->Sensor[i].axis[0] * Css->Sensor[i].percenton;
+        svb[1] += Css->Sensor[i].axis[1] * Css->Sensor[i].percenton;
+        svb[2] += Css->Sensor[i].axis[2] * Css->Sensor[i].percenton;
+    }
+    UNITV(svb);
+
+    Css->svb[0] = svb[0];
+    Css->svb[1] = svb[1];
+    Css->svb[2] = svb[2];
+    if (MAGV(svb) > 0.0)
+    {
+        Css->valid = 1;
+    }
+    else
+    {
+        Css->valid = 0;
+    }
+  }
+
+  void Generic_adcs :: ingest_imu(F32 LinX, F32 LinY, F32 LinZ, F32 AngX, F32 AngY, F32 AngZ, Generic_ADCS_DI_Imu_Tlm_Payload_t *Imu)
+  {
+    double wsn[3] = {AngX, AngY, AngZ};
+    QxV(Imu->qbs, wsn, Imu->wbn);
+
+    double acc[3] = {LinX, LinY, LinZ};
+    QxV(Imu->qbs, acc, Imu->acc);
+    Imu->valid = 1;
+  }
+
+  void Generic_adcs :: ingest_rw(F64 RW0, F64 RW1, F64 RW2, Generic_ADCS_DI_Rw_Tlm_Payload_t *Rw)
+  {
+    double H_in_body[3] = {0.0, 0.0, 0.0};
+    double rwMomentums[3] = {RW0, RW1, RW2};
+
+    for(int i = 0; i < 3; i++)
+    {
+      Rw->HwhlB[i] = 0.0;
+    }
+    
+    for(int whl = 0; whl < 3; whl++)
+    {
+      SxV(rwMomentums[whl], Rw->whl_axis[whl], H_in_body);
+
+      for(int i = 0; i < 3; i++)
+      {
+        Rw->HwhlB[i] += H_in_body[i];
+      }
+    }
+  }
+
+  void Generic_adcs :: ingest_st(F64 Q0, F64 Q1, F64 Q2, F64 Q3, U8 IsValid, Generic_ADCS_DI_St_Tlm_Payload_t *St)
+  {
+    St->valid = IsValid;
+    double q[4] = {Q0, Q1, Q2, Q3};
+    QxQ(q, St->qbs, St->q);
   }
 
 }
