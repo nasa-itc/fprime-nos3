@@ -112,6 +112,11 @@ module SampleSimDeployment {
       rateGroup1.RateGroupMemberOut[1] -> fileDownlink.Run
       rateGroup1.RateGroupMemberOut[2] -> systemResources.run
       rateGroup1.RateGroupMemberOut[3] -> generic_imu.updateData
+      rateGroup1.RateGroupMemberOut[4] -> generic_star_tracker.updateData
+      rateGroup1.RateGroupMemberOut[5] -> generic_mag.updateData
+      rateGroup1.RateGroupMemberOut[6] -> generic_reaction_wheel.updateData
+      rateGroup1.RateGroupMemberOut[7] -> generic_fss.updateData
+      rateGroup1.RateGroupMemberOut[8] -> generic_css.updateData
 
       # Rate group 2
       rateGroupDriver.CycleOut[Ports_RateGroups.rateGroup2] -> rateGroup2.CycleIn
@@ -149,6 +154,11 @@ module SampleSimDeployment {
     connections SampleSimDeployment {
       # Add here connections to user-defined components
       generic_imu.IMUout -> generic_adcs.IMUin
+      generic_mag.MAGout -> generic_adcs.MAGin
+      generic_fss.FSSout -> generic_adcs.FSSin
+      generic_css.CSSout -> generic_adcs.CSSin
+      generic_reaction_wheel.RWout -> generic_adcs.RWin
+      generic_star_tracker.STout -> generic_adcs.STin
     }
 
   }

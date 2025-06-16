@@ -40,6 +40,31 @@ namespace Components {
     ingest_imu(XLin, YLin, ZLin, XAng, YAng, ZAng, &DIPacket.Payload.Imu);
   }
 
+  void Generic_adcs :: MAGin_handler( NATIVE_INT_TYPE portNum, I32 MagX, I32 MagY, I32 MagZ)
+  {
+    ingest_mag(MagX, MagY, MagZ, &DIPacket.Payload.Mag);
+  }
+
+  void Generic_adcs :: FSSin_handler( NATIVE_INT_TYPE portNum, U32 Alpha, U32 Beta, U8 Error)
+  {
+    ingest_fss(Alpha, Beta, Error, &DIPacket.Payload.Fss);
+  }
+
+  void Generic_adcs :: CSSin_handler( NATIVE_INT_TYPE portNum, U16 ADCV0, U16 ADCV1, U16 ADCV2, U16 ADCV3, U16 ADCV4, U16 ADCV5)
+  {
+    ingest_css(ADCV0, ADCV1, ADCV2, ADCV3, ADCV4, ADCV5, &DIPacket.Payload.Css);
+  }
+
+  void Generic_adcs :: RWin_handler( NATIVE_INT_TYPE portNum, F64 RW0, F64 RW1, F64 RW2)
+  {
+    ingest_rw(RW0, RW1, RW2, &DIPacket.Payload.Rw);
+  }
+
+  void Generic_adcs :: STin_handler( NATIVE_INT_TYPE portNum, F64 Q0, F64 Q1, F64 Q2, F64 Q3, U8 IsValid)
+  {
+    ingest_st(Q0, Q1, Q2, Q3, IsValid, &DIPacket.Payload.St);
+  }
+
   void Generic_adcs :: ingest_init(Generic_ADCS_DI_Tlm_Payload_t *DI)
   {
     //hardcoded instead of from the cfg

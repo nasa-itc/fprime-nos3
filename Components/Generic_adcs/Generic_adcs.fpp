@@ -5,19 +5,40 @@ module Components {
         # One async command/port is required for active components
         # This should be overridden by the developers with a useful command/port
 
+        @ IMU Data input
         async input port IMUin: IMUDataPort
 
+        @ Mag Data input
+        async input port MAGin: MagDataPort
 
+        @ FSS Data input
+        async input port FSSin: FSSDataPort
+
+        @ CSS Data input
+        async input port CSSin: CSSDataPort
+
+        @ RW Data input
+        async input port RWin: RWDataPort
+
+        @ ST Data input
+        async input port STin: STDataPort
+
+        @ Counter for keeping track of IMU updating
         telemetry ingestIMUCount: U32
 
+        @ Counter for keeping track of Mag updating
         telemetry ingestMagCount: U32
 
+        @ Counter for keeping track of FSS updating
         telemetry ingestFSSCount: U32
 
+        @ Counter for keeping track of CSS updating
         telemetry ingestCSSCount: U32
 
+        @ Counter for keeping track of RW updating
         telemetry ingestRWCount: U32
 
+        @ Counter for keeping track of ST updating
         telemetry ingestSTCount: U32
 
 

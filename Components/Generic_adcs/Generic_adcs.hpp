@@ -84,6 +84,48 @@ namespace Components {
         F32 ZAng
       ) override;
 
+      void MAGin_handler(
+        NATIVE_INT_TYPE portNum,
+        I32 MagX,
+        I32 MagY,
+        I32 MagZ
+      ) override;
+
+      void FSSin_handler(
+        NATIVE_INT_TYPE portNum,
+        U32 Alpha,
+        U32 Beta,
+        U8 Error
+      ) override;
+
+      void CSSin_handler(
+        NATIVE_INT_TYPE portNum,
+        U16 ADCV0,
+        U16 ADCV1,
+        U16 ADCV2,
+        U16 ADCV3,
+        U16 ADCV4,
+        U16 ADCV5
+      ) override;
+
+      void RWin_handler(
+        NATIVE_INT_TYPE portNum,
+        F64 RW0,
+        F64 RW1,
+        F64 RW2
+      ) override;
+
+      void STin_handler(
+        NATIVE_INT_TYPE portNum,
+        F64 Q0,
+        F64 Q1,
+        F64 Q2,
+        F64 Q3,
+        U8 IsValid
+      ) override;
+
+      //refactor everything below eventually
+
       void ingest_init(Generic_ADCS_DI_Tlm_Payload_t *DI);
       void init_adac(Generic_ADCS_AD_Tlm_Payload_t *AD,
                           Generic_ADCS_GNC_Tlm_Payload_t *GNC,
