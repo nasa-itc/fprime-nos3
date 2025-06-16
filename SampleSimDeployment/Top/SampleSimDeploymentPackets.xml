@@ -132,6 +132,11 @@
         <channel name="generic_star_tracker.Q2_Data"/>
         <channel name="generic_star_tracker.Q3_Data"/>
         <channel name="generic_star_tracker.IsValid"/>
-        <channel name="generic_adcs.PH"/>
+        <channel name="generic_adcs.ingestIMUCount"/>
+        <channel name="generic_adcs.ingestMagCount"/>
+        <channel name="generic_adcs.ingestFSSCount"/>
+        <channel name="generic_adcs.ingestCSSCount"/>
+        <channel name="generic_adcs.ingestRWCount"/>
+        <channel name="generic_adcs.ingestSTCount"/>
     </ignore>
 </packets>

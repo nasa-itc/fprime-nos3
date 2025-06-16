@@ -36,6 +36,13 @@ namespace Components {
     Generic_ADCS_AC_Tlm_t  ACSPacket;
     Generic_ADCS_DO_Tlm_t  DOPacket;
 
+    U32 ingestIMUCount = 0;
+    U32 ingestMagCount = 0;
+    U32 ingestFSSCount = 0;
+    U32 ingestCSSCount = 0;
+    U32 ingestRWCount = 0;
+    U32 ingestSTCount = 0;
+
     struct
     {
         uint8_t Direction;
@@ -66,9 +73,15 @@ namespace Components {
       //! Handler implementation for command TODO
       //!
       //! TODO
-      void Placeholder_cmdHandler(
-          FwOpcodeType opCode, //!< The opcode
-          U32 cmdSeq //!< The command sequence number
+
+      void IMUin_handler(
+        NATIVE_INT_TYPE portNum,
+        F32 XLin,
+        F32 YLin,
+        F32 ZLin,
+        F32 XAng,
+        F32 YAng,
+        F32 ZAng
       ) override;
 
       void ingest_init(Generic_ADCS_DI_Tlm_Payload_t *DI);

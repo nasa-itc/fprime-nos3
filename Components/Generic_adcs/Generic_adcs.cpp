@@ -35,16 +35,9 @@ namespace Components {
   // Handler implementations for commands
   // ----------------------------------------------------------------------
 
-  void Generic_adcs ::
-    Placeholder_cmdHandler(
-        FwOpcodeType opCode,
-        U32 cmdSeq
-    )
+  void Generic_adcs :: IMUin_handler(NATIVE_INT_TYPE portNum, F32 XLin, F32 YLin, F32 ZLin, F32 XAng, F32 YAng, F32 ZAng)
   {
-    // TODO
-    this->tlmWrite_PH(0);
-
-    this->cmdResponse_out(opCode, cmdSeq, Fw::CmdResponse::OK);
+    ingest_imu(XLin, YLin, ZLin, XAng, YAng, ZAng, &DIPacket.Payload.Imu);
   }
 
   void Generic_adcs :: ingest_init(Generic_ADCS_DI_Tlm_Payload_t *DI)
@@ -219,6 +212,8 @@ namespace Components {
     Mag->bvb[0] *= NANO;
     Mag->bvb[1] *= NANO;
     Mag->bvb[2] *= NANO;
+
+    this->tlmWrite_ingestMagCount(++ingestMagCount);
   }
 
   void Generic_adcs :: ingest_fss(U32 Alpha, U32 Beta, U8 Error, Generic_ADCS_DI_Fss_Tlm_Payload_t *Fss)
@@ -242,6 +237,8 @@ namespace Components {
       Fss->svb[1] = 0.0;
       Fss->svb[2] = 0.0;
     }
+
+    this->tlmWrite_ingestFSSCount(++ingestFSSCount);
   }
 
   void Generic_adcs :: ingest_css(U16 ADCV0, U16 ADCV1, U16 ADCV2, U16 ADCV3, U16 ADCV4, U16 ADCV5, Generic_ADCS_DI_Css_Tlm_Payload_t *Css)
@@ -273,6 +270,8 @@ namespace Components {
     {
         Css->valid = 0;
     }
+
+    this->tlmWrite_ingestCSSCount(++ingestCSSCount);
   }
 
   void Generic_adcs :: ingest_imu(F32 LinX, F32 LinY, F32 LinZ, F32 AngX, F32 AngY, F32 AngZ, Generic_ADCS_DI_Imu_Tlm_Payload_t *Imu)
@@ -283,6 +282,8 @@ namespace Components {
     double acc[3] = {LinX, LinY, LinZ};
     QxV(Imu->qbs, acc, Imu->acc);
     Imu->valid = 1;
+
+    this->tlmWrite_ingestIMUCount(++ingestIMUCount);
   }
 
   void Generic_adcs :: ingest_rw(F64 RW0, F64 RW1, F64 RW2, Generic_ADCS_DI_Rw_Tlm_Payload_t *Rw)
@@ -304,6 +305,8 @@ namespace Components {
         Rw->HwhlB[i] += H_in_body[i];
       }
     }
+
+    this->tlmWrite_ingestRWCount(++ingestRWCount);
   }
 
   void Generic_adcs :: ingest_st(F64 Q0, F64 Q1, F64 Q2, F64 Q3, U8 IsValid, Generic_ADCS_DI_St_Tlm_Payload_t *St)
@@ -311,6 +314,8 @@ namespace Components {
     St->valid = IsValid;
     double q[4] = {Q0, Q1, Q2, Q3};
     QxQ(q, St->qbs, St->q);
+
+    this->tlmWrite_ingestSTCount(++ingestSTCount);
   }
 
   void Generic_adcs :: exec_adac(const Generic_ADCS_DI_Tlm_Payload_t *DI,

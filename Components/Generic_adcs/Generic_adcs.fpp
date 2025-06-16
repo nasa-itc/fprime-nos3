@@ -5,14 +5,21 @@ module Components {
         # One async command/port is required for active components
         # This should be overridden by the developers with a useful command/port
 
-        
+        async input port IMUin: IMUDataPort
 
 
-        @ Placeholder Cmd
-        async command Placeholder()
+        telemetry ingestIMUCount: U32
 
-        @ placeholde tele
-        telemetry PH: U32
+        telemetry ingestMagCount: U32
+
+        telemetry ingestFSSCount: U32
+
+        telemetry ingestCSSCount: U32
+
+        telemetry ingestRWCount: U32
+
+        telemetry ingestSTCount: U32
+
 
         ##############################################################################
         #### Uncomment the following examples to start customizing your component ####

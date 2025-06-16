@@ -147,6 +147,7 @@ module SampleSimDeployment {
 
     connections SampleSimDeployment {
       # Add here connections to user-defined components
+      generic_imu.IMUout -> generic_adcs.IMUin
     }
 
   }
