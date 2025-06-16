@@ -205,6 +205,9 @@ namespace Components {
     DO->Rw.axis[2][0] = 0.0;
     DO->Rw.axis[2][1] = 0.0;
     DO->Rw.axis[2][2] = 1.0;
+
+    for(int i = 0; i < 3; i++) CurrentMtb[i] = {1, 0};
+    for(int i = 0; i < 3; i++) CurrentRw[i] = 0;
   }
 
   void Generic_adcs :: ingest_mag(I32 MagIntX, I32 MagIntY, I32 MagIntZ, Generic_ADCS_DI_Mag_Tlm_Payload_t *Mag)
@@ -588,6 +591,68 @@ namespace Components {
           }
       }
   }
+
+    void Generic_adcs :: output_actuators(Generic_ADCS_GNC_Tlm_Payload_t *GNC, Generic_ADCS_DO_Tlm_Payload_t *DO,
+                                        GENERIC_TORQUER_All_Percent_On_cmd_t *MtbPctOnCmd, GENERIC_RW_Cmd_t *RwCmd)
+    {
+        send_mtb_commands(GNC->Mcmd, &DO->Trq, MtbPctOnCmd);
+        send_rw_commands(GNC->Tcmd, &DO->Rw, RwCmd);
+    }
+
+    void Generic_adcs :: send_mtb_commands(double Mcmd[3], Generic_ADCS_DO_Trq_TlmPayload_t *DO,
+                                           GENERIC_TORQUER_All_Percent_On_cmd_t *MtbPctOnCmd)
+    {
+        QTxV(DO->qba, Mcmd, DO->Mcmd);
+
+        mcmd_to_percent_direction(DO->Mcmd[0], &MtbPctOnCmd->PercentOn_0, &MtbPctOnCmd->Direction_0);
+        mcmd_to_percent_direction(DO->Mcmd[1], &MtbPctOnCmd->PercentOn_1, &MtbPctOnCmd->Direction_1);
+        mcmd_to_percent_direction(DO->Mcmd[2], &MtbPctOnCmd->PercentOn_2, &MtbPctOnCmd->Direction_2);
+        if ((MtbPctOnCmd->Direction_0 != CurrentMtb[0].Direction) ||
+            (MtbPctOnCmd->PercentOn_0 != CurrentMtb[0].PercentOn) ||
+            (MtbPctOnCmd->Direction_1 != CurrentMtb[1].Direction) ||
+            (MtbPctOnCmd->PercentOn_1 != CurrentMtb[1].PercentOn) ||
+            (MtbPctOnCmd->Direction_2 != CurrentMtb[2].Direction) || (MtbPctOnCmd->PercentOn_2 != CurrentMtb[2].PercentOn))
+        {
+            //send commands to torquer
+            CurrentMtb[0].Direction = MtbPctOnCmd->Direction_0;
+            CurrentMtb[0].PercentOn = MtbPctOnCmd->PercentOn_0;
+            CurrentMtb[1].Direction = MtbPctOnCmd->Direction_1;
+            CurrentMtb[1].PercentOn = MtbPctOnCmd->PercentOn_1;
+            CurrentMtb[2].Direction = MtbPctOnCmd->Direction_2;
+            CurrentMtb[2].PercentOn = MtbPctOnCmd->PercentOn_2;
+        }
+    }
+
+    void Generic_adcs :: mcmd_to_percent_direction(double Mcmd, uint8_t *percent, uint8_t *direction)
+    {
+        double pct = 100.0 * Mcmd / GNCPacket.Payload.MaxMcmd;
+        *direction = 1;
+        if (pct < 0)
+        {
+            pct *= -1.0;
+            *direction = 0;
+        }
+        if (pct > 100)
+            pct = 100;
+        *percent = pct;
+    }
+
+    void Generic_adcs :: send_rw_commands(double Tcmd[3], Generic_ADCS_DO_Rw_TlmPayload_t *DO, GENERIC_RW_Cmd_t *RwCmd)
+    {
+        int16_t torque;
+        for (uint8_t i = 0; i < 3; i++)
+        {
+            DO->Tcmd[i] = Tcmd[i];
+            torque      = 10000.0 * VoV(Tcmd, DO->axis[i]); // cmd is in 10^-4 Nm
+            if (torque != CurrentRw[i])
+            {
+                RwCmd->data         = torque;
+                RwCmd->wheel_number = i;
+                //send commands to RW
+                CurrentRw[i] = torque;
+            }
+        }
+    }
 
 
 }

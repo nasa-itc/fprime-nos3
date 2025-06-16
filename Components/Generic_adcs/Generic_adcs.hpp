@@ -35,6 +35,16 @@ namespace Components {
     Generic_ADCS_GNC_Tlm_t GNCPacket;
     Generic_ADCS_AC_Tlm_t  ACSPacket;
     Generic_ADCS_DO_Tlm_t  DOPacket;
+
+    struct
+    {
+        uint8_t Direction;
+        uint8_t PercentOn;
+    } CurrentMtb[3];
+
+    int16_t CurrentRw[3];
+
+    
       // ----------------------------------------------------------------------
       // Component construction and destruction
       // ----------------------------------------------------------------------
@@ -68,6 +78,8 @@ namespace Components {
       
       void init_output(Generic_ADCS_DO_Tlm_Payload_t *DO);
 
+      // all of these ingests need fprime ports with input from respective components
+      // periodic or event-based update
       void ingest_mag(I32 MagIntX, I32 MagIntY, I32 MagIntZ, Generic_ADCS_DI_Mag_Tlm_Payload_t *Mag);
 
       void ingest_fss(U32 Alpha, U32 Beta, U8 Error, Generic_ADCS_DI_Fss_Tlm_Payload_t *Fss);
@@ -80,6 +92,7 @@ namespace Components {
 
       void ingest_st(F64 Q0, F64 Q1, F64 Q2, F64 Q3, U8 IsValid, Generic_ADCS_DI_St_Tlm_Payload_t *St);
 
+      // needs to be called periodically or after an ingest is called
       void exec_adac( const Generic_ADCS_DI_Tlm_Payload_t *DI,
                       Generic_ADCS_AD_Tlm_Payload_t       *AD,
                       Generic_ADCS_GNC_Tlm_Payload_t      *GNC,
@@ -93,6 +106,16 @@ namespace Components {
       void AC_bdot(Generic_ADCS_GNC_Tlm_Payload_t *GNC, Generic_ADCS_AC_Bdot_Tlm_t *AC_bdot);
       void AC_sunsafe(Generic_ADCS_GNC_Tlm_Payload_t *GNC, Generic_ADCS_AC_Sunsafe_Tlm_t *ACS);
       void AC_h_mgmt(Generic_ADCS_GNC_Tlm_Payload_t *GNC);
+
+      void output_actuators(Generic_ADCS_GNC_Tlm_Payload_t *GNC, Generic_ADCS_DO_Tlm_Payload_t *DO,
+                            GENERIC_TORQUER_All_Percent_On_cmd_t *MtbPctOnCmd, GENERIC_RW_Cmd_t *RwCmd);
+      
+      void send_mtb_commands(double Mcmd[3], Generic_ADCS_DO_Trq_TlmPayload_t *DO,
+                            GENERIC_TORQUER_All_Percent_On_cmd_t *MtbPctOnCmd);
+
+      void mcmd_to_percent_direction(double Mcmd, uint8_t *percent, uint8_t *direction);
+
+      void  send_rw_commands(double Tcmd[3], Generic_ADCS_DO_Rw_TlmPayload_t *DO, GENERIC_RW_Cmd_t *RwCmd);
 
   };
 
