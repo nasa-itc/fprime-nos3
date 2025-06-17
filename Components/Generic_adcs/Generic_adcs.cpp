@@ -65,6 +65,12 @@ namespace Components {
     ingest_st(Q0, Q1, Q2, Q3, IsValid, &DIPacket.Payload.St);
   }
 
+  void Generic_adcs :: updateData_handler(const NATIVE_INT_TYPE portNum, NATIVE_UINT_TYPE context)
+  {
+    exec_adac(&DIPacket.Payload, &ADPacket.Payload, &GNCPacket.Payload, &ACSPacket.Payload);
+    output_actuators(&GNCPacket.Payload, &DOPacket.Payload, &MtbPctOnCmd, &RwCmd);
+  }
+
   void Generic_adcs :: ingest_init(Generic_ADCS_DI_Tlm_Payload_t *DI)
   {
     //hardcoded instead of from the cfg
@@ -173,6 +179,8 @@ namespace Components {
 
     GNC->DT = 0.1;
     GNC->MaxMcmd = 1.42;
+
+    GNC->Mode = SUNSAFE_MODE;
 
     ACS->Bdot.b_range = 4.096E-6;
     ACS->Bdot.Kb = 200.0;
@@ -644,6 +652,9 @@ namespace Components {
             (MtbPctOnCmd->Direction_2 != CurrentMtb[2].Direction) || (MtbPctOnCmd->PercentOn_2 != CurrentMtb[2].PercentOn))
         {
             //send commands to torquer
+            this->TORQout_out(0, MtbPctOnCmd->PercentOn_0, MtbPctOnCmd->Direction_0, MtbPctOnCmd->PercentOn_1, MtbPctOnCmd->Direction_1, MtbPctOnCmd->PercentOn_2, MtbPctOnCmd->Direction_2);
+
+
             CurrentMtb[0].Direction = MtbPctOnCmd->Direction_0;
             CurrentMtb[0].PercentOn = MtbPctOnCmd->PercentOn_0;
             CurrentMtb[1].Direction = MtbPctOnCmd->Direction_1;
@@ -669,19 +680,20 @@ namespace Components {
 
     void Generic_adcs :: send_rw_commands(double Tcmd[3], Generic_ADCS_DO_Rw_TlmPayload_t *DO, GENERIC_RW_Cmd_t *RwCmd)
     {
-        int16_t torque;
+        int16_t torque[3];
         for (uint8_t i = 0; i < 3; i++)
         {
             DO->Tcmd[i] = Tcmd[i];
-            torque      = 10000.0 * VoV(Tcmd, DO->axis[i]); // cmd is in 10^-4 Nm
-            if (torque != CurrentRw[i])
+            torque[i]      = 10000.0 * VoV(Tcmd, DO->axis[i]); // cmd is in 10^-4 Nm
+            if (torque[i] != CurrentRw[i])
             {
-                RwCmd->data         = torque;
+                RwCmd->data         = torque[i];
                 RwCmd->wheel_number = i;
                 //send commands to RW
-                CurrentRw[i] = torque;
+                CurrentRw[i] = torque[i];
             }
         }
+        this->RWOUTout_out(0, torque[0], torque[1], torque[2]);
     }
 
 

@@ -23,6 +23,15 @@ module Components {
         @ ST Data input
         async input port STin: STDataPort
 
+        @ Update Control and Cmd Outputs
+        async input port updateData: Svc.Sched
+
+        @ Cmd Torquer
+        output port TORQout: TORQDataPort
+
+        @ Cmd RW
+        output port RWOUTout: RWOUTDataPort
+
         @ Counter for keeping track of IMU updating
         telemetry ingestIMUCount: U32
 

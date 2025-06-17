@@ -35,6 +35,8 @@ namespace Components {
     Generic_ADCS_GNC_Tlm_t GNCPacket;
     Generic_ADCS_AC_Tlm_t  ACSPacket;
     Generic_ADCS_DO_Tlm_t  DOPacket;
+    GENERIC_TORQUER_All_Percent_On_cmd_t MtbPctOnCmd;
+    GENERIC_RW_Cmd_t                     RwCmd;
 
     U32 ingestIMUCount = 0;
     U32 ingestMagCount = 0;
@@ -65,14 +67,6 @@ namespace Components {
       ~Generic_adcs();
 
     PRIVATE:
-
-      // ----------------------------------------------------------------------
-      // Handler implementations for commands
-      // ----------------------------------------------------------------------
-
-      //! Handler implementation for command TODO
-      //!
-      //! TODO
 
       void IMUin_handler(
         NATIVE_INT_TYPE portNum,
@@ -122,6 +116,11 @@ namespace Components {
         F64 Q2,
         F64 Q3,
         U8 IsValid
+      ) override;
+
+      void updateData_handler(
+        const NATIVE_INT_TYPE portNum,
+        NATIVE_UINT_TYPE context
       ) override;
 
       //refactor everything below eventually

@@ -117,6 +117,7 @@ module SampleSimDeployment {
       rateGroup1.RateGroupMemberOut[6] -> generic_reaction_wheel.updateData
       rateGroup1.RateGroupMemberOut[7] -> generic_fss.updateData
       rateGroup1.RateGroupMemberOut[8] -> generic_css.updateData
+      rateGroup1.RateGroupMemberOut[9] -> generic_adcs.updateData
 
       # Rate group 2
       rateGroupDriver.CycleOut[Ports_RateGroups.rateGroup2] -> rateGroup2.CycleIn
@@ -159,6 +160,8 @@ module SampleSimDeployment {
       generic_css.CSSout -> generic_adcs.CSSin
       generic_reaction_wheel.RWout -> generic_adcs.RWin
       generic_star_tracker.STout -> generic_adcs.STin
+      generic_adcs.RWOUTout -> generic_reaction_wheel.RWin
+      generic_adcs.TORQout -> generic_torquer.TORQin
     }
 
   }
