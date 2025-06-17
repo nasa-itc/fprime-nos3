@@ -82,10 +82,14 @@
 
     <ignore>
         <channel name="cmdDisp.CommandErrors"/>
-        <channel name="sampleSim.GreetingCount"/>
-        <channel name="sampleSim.DeviceCounter"/>
+        <channel name="sampleSim.ReportedComponentCount"/>
         <channel name="sampleSim.DeviceConfig"/>
         <channel name="sampleSim.DeviceStatus"/>
+        <channel name="sampleSim.DeviceCount"/>
+        <channel name="sampleSim.DeviceErrorCount"/>
+        <channel name="sampleSim.CommandCount"/>
+        <channel name="sampleSim.CommandErrorCount"/>
+        <channel name="sampleSim.DeviceEnabled"/>
         <channel name="arducam.CommandCount"/>
         <channel name="arducam.CommandErrorCount"/>
         <channel name="generic_star_tracker.DeviceCounter"/>
@@ -182,8 +186,6 @@
         <channel name="generic_torquer.Percent_1"/>
         <channel name="generic_torquer.Direction_2"/>
         <channel name="generic_torquer.Percent_2"/>
-
-
         <channel name="generic_imu.DeviceCounter"/>
         <channel name="generic_imu.DeviceStatus"/>
         <channel name="generic_imu.X_Axis_LinearAcc"/>
