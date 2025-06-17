@@ -86,6 +86,8 @@
         <channel name="sampleSim.DeviceCounter"/>
         <channel name="sampleSim.DeviceConfig"/>
         <channel name="sampleSim.DeviceStatus"/>
+        <channel name="arducam.CommandCount"/>
+        <channel name="arducam.CommandErrorCount"/>
         <channel name="generic_star_tracker.DeviceCounter"/>
         <channel name="generic_radio.DeviceCounter"/>
         <channel name="generic_radio.DeviceConfig"/>
