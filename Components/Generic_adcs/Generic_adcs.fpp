@@ -5,6 +5,14 @@ module Components {
         # One async command/port is required for active components
         # This should be overridden by the developers with a useful command/port
 
+        @ ADCS Mode
+        enum adcs_mode {
+            PASSIVE @< Passive Mode
+            BDOT @< BDOT Mode
+            SUNSAFE @< SUNSAFE Mode
+            INERTIAL @< INERTIAL Mode
+        }
+
         @ IMU Data input
         async input port IMUin: IMUDataPort
 
@@ -32,6 +40,11 @@ module Components {
         @ Cmd RW
         output port RWOUTout: RWOUTDataPort
 
+        @ SetMode Command
+        async command SET_MODE(
+            MODE: adcs_mode @< ADCS Mode
+        )
+
         @ Counter for keeping track of IMU updating
         telemetry ingestIMUCount: U32
 
@@ -49,6 +62,23 @@ module Components {
 
         @ Counter for keeping track of ST updating
         telemetry ingestSTCount: U32
+
+        @ ADCS Current Mode
+        telemetry ADCSMode: adcs_mode
+
+        @ Counter for keeping track of IMU updating
+        telemetry ingestPASSIVE: U32
+
+        @ Counter for keeping track of IMU updating
+        telemetry ingestSUNSAFE: U32
+
+        @ Counter for keeping track of IMU updating
+        telemetry ingestBDOT: U32
+
+        @ Greeting event with maximum greeting length of 40 characters
+        event TELEM(
+            log_info: string size 40 @< 
+        ) severity activity high format "Generic_adcs: {}"
 
 
         ##############################################################################

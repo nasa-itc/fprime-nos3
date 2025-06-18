@@ -44,6 +44,9 @@ namespace Components {
     U32 ingestCSSCount = 0;
     U32 ingestRWCount = 0;
     U32 ingestSTCount = 0;
+    U32 ingestPASSIVE = 0;
+    U32 ingestSUNSAFE = 0;
+    U32 ingestBDOT = 0;
 
     struct
     {
@@ -121,6 +124,12 @@ namespace Components {
       void updateData_handler(
         const NATIVE_INT_TYPE portNum,
         NATIVE_UINT_TYPE context
+      ) override;
+
+      void SET_MODE_cmdHandler(
+        FwOpcodeType opCode,
+        U32 cmdSeq,
+        Generic_adcs_adcs_mode MODE
       ) override;
 
       //refactor everything below eventually

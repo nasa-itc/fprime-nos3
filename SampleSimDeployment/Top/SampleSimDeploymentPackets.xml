@@ -211,5 +211,9 @@
         <channel name="generic_adcs.ingestCSSCount"/>
         <channel name="generic_adcs.ingestRWCount"/>
         <channel name="generic_adcs.ingestSTCount"/>
+        <channel name="generic_adcs.ingestBDOT"/>
+        <channel name="generic_adcs.ingestSUNSAFE"/>
+        <channel name="generic_adcs.ingestPASSIVE"/>
+        <channel name="generic_adcs.ADCSMode"/>
     </ignore>
 </packets>

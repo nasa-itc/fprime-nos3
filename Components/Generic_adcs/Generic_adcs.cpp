@@ -71,6 +71,31 @@ namespace Components {
     output_actuators(&GNCPacket.Payload, &DOPacket.Payload, &MtbPctOnCmd, &RwCmd);
   }
 
+  void Generic_adcs :: SET_MODE_cmdHandler(FwOpcodeType opCode, U32 cmdSeq, Generic_adcs_adcs_mode MODE)
+  {
+    GNCPacket.Payload.Mode = MODE.e;
+
+    this->tlmWrite_ADCSMode(MODE);
+
+    switch (MODE.e)
+    {
+        case BDOT_MODE:
+            this->log_ACTIVITY_HI_TELEM("Set to BDOT Mode!");
+            break;
+
+        case SUNSAFE_MODE:
+            this->log_ACTIVITY_HI_TELEM("Set to SUNSAFE Mode!");
+            break;
+
+        case PASSIVE_MODE:
+        default:
+            this->log_ACTIVITY_HI_TELEM("Set to PASSIVE Mode!");
+            break;
+    }
+
+    this->cmdResponse_out(opCode, cmdSeq, Fw::CmdResponse::OK);
+  }
+
   void Generic_adcs :: ingest_init(Generic_ADCS_DI_Tlm_Payload_t *DI)
   {
     //hardcoded instead of from the cfg
@@ -179,8 +204,6 @@ namespace Components {
 
     GNC->DT = 0.1;
     GNC->MaxMcmd = 1.42;
-
-    GNC->Mode = SUNSAFE_MODE;
 
     ACS->Bdot.b_range = 4.096E-6;
     ACS->Bdot.Kb = 200.0;
@@ -371,10 +394,12 @@ namespace Components {
     {
         case BDOT_MODE:
             AC_bdot(GNC, &ACS->Bdot);
+            this->tlmWrite_ingestBDOT(++ingestBDOT);
             break;
 
         case SUNSAFE_MODE:
             AC_sunsafe(GNC, &ACS->Sunsafe);
+            this->tlmWrite_ingestSUNSAFE(++ingestSUNSAFE);
             break;
 
         case PASSIVE_MODE:
@@ -384,6 +409,7 @@ namespace Components {
                 GNC->Mcmd[i] = 0.0;
                 GNC->Tcmd[i] = 0.0;
             }
+            this->tlmWrite_ingestPASSIVE(++ingestPASSIVE);
             break;
     }
   }
