@@ -20,6 +20,7 @@ extern "C"{
 #define PASSIVE_MODE 0
 #define BDOT_MODE    1
 #define SUNSAFE_MODE 2
+#define INERTIAL_MODE 3
 
 namespace Components {
 
@@ -46,6 +47,7 @@ namespace Components {
     U32 ingestSTCount = 0;
     U32 ingestPASSIVE = 0;
     U32 ingestSUNSAFE = 0;
+    U32 ingestINERTIAL = 0;
     U32 ingestBDOT = 0;
 
     struct
@@ -129,7 +131,11 @@ namespace Components {
       void SET_MODE_cmdHandler(
         FwOpcodeType opCode,
         U32 cmdSeq,
-        Generic_adcs_adcs_mode MODE
+        Generic_adcs_adcs_mode MODE,
+        F64 Q0, 
+        F64 Q1, 
+        F64 Q2, 
+        F64 Q3 
       ) override;
 
       //refactor everything below eventually
@@ -165,9 +171,11 @@ namespace Components {
       void AD_mag(const Generic_ADCS_DI_Mag_Tlm_Payload_t *DI_Mag, Generic_ADCS_AD_Mag_Tlm_Payload_t *AD_Mag);
       void AD_sol(const Generic_ADCS_DI_Fss_Tlm_Payload_t *DI_FSS, const Generic_ADCS_DI_Css_Tlm_Payload_t *DI_CSS,
                         Generic_ADCS_AD_Sol_Tlm_Payload_t *AD_Sol);
+      void AD_st(const Generic_ADCS_DI_St_Tlm_Payload_t *DI_ST, Generic_ADCS_AD_ST_Tlm_Payload_t *AD_Mag);
       void AD_to_GNC(const Generic_ADCS_AD_Tlm_Payload_t *AD, Generic_ADCS_GNC_Tlm_Payload_t *GNC);
       void AC_bdot(Generic_ADCS_GNC_Tlm_Payload_t *GNC, Generic_ADCS_AC_Bdot_Tlm_t *AC_bdot);
       void AC_sunsafe(Generic_ADCS_GNC_Tlm_Payload_t *GNC, Generic_ADCS_AC_Sunsafe_Tlm_t *ACS);
+      void AC_inertial(Generic_ADCS_GNC_Tlm_Payload_t *GNC, Generic_ADCS_AC_Inertial_Tlm_t *ACS);
       void AC_h_mgmt(Generic_ADCS_GNC_Tlm_Payload_t *GNC);
 
       void output_actuators(Generic_ADCS_GNC_Tlm_Payload_t *GNC, Generic_ADCS_DO_Tlm_Payload_t *DO,

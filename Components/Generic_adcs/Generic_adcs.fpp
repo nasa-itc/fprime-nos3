@@ -43,6 +43,10 @@ module Components {
         @ SetMode Command
         async command SET_MODE(
             MODE: adcs_mode @< ADCS Mode
+            Q0: F64 @< Q0, only for inertial mode, else set 0
+            Q1: F64 @< Q1, only for inertial mode, else set 0
+            Q2: F64 @< Q2, only for inertial mode, else set 0
+            Q3: F64 @< Q3, only for inertial mode, else set 0
         )
 
         @ Counter for keeping track of IMU updating
