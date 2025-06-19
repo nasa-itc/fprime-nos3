@@ -35,7 +35,7 @@ module SampleSimDeployment {
     priority 118
 
   instance cmdDisp: Svc.CommandDispatcher base id 0x0500 \
-    queue size 20 \
+    queue size Default.QUEUE_SIZE_BIG \
     stack size Default.STACK_SIZE \
     priority 101
 
