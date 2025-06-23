@@ -841,7 +841,7 @@ void AD_st(const Generic_ADCS_DI_St_Tlm_Payload_t *DI_ST, Generic_ADCS_AD_ST_Tlm
         for (uint8_t i = 0; i < 3; i++)
         {
             DO->Tcmd[i] = Tcmd[i];
-            torque[i]      = 10000.0 * VoV(Tcmd, DO->axis[i]); // cmd is in 10^-4 Nm
+            torque[i]      = VoV(Tcmd, DO->axis[i]); // cmd is in 10^-4 Nm
             if (torque[i] != CurrentRw[i])
             {
                 RwCmd->data         = torque[i];

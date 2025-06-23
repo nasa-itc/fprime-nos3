@@ -17,52 +17,52 @@ module SampleSimDeployment {
   instance blockDrv: Drv.BlockDriver base id 0x0100 \
     queue size Default.QUEUE_SIZE \
     stack size Default.STACK_SIZE \
-    priority 140
+    priority 99
 
   instance rateGroup1: Svc.ActiveRateGroup base id 0x0200 \
     queue size Default.QUEUE_SIZE_BIG \
     stack size Default.STACK_SIZE \
-    priority 120
+    priority 95
 
   instance rateGroup2: Svc.ActiveRateGroup base id 0x0300 \
     queue size Default.QUEUE_SIZE \
     stack size Default.STACK_SIZE \
-    priority 119
+    priority 90
 
   instance rateGroup3: Svc.ActiveRateGroup base id 0x0400 \
     queue size Default.QUEUE_SIZE \
     stack size Default.STACK_SIZE \
-    priority 118
+    priority 90
 
   instance cmdDisp: Svc.CommandDispatcher base id 0x0500 \
     queue size Default.QUEUE_SIZE_BIG \
     stack size Default.STACK_SIZE \
-    priority 101
+    priority 99
 
   instance cmdSeq: Svc.CmdSequencer base id 0x0600 \
     queue size Default.QUEUE_SIZE \
     stack size Default.STACK_SIZE \
-    priority 100
+    priority 99
 
   instance comQueue: Svc.ComQueue base id 0x0700 \
       queue size Default.QUEUE_SIZE \
       stack size Default.STACK_SIZE \
-      priority 100 \
+      priority 99 \
 
   instance fileDownlink: Svc.FileDownlink base id 0x0800 \
     queue size 30 \
     stack size Default.STACK_SIZE \
-    priority 100
+    priority 99
 
   instance fileManager: Svc.FileManager base id 0x0900 \
     queue size 30 \
     stack size Default.STACK_SIZE \
-    priority 100
+    priority 99
 
   instance fileUplink: Svc.FileUplink base id 0x0A00 \
     queue size 30 \
     stack size Default.STACK_SIZE \
-    priority 100
+    priority 99
 
   instance eventLogger: Svc.ActiveLogger base id 0x0B00 \
     queue size Default.QUEUE_SIZE \
@@ -91,12 +91,12 @@ module SampleSimDeployment {
   instance sampleSim: Components.SampleSim base id 0x0F00 \
     queue size Default.QUEUE_SIZE \
     stack size Default.STACK_SIZE \
-    priority 50
+    priority 65
 
   instance generic_mag: Components.Generic_mag base id 0xEF00 \
     queue size Default.QUEUE_SIZE_BIG \
     stack size Default.STACK_SIZE \
-    priority 50
+    priority 49
 
   instance generic_star_tracker: Components.Generic_star_tracker base id 0xE000 \
     queue size Default.QUEUE_SIZE_BIG \
@@ -106,37 +106,37 @@ module SampleSimDeployment {
   instance generic_radio: Components.Generic_radio base id 0xE100 \
     queue size Default.QUEUE_SIZE \
     stack size Default.STACK_SIZE \
-    priority 50
+    priority 35
     
   instance generic_css: Components.Generic_css base id 0xE300 \
     queue size Default.QUEUE_SIZE_BIG \
     stack size Default.STACK_SIZE \
-    priority 50
+    priority 48
     
   instance generic_eps: Components.Generic_eps base id 0xE200 \
     queue size Default.QUEUE_SIZE_BIG \
     stack size Default.STACK_SIZE \
-    priority 50
+    priority 51
 
   instance arducam: Components.Arducam base id 0xF900 \
     queue size Default.QUEUE_SIZE \
     stack size Default.STACK_SIZE \
-    priority 50
+    priority 55
 
   instance generic_thruster: Components.Generic_thruster base id 0xE500 \
     queue size Default.QUEUE_SIZE \
     stack size Default.STACK_SIZE \
-    priority 50
+    priority 48
 
   instance generic_fss: Components.Generic_fss base id 0xE400 \
     queue size Default.QUEUE_SIZE_BIG \
     stack size Default.STACK_SIZE \
-    priority 50
+    priority 40
 
   instance generic_imu: Components.Generic_imu base id 0xE600 \
     queue size Default.QUEUE_SIZE_BIG \
     stack size Default.STACK_SIZE \
-    priority 50
+    priority 46
 
   instance generic_reaction_wheel: Components.Generic_reaction_wheel base id 0xE700 \
     queue size Default.QUEUE_SIZE_BIG \
@@ -146,12 +146,12 @@ module SampleSimDeployment {
   instance generic_torquer: Components.Generic_torquer base id 0xE900 \
     queue size Default.QUEUE_SIZE_BIG \
     stack size Default.STACK_SIZE \
-    priority 50
+    priority 49
 
   instance generic_adcs: Components.Generic_adcs base id 0xFF00 \
     queue size Default.QUEUE_SIZE_BIG \
     stack size Default.STACK_SIZE \
-    priority 50
+    priority 47
 
   # ----------------------------------------------------------------------
   # Queued component instances
