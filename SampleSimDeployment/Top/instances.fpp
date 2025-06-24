@@ -106,8 +106,23 @@ module SampleSimDeployment {
     queue size Default.QUEUE_SIZE \
     stack size Default.STACK_SIZE \
     priority 50
-
+    
+  instance generic_css: Components.Generic_css base id 0xE300 \
+    queue size Default.QUEUE_SIZE \
+    stack size Default.STACK_SIZE \
+    priority 50
+    
   instance generic_eps: Components.Generic_eps base id 0xE200 \
+    queue size Default.QUEUE_SIZE \
+    stack size Default.STACK_SIZE \
+    priority 50
+
+  instance arducam: Components.Arducam base id 0xF900 \
+    queue size Default.QUEUE_SIZE \
+    stack size Default.STACK_SIZE \
+    priority 50
+
+  instance generic_thruster: Components.Generic_thruster base id 0xE500 \
     queue size Default.QUEUE_SIZE \
     stack size Default.STACK_SIZE \
     priority 50
@@ -123,6 +138,11 @@ module SampleSimDeployment {
     priority 50
 
   instance generic_reaction_wheel: Components.Generic_reaction_wheel base id 0xE700 \
+    queue size Default.QUEUE_SIZE \
+    stack size Default.STACK_SIZE \
+    priority 50
+
+  instance generic_torquer: Components.Generic_torquer base id 0xE900 \
     queue size Default.QUEUE_SIZE \
     stack size Default.STACK_SIZE \
     priority 50
