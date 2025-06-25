@@ -837,7 +837,7 @@ void AD_st(const Generic_ADCS_DI_St_Tlm_Payload_t *DI_ST, Generic_ADCS_AD_ST_Tlm
 
     void Generic_adcs :: send_rw_commands(double Tcmd[3], Generic_ADCS_DO_Rw_TlmPayload_t *DO, GENERIC_RW_Cmd_t *RwCmd)
     {
-        int16_t torque[3];
+        double torque[3];
         for (uint8_t i = 0; i < 3; i++)
         {
             DO->Tcmd[i] = Tcmd[i];
