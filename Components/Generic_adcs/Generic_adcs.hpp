@@ -131,11 +131,16 @@ namespace Components {
       void SET_MODE_cmdHandler(
         FwOpcodeType opCode,
         U32 cmdSeq,
-        Generic_adcs_adcs_mode MODE,
-        F64 Q0, 
-        F64 Q1, 
-        F64 Q2, 
-        F64 Q3 
+        Generic_adcs_adcs_mode MODE
+      ) override;
+
+      void SET_INERTIAL_QUATERNION_cmdHandler(
+        FwOpcodeType opCode,
+        U32 cmdSeq,
+        F64 QX, 
+        F64 QY, 
+        F64 QZ, 
+        F64 QW
       ) override;
 
       //refactor everything below eventually

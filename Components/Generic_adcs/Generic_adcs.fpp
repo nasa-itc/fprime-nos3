@@ -43,10 +43,13 @@ module Components {
         @ SetMode Command
         async command SET_MODE(
             MODE: adcs_mode @< ADCS Mode
-            Q0: F64 @< Q0, only for inertial mode, else set 0
-            Q1: F64 @< Q1, only for inertial mode, else set 0
-            Q2: F64 @< Q2, only for inertial mode, else set 0
-            Q3: F64 @< Q3, only for inertial mode, else set 0
+        )
+
+        async command SET_INERTIAL_QUATERNION(
+            QX: F64 @< QX 
+            QY: F64 @< QY
+            QZ: F64 @< QZ
+            QW: F64 @< QW (Real Part)
         )
 
         @ Counter for keeping track of IMU updating
@@ -78,6 +81,20 @@ module Components {
 
         @ Counter for keeping track of IMU updating
         telemetry ingestBDOT: U32
+
+        @ Inertial Pointing Quaternion X
+        telemetry INERTIALQUATERNIONX: F64
+
+        @ Inertial Pointing Quaternion Y
+        telemetry INERTIALQUATERNIONY: F64
+
+        @ Inertial Pointing Quaternion Z
+        telemetry INERTIALQUATERNIONZ: F64
+
+        @ Inertial Pointing Quaternion W
+        telemetry INERTIALQUATERNIONW: F64
+
+
 
         @ Greeting event with maximum greeting length of 40 characters
         event TELEM(

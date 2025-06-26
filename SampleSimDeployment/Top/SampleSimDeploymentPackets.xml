@@ -266,6 +266,10 @@
         <channel name="generic_adcs.ingestSUNSAFE"/>
         <channel name="generic_adcs.ingestPASSIVE"/>
         <channel name="generic_adcs.ADCSMode"/>
+        <channel name="generic_adcs.INERTIALQUATERNIONX"/>
+        <channel name="generic_adcs.INERTIALQUATERNIONY"/>
+        <channel name="generic_adcs.INERTIALQUATERNIONZ"/>
+        <channel name="generic_adcs.INERTIALQUATERNIONW"/>
 
         <channel name="sampleSim.ReportedComponentCount"/>
         <channel name="sampleSim.DeviceConfig"/>

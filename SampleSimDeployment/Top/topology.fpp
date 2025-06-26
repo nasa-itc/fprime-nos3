@@ -153,7 +153,6 @@ module SampleSimDeployment {
     }
 
     connections SampleSimDeployment {
-      # Add here connections to user-defined components
       generic_imu.IMUout -> generic_adcs.IMUin
       generic_mag.MAGout -> generic_adcs.MAGin
       generic_fss.FSSout -> generic_adcs.FSSin

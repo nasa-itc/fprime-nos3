@@ -91,12 +91,12 @@ module SampleSimDeployment {
   instance sampleSim: Components.SampleSim base id 0x0F00 \
     queue size Default.QUEUE_SIZE \
     stack size Default.STACK_SIZE \
-    priority 65
+    priority 50
 
   instance generic_mag: Components.Generic_mag base id 0xEF00 \
     queue size Default.QUEUE_SIZE_BIG \
     stack size Default.STACK_SIZE \
-    priority 49
+    priority 50
 
   instance generic_star_tracker: Components.Generic_star_tracker base id 0xE000 \
     queue size Default.QUEUE_SIZE_BIG \
@@ -106,37 +106,37 @@ module SampleSimDeployment {
   instance generic_radio: Components.Generic_radio base id 0xE100 \
     queue size Default.QUEUE_SIZE \
     stack size Default.STACK_SIZE \
-    priority 35
+    priority 50
     
   instance generic_css: Components.Generic_css base id 0xE300 \
     queue size Default.QUEUE_SIZE_BIG \
     stack size Default.STACK_SIZE \
-    priority 48
+    priority 50
     
   instance generic_eps: Components.Generic_eps base id 0xE200 \
     queue size Default.QUEUE_SIZE_BIG \
     stack size Default.STACK_SIZE \
-    priority 51
+    priority 50
 
   instance arducam: Components.Arducam base id 0xF900 \
     queue size Default.QUEUE_SIZE \
     stack size Default.STACK_SIZE \
-    priority 55
+    priority 50
 
   instance generic_thruster: Components.Generic_thruster base id 0xE500 \
     queue size Default.QUEUE_SIZE \
     stack size Default.STACK_SIZE \
-    priority 48
+    priority 50
 
   instance generic_fss: Components.Generic_fss base id 0xE400 \
     queue size Default.QUEUE_SIZE_BIG \
     stack size Default.STACK_SIZE \
-    priority 40
+    priority 50
 
   instance generic_imu: Components.Generic_imu base id 0xE600 \
     queue size Default.QUEUE_SIZE_BIG \
     stack size Default.STACK_SIZE \
-    priority 46
+    priority 50
 
   instance generic_reaction_wheel: Components.Generic_reaction_wheel base id 0xE700 \
     queue size Default.QUEUE_SIZE_BIG \
@@ -146,12 +146,12 @@ module SampleSimDeployment {
   instance generic_torquer: Components.Generic_torquer base id 0xE900 \
     queue size Default.QUEUE_SIZE_BIG \
     stack size Default.STACK_SIZE \
-    priority 49
+    priority 50
 
   instance generic_adcs: Components.Generic_adcs base id 0xFF00 \
     queue size Default.QUEUE_SIZE_BIG \
     stack size Default.STACK_SIZE \
-    priority 47
+    priority 45
 
   # ----------------------------------------------------------------------
   # Queued component instances

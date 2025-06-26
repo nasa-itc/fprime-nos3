@@ -71,7 +71,7 @@ namespace Components {
     output_actuators(&GNCPacket.Payload, &DOPacket.Payload, &MtbPctOnCmd, &RwCmd);
   }
 
-  void Generic_adcs :: SET_MODE_cmdHandler(FwOpcodeType opCode, U32 cmdSeq, Generic_adcs_adcs_mode MODE, F64 Q0, F64 Q1, F64 Q2, F64 Q3)
+  void Generic_adcs :: SET_MODE_cmdHandler(FwOpcodeType opCode, U32 cmdSeq, Generic_adcs_adcs_mode MODE)
   {
     GNCPacket.Payload.Mode = MODE.e;
 
@@ -88,11 +88,7 @@ namespace Components {
             break;
 
         case INERTIAL_MODE:
-            this->log_ACTIVITY_HI_TELEM("Set to Inertial Mode! Set New Quaternion!");
-            ACSPacket.Payload.Inertial.qbn_cmd[0] = (double)Q0;
-            ACSPacket.Payload.Inertial.qbn_cmd[1] = (double)Q1;
-            ACSPacket.Payload.Inertial.qbn_cmd[2] = (double)Q2;
-            ACSPacket.Payload.Inertial.qbn_cmd[3] = (double)Q3;
+            this->log_ACTIVITY_HI_TELEM("Set to Inertial Mode!");
             break;
 
         case PASSIVE_MODE:
@@ -102,6 +98,22 @@ namespace Components {
     }
 
     this->cmdResponse_out(opCode, cmdSeq, Fw::CmdResponse::OK);
+  }
+
+  void Generic_adcs :: SET_INERTIAL_QUATERNION_cmdHandler(FwOpcodeType opCode, U32 cmdSeq, F64 QX, F64 QY, F64 QZ, F64 QW)
+  {
+        ACSPacket.Payload.Inertial.qbn_cmd[0] = (double)QX;
+        ACSPacket.Payload.Inertial.qbn_cmd[1] = (double)QY;
+        ACSPacket.Payload.Inertial.qbn_cmd[2] = (double)QZ;
+        ACSPacket.Payload.Inertial.qbn_cmd[3] = (double)QW;
+
+        this->tlmWrite_INERTIALQUATERNIONX(QX);
+        this->tlmWrite_INERTIALQUATERNIONY(QY);
+        this->tlmWrite_INERTIALQUATERNIONZ(QZ);
+        this->tlmWrite_INERTIALQUATERNIONW(QW);
+
+        this->cmdResponse_out(opCode, cmdSeq, Fw::CmdResponse::OK);
+
   }
 
   void Generic_adcs :: ingest_init(Generic_ADCS_DI_Tlm_Payload_t *DI)
@@ -838,6 +850,7 @@ void AD_st(const Generic_ADCS_DI_St_Tlm_Payload_t *DI_ST, Generic_ADCS_AD_ST_Tlm
     void Generic_adcs :: send_rw_commands(double Tcmd[3], Generic_ADCS_DO_Rw_TlmPayload_t *DO, GENERIC_RW_Cmd_t *RwCmd)
     {
         double torque[3];
+        bool new_rw_cmds = false;
         for (uint8_t i = 0; i < 3; i++)
         {
             DO->Tcmd[i] = Tcmd[i];
@@ -848,9 +861,11 @@ void AD_st(const Generic_ADCS_DI_St_Tlm_Payload_t *DI_ST, Generic_ADCS_AD_ST_Tlm
                 RwCmd->wheel_number = i;
                 //send commands to RW
                 CurrentRw[i] = torque[i];
+                new_rw_cmds = true;
             }
         }
-        this->RWOUTout_out(0, torque[0], torque[1], torque[2]);
+
+        if(new_rw_cmds) this->RWOUTout_out(0, torque[0], torque[1], torque[2]);
     }
 
 
