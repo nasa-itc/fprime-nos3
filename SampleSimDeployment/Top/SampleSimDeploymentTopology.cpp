@@ -33,7 +33,7 @@ Svc::FprimeDeframing deframing;
 Svc::ComQueue::QueueConfigurationTable configurationTable;
 
 // The reference topology divides the incoming clock signal (1Hz) into sub-signals: 1Hz, 1/2Hz, and 1/4Hz with 0 offset
-Svc::RateGroupDriver::DividerSet rateGroupDivisorsSet{{{1, 0}, {2, 0}, {4, 0}}};
+Svc::RateGroupDriver::DividerSet rateGroupDivisorsSet{{{1, 0}, {20, 0}, {40, 0}}};
 
 // Rate groups may supply a context token to each of the attached children whose purpose is set by the project. The
 // reference topology sets each token to zero as these contexts are unused in this project.

@@ -84,7 +84,7 @@ int main(int argc, char* argv[]) {
 
     // Setup, cycle, and teardown topology
     SampleSimDeployment::setupTopology(inputs);
-    SampleSimDeployment::startSimulatedCycle(1000);  // Program loop cycling rate groups at 1Hz
+    SampleSimDeployment::startSimulatedCycle(100);  // Program loop cycling rate groups at 1Hz
     SampleSimDeployment::teardownTopology(inputs);
     (void)printf("Exiting...\n");
     return 0;
