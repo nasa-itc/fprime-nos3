@@ -7,6 +7,7 @@
         <channel name="rateGroup1.RgMaxTime"/>
         <channel name="rateGroup2.RgMaxTime"/>
         <channel name="rateGroup3.RgMaxTime"/>
+        <channel name="rateGroup4.RgMaxTime"/>
         <channel name="cmdSeq.CS_LoadCommands"/>
         <channel name="cmdSeq.CS_CancelCommands"/>
         <channel name="cmdSeq.CS_CommandsExecuted"/>
@@ -27,6 +28,7 @@
         <channel name="rateGroup1.RgCycleSlips"/>
         <channel name="rateGroup2.RgCycleSlips"/>
         <channel name="rateGroup3.RgCycleSlips"/>
+        <channel name="rateGroup4.RgCycleSlips"/>
         <channel name="cmdSeq.CS_Errors"/>
         <channel name="fileUplink.Warnings"/>
         <channel name="fileDownlink.Warnings"/>

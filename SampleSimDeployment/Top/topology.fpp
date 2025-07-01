@@ -8,6 +8,7 @@ module SampleSimDeployment {
       rateGroup1
       rateGroup2
       rateGroup3
+      rateGroup4
     }
 
   topology SampleSimDeployment {
@@ -37,6 +38,7 @@ module SampleSimDeployment {
     instance rateGroup1
     instance rateGroup2
     instance rateGroup3
+    instance rateGroup4
     instance rateGroupDriver
     instance textLogger
     instance systemResources
@@ -111,13 +113,6 @@ module SampleSimDeployment {
       rateGroup1.RateGroupMemberOut[0] -> tlmSend.Run
       rateGroup1.RateGroupMemberOut[1] -> fileDownlink.Run
       rateGroup1.RateGroupMemberOut[2] -> systemResources.run
-      rateGroup1.RateGroupMemberOut[3] -> generic_imu.updateData
-      rateGroup1.RateGroupMemberOut[4] -> generic_star_tracker.updateData
-      rateGroup1.RateGroupMemberOut[5] -> generic_mag.updateData
-      rateGroup1.RateGroupMemberOut[6] -> generic_reaction_wheel.updateData
-      rateGroup1.RateGroupMemberOut[7] -> generic_fss.updateData
-      rateGroup1.RateGroupMemberOut[8] -> generic_css.updateData
-      rateGroup1.RateGroupMemberOut[9] -> generic_adcs.updateData
 
       # Rate group 2
       rateGroupDriver.CycleOut[Ports_RateGroups.rateGroup2] -> rateGroup2.CycleIn
@@ -128,6 +123,17 @@ module SampleSimDeployment {
       rateGroup3.RateGroupMemberOut[0] -> $health.Run
       rateGroup3.RateGroupMemberOut[1] -> blockDrv.Sched
       rateGroup3.RateGroupMemberOut[2] -> bufferManager.schedIn
+
+      # Rate group 4
+      rateGroupDriver.CycleOut[Ports_RateGroups.rateGroup4] -> rateGroup4.CycleIn
+      rateGroup4.RateGroupMemberOut[0] -> generic_imu.updateData
+      rateGroup4.RateGroupMemberOut[1] -> generic_star_tracker.updateData
+      rateGroup4.RateGroupMemberOut[2] -> generic_mag.updateData
+      rateGroup4.RateGroupMemberOut[3] -> generic_reaction_wheel.updateData
+      rateGroup4.RateGroupMemberOut[4] -> generic_fss.updateData
+      rateGroup4.RateGroupMemberOut[5] -> generic_css.updateData
+      rateGroup4.RateGroupMemberOut[6] -> generic_adcs.updateData
+
     }
 
     connections Sequencer {

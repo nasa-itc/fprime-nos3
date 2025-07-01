@@ -34,6 +34,11 @@ module SampleSimDeployment {
     stack size Default.STACK_SIZE \
     priority 90
 
+  instance rateGroup4: Svc.ActiveRateGroup base id 0xEB00 \
+    queue size Default.QUEUE_SIZE \
+    stack size Default.STACK_SIZE \
+    priority 90
+
   instance cmdDisp: Svc.CommandDispatcher base id 0x0500 \
     queue size Default.QUEUE_SIZE_BIG \
     stack size Default.STACK_SIZE \
@@ -148,7 +153,7 @@ module SampleSimDeployment {
     stack size Default.STACK_SIZE \
     priority 50
 
-  instance generic_adcs: Components.Generic_adcs base id 0xFF00 \
+  instance generic_adcs: Components.Generic_adcs base id 0xEA00 \
     queue size Default.QUEUE_SIZE_BIG \
     stack size Default.STACK_SIZE \
     priority 45
