@@ -81,6 +81,7 @@ namespace Components {
     {
         case BDOT_MODE:
             this->log_ACTIVITY_HI_TELEM("Set to BDOT Mode!");
+            this->RWOUTout_out(0, 0, 0, 0); // turn off RW
             break;
 
         case SUNSAFE_MODE:
