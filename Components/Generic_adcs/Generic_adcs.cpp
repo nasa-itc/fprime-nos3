@@ -45,7 +45,7 @@ namespace Components {
     ingest_mag(MagX, MagY, MagZ, &DIPacket.Payload.Mag);
   }
 
-  void Generic_adcs :: FSSin_handler( NATIVE_INT_TYPE portNum, U32 Alpha, U32 Beta, U8 Error)
+  void Generic_adcs :: FSSin_handler( NATIVE_INT_TYPE portNum, F32 Alpha, F32 Beta, U8 Error)
   {
     ingest_fss(Alpha, Beta, Error, &DIPacket.Payload.Fss);
   }
@@ -306,7 +306,7 @@ namespace Components {
     this->tlmWrite_ingestMagCount(++ingestMagCount);
   }
 
-  void Generic_adcs :: ingest_fss(U32 Alpha, U32 Beta, U8 Error, Generic_ADCS_DI_Fss_Tlm_Payload_t *Fss)
+  void Generic_adcs :: ingest_fss(F32 Alpha, F32 Beta, U8 Error, Generic_ADCS_DI_Fss_Tlm_Payload_t *Fss)
   {
     Fss->valid = 0;
     if(Error == 0) Fss->valid = 1;

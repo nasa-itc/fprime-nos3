@@ -1,7 +1,7 @@
 module Components {
 
     port MagDataPort (MagX: I32, MagY: I32, MagZ: I32)
-    port FSSDataPort (Alpha: U32, Beta: U32, Error: U8)
+    port FSSDataPort (Alpha: F32, Beta: F32, Error: U8)
     port CSSDataPort (ADCV0: U16, ADCV1: U16, ADCV2: U16, ADCV3: U16, ADCV4: U16, ADCV5: U16)
     port IMUDataPort (XLin: F32, YLin: F32, ZLin: F32, XAng: F32, YAng: F32, ZAng: F32)
     port RWDataPort  (RW0: F64, RW1: F64, RW2: F64)

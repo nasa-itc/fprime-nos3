@@ -92,8 +92,8 @@ namespace Components {
 
       void FSSin_handler(
         NATIVE_INT_TYPE portNum,
-        U32 Alpha,
-        U32 Beta,
+        F32 Alpha,
+        F32 Beta,
         U8 Error
       ) override;
 
@@ -156,7 +156,7 @@ namespace Components {
       // periodic or event-based update
       void ingest_mag(I32 MagIntX, I32 MagIntY, I32 MagIntZ, Generic_ADCS_DI_Mag_Tlm_Payload_t *Mag);
 
-      void ingest_fss(U32 Alpha, U32 Beta, U8 Error, Generic_ADCS_DI_Fss_Tlm_Payload_t *Fss);
+      void ingest_fss(F32 Alpha, F32 Beta, U8 Error, Generic_ADCS_DI_Fss_Tlm_Payload_t *Fss);
 
       void ingest_css(U16 ADCV0, U16 ADCV1, U16 ADCV2, U16 ADCV3, U16 ADCV4, U16 ADCV5, Generic_ADCS_DI_Css_Tlm_Payload_t *Css);
 
