@@ -191,7 +191,10 @@ namespace Components {
 
       void mcmd_to_percent_direction(double Mcmd, uint8_t *percent, uint8_t *direction);
 
-      void  send_rw_commands(double Tcmd[3], Generic_ADCS_DO_Rw_TlmPayload_t *DO, GENERIC_RW_Cmd_t *RwCmd);
+      void send_rw_commands(double Tcmd[3], Generic_ADCS_DO_Rw_TlmPayload_t *DO, GENERIC_RW_Cmd_t *RwCmd);
+      
+      void rw_momentum_dump(Generic_ADCS_GNC_Tlm_Payload_t *GNC);
+
 
   };
 

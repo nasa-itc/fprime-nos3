@@ -95,6 +95,7 @@ namespace Components {
         case PASSIVE_MODE:
         default:
             this->log_ACTIVITY_HI_TELEM("Set to PASSIVE Mode!");
+            this->RWOUTout_out(0, 0, 0, 0); // turn off RW
             break;
     }
 
@@ -429,6 +430,7 @@ namespace Components {
     {
         case BDOT_MODE:
             AC_bdot(GNC, &ACS->Bdot);
+            rw_momentum_dump(GNC);
             this->tlmWrite_ingestBDOT(++ingestBDOT);
             break;
 
@@ -867,6 +869,24 @@ void AD_st(const Generic_ADCS_DI_St_Tlm_Payload_t *DI_ST, Generic_ADCS_AD_ST_Tlm
         }
 
         if(new_rw_cmds) this->RWOUTout_out(0, torque[0], torque[1], torque[2]);
+    }
+
+    void Generic_adcs :: rw_momentum_dump(Generic_ADCS_GNC_Tlm_Payload_t *GNC)
+    {
+        double h_mag = MAGV(GNC->HwhlB);
+        double h_max = MAGV(GNC->HwhlMaxB);
+        double Kr = 1.0;
+
+        if((h_mag / h_max) > 1E-6)
+        {
+            for(int i = 0; i < 3; i++)
+            {
+                // Proportional Control to kill Momentum
+                double Tcmd_dump = -Kr * GNC->HwhlB[i];
+
+                GNC->Tcmd[i] += Tcmd_dump;
+            }
+        }
     }
 
 
