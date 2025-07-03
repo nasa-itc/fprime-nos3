@@ -1,6 +1,6 @@
 module Components {
     @ Nos3 time from nos engine
     passive component Nos3Time {
-        include "../../fprime/Svc/Interfaces/Time.fppi"
+        include "../../lib/fprime/Svc/Interfaces/TimeInterface.fppi"
     }
 }

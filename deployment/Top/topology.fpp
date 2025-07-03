@@ -4,11 +4,11 @@ module deployment {
   # Symbolic constants for port numbers
   # ----------------------------------------------------------------------
 
-  enum Ports_RateGroups {
-    rateGroup1
-    rateGroup2
-    rateGroup3
-  }
+    enum Ports_RateGroups {
+      rateGroup1
+      rateGroup2
+      rateGroup3
+    }
 
   topology deployment {
 
@@ -33,7 +33,6 @@ module deployment {
     instance fileUplink
     instance bufferManager
     instance framer
-    instance chronoTime
     instance prmDb
     instance rateGroup1
     instance rateGroup2
@@ -41,7 +40,19 @@ module deployment {
     instance rateGroupDriver
     instance textLogger
     instance systemResources
-
+    instance sampleSim
+    instance nos3Time
+    instance generic_mag
+    instance generic_star_tracker
+    instance generic_radio
+    instance generic_torquer
+    instance generic_css
+    instance generic_fss
+    instance generic_eps
+    instance arducam
+    instance generic_thruster
+    instance generic_imu
+    instance generic_reaction_wheel
     # ----------------------------------------------------------------------
     # Pattern graph specifiers
     # ----------------------------------------------------------------------
@@ -56,7 +67,7 @@ module deployment {
 
     text event connections instance textLogger
 
-    time connections instance chronoTime
+    time connections instance nos3Time
 
     health connections instance $health
 
