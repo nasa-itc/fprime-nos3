@@ -272,6 +272,9 @@
         <channel name="generic_adcs.INERTIALQUATERNIONY"/>
         <channel name="generic_adcs.INERTIALQUATERNIONZ"/>
         <channel name="generic_adcs.INERTIALQUATERNIONW"/>
+        <channel name="generic_adcs.CommandCount"/>
+        <channel name="generic_adcs.CommandErrorCount"/>
+        <channel name="generic_adcs.ADCSMomentumManagement"/>
 
         <channel name="sampleSim.ReportedComponentCount"/>
         <channel name="sampleSim.DeviceConfig"/>
