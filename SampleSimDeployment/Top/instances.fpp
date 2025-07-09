@@ -35,7 +35,7 @@ module SampleSimDeployment {
     priority 90
 
   instance rateGroup4: Svc.ActiveRateGroup base id 0xEB00 \
-    queue size Default.QUEUE_SIZE \
+    queue size Default.QUEUE_SIZE_BIG \
     stack size Default.STACK_SIZE \
     priority 90
 
@@ -50,7 +50,7 @@ module SampleSimDeployment {
     priority 99
 
   instance comQueue: Svc.ComQueue base id 0x0700 \
-      queue size Default.QUEUE_SIZE \
+      queue size Default.QUEUE_SIZE_BIG \
       stack size Default.STACK_SIZE \
       priority 99 \
 

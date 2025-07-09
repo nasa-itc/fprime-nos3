@@ -113,6 +113,12 @@ module SampleSimDeployment {
       rateGroup1.RateGroupMemberOut[0] -> tlmSend.Run
       rateGroup1.RateGroupMemberOut[1] -> fileDownlink.Run
       rateGroup1.RateGroupMemberOut[2] -> systemResources.run
+      rateGroup1.RateGroupMemberOut[3] -> generic_imu.updateTlm
+      rateGroup1.RateGroupMemberOut[4] -> generic_star_tracker.updateTlm
+      rateGroup1.RateGroupMemberOut[5] -> generic_mag.updateTlm
+      rateGroup1.RateGroupMemberOut[6] -> generic_reaction_wheel.updateTlm
+      rateGroup1.RateGroupMemberOut[7] -> generic_fss.updateTlm
+      rateGroup1.RateGroupMemberOut[8] -> generic_css.updateTlm
 
       # Rate group 2
       rateGroupDriver.CycleOut[Ports_RateGroups.rateGroup2] -> rateGroup2.CycleIn
