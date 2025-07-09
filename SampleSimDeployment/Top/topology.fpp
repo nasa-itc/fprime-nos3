@@ -119,6 +119,7 @@ module SampleSimDeployment {
       rateGroup1.RateGroupMemberOut[6] -> generic_reaction_wheel.updateTlm
       rateGroup1.RateGroupMemberOut[7] -> generic_fss.updateTlm
       rateGroup1.RateGroupMemberOut[8] -> generic_css.updateTlm
+      rateGroup1.RateGroupMemberOut[9] -> generic_torquer.updateTlm
 
       # Rate group 2
       rateGroupDriver.CycleOut[Ports_RateGroups.rateGroup2] -> rateGroup2.CycleIn
