@@ -69,6 +69,10 @@ include_directories("../../../../../components/generic_reaction_wheel/fsw/fprime
 include_directories("../../../../../components/generic_reaction_wheel/fsw/shared")
 include_directories("../../../../../components/generic_reaction_wheel/fsw/standalone") #device_cfg.h
 
+include_directories("../../../../../components/novatel_oem615/fsw/fprime/platform_inc")
+include_directories("../../../../../components/novatel_oem615/fsw/shared")
+include_directories("../../../../../components/novatel_oem615/fsw/standalone") #device_cfg.h
+
 
 set(SOURCE_FILES
   "${CMAKE_CURRENT_LIST_DIR}/instances.fpp"
@@ -93,6 +97,8 @@ set(SOURCE_FILES
   "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_eps/fsw/shared/generic_eps_device.c"
   "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_imu/fsw/shared/generic_imu_device.c"
   "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_reaction_wheel/fsw/shared/generic_reaction_wheel_device.c"
+  "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/novatel_oem615/fsw/shared/novatel_oem615_device.c"
+
   
   "${CMAKE_CURRENT_LIST_DIR}/../../../../../fsw/apps/hwlib/sim/src/libtrq.c"
   "${CMAKE_CURRENT_LIST_DIR}/../../../../../fsw/apps/hwlib/sim/src/libsocket.c"

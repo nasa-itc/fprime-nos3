@@ -264,5 +264,18 @@
         <channel name="sampleSim.CommandCount"/>
         <channel name="sampleSim.CommandErrorCount"/>
         <channel name="sampleSim.DeviceEnabled"/>
+
+        <channel name="novatel_oem615.Weeks"/>
+        <channel name="novatel_oem615.SecondsIntoWeek"/>
+        <channel name="novatel_oem615.Fractions"/>
+        <channel name="novatel_oem615.ECEFX"/>
+        <channel name="novatel_oem615.ECEFY"/>
+        <channel name="novatel_oem615.ECEFZ"/>
+        <channel name="novatel_oem615.VelX"/>
+        <channel name="novatel_oem615.VelY"/>
+        <channel name="novatel_oem615.VelZ"/>
+        <channel name="novatel_oem615.lat"/>
+        <channel name="novatel_oem615.lon"/>
+        <channel name="novatel_oem615.alt"/>
     </ignore>
 </packets>
