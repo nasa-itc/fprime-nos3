@@ -77,18 +77,192 @@
         <channel name="systemResources.CPU_14"/>
         <channel name="systemResources.CPU_15"/>
     </packet>
-    
+
     <!-- Ignored packets -->
 
     <ignore>
         <channel name="cmdDisp.CommandErrors"/>
-        <channel name="sampleSim.GreetingCount"/>
-        <channel name="sampleSim.DeviceCounter"/>
-        <channel name="sampleSim.DeviceConfig"/>
-        <channel name="sampleSim.DeviceStatus"/>
-        <channel name="generic_star_tracker.DeviceCounter"/>
-        <channel name="generic_radio.DeviceCounter"/>
+
+        <channel name="arducam.CommandCount"/>
+        <channel name="arducam.CommandErrorCount"/>
+
+        <channel name="generic_css.CommandCount"/>
+        <channel name="generic_css.CommandErrorCount"/>
+        <channel name="generic_css.DeviceCount"/>
+        <channel name="generic_css.DeviceErrorCount"/>
+        <channel name="generic_css.DeviceEnabled"/>
+        <channel name="generic_css.ADCVoltage0"/>
+        <channel name="generic_css.ADCVoltage1"/>
+        <channel name="generic_css.ADCVoltage2"/>
+        <channel name="generic_css.ADCVoltage3"/>
+        <channel name="generic_css.ADCVoltage4"/>
+        <channel name="generic_css.ADCVoltage5"/>
+
+        <channel name="generic_eps.DeviceCount"/>
+        <channel name="generic_eps.DeviceErrorCount"/>
+        <channel name="generic_eps.CommandErrorCount"/>
+        <channel name="generic_eps.CommandCount"/>
+        <channel name="generic_eps.BatteryVoltage"/>
+        <channel name="generic_eps.BatteryTemperature"/>
+        <channel name="generic_eps.Bus3p3Voltage"/>
+        <channel name="generic_eps.Bus5p0Voltage"/>
+        <channel name="generic_eps.Bus12Voltage"/>
+        <channel name="generic_eps.EPSTemperature"/>
+        <channel name="generic_eps.SolarArrayVoltage"/>
+        <channel name="generic_eps.SolarArrayTemperature"/>
+        <channel name="generic_eps.RawBatteryVoltage"/>
+        <channel name="generic_eps.RawBatteryTemperature"/>
+        <channel name="generic_eps.RawBus3p3V"/>
+        <channel name="generic_eps.RawBus5p0V"/>
+        <channel name="generic_eps.RawBus12V"/>
+        <channel name="generic_eps.RawEPSTemperature"/>
+        <channel name="generic_eps.RawSAVoltage"/>
+        <channel name="generic_eps.RawSATemperature"/>
+        <channel name="generic_eps.SW0Voltage"/>
+        <channel name="generic_eps.SW0Current"/>
+        <channel name="generic_eps.RawSW0Voltage"/>
+        <channel name="generic_eps.RawSW0Current"/>
+        <channel name="generic_eps.SW0State"/>
+        <channel name="generic_eps.SW0Flag"/>
+        <channel name="generic_eps.SW1Voltage"/>
+        <channel name="generic_eps.SW1Current"/>
+        <channel name="generic_eps.RawSW1Voltage"/>
+        <channel name="generic_eps.RawSW1Current"/>
+        <channel name="generic_eps.SW1State"/>
+        <channel name="generic_eps.SW1Flag"/>
+        <channel name="generic_eps.SW2Voltage"/>
+        <channel name="generic_eps.SW2Current"/>
+        <channel name="generic_eps.RawSW2Voltage"/>
+        <channel name="generic_eps.RawSW2Current"/>
+        <channel name="generic_eps.SW2State"/>
+        <channel name="generic_eps.SW2Flag"/>
+        <channel name="generic_eps.SW3Voltage"/>
+        <channel name="generic_eps.SW3Current"/>
+        <channel name="generic_eps.RawSW3Voltage"/>
+        <channel name="generic_eps.RawSW3Current"/>
+        <channel name="generic_eps.SW3State"/>
+        <channel name="generic_eps.SW3Flag"/>
+        <channel name="generic_eps.SW4Voltage"/>
+        <channel name="generic_eps.SW4Current"/>
+        <channel name="generic_eps.RawSW4Voltage"/>
+        <channel name="generic_eps.RawSW4Current"/>
+        <channel name="generic_eps.SW4State"/>
+        <channel name="generic_eps.SW4Flag"/>
+        <channel name="generic_eps.SW5Voltage"/>
+        <channel name="generic_eps.SW5Current"/>
+        <channel name="generic_eps.RawSW5Voltage"/>
+        <channel name="generic_eps.RawSW5Current"/>
+        <channel name="generic_eps.SW5State"/>
+        <channel name="generic_eps.SW5Flag"/>
+        <channel name="generic_eps.SW6Voltage"/>
+        <channel name="generic_eps.SW6Current"/>
+        <channel name="generic_eps.RawSW6Voltage"/>
+        <channel name="generic_eps.RawSW6Current"/>
+        <channel name="generic_eps.SW6State"/>
+        <channel name="generic_eps.SW6Flag"/>
+        <channel name="generic_eps.SW7Voltage"/>
+        <channel name="generic_eps.SW7Current"/>
+        <channel name="generic_eps.RawSW7Voltage"/>
+        <channel name="generic_eps.RawSW7Current"/>
+        <channel name="generic_eps.SW7State"/>
+        <channel name="generic_eps.SW7Flag"/>
+
+        <channel name="generic_fss.CommandCount"/>
+        <channel name="generic_fss.CommandErrorCount"/>
+        <channel name="generic_fss.DeviceCount"/>
+        <channel name="generic_fss.DeviceErrorCount"/>
+        <channel name="generic_fss.DeviceEnabled"/>
+        <channel name="generic_fss.ALPHA"/>
+        <channel name="generic_fss.BETA"/>
+        <channel name="generic_fss.ERRORCODE"/>
+        
+        <channel name="generic_imu.CommandCount"/>
+        <channel name="generic_imu.CommandErrorCount"/>
+        <channel name="generic_imu.DeviceCount"/>
+        <channel name="generic_imu.DeviceErrorCount"/>
+        <channel name="generic_imu.DeviceEnabled"/>
+        <channel name="generic_imu.ReportedComponentCount"/>
+        <channel name="generic_imu.DeviceStatus"/>
+        <channel name="generic_imu.X_Axis_LinearAcc"/>
+        <channel name="generic_imu.X_Axis_AngularAcc"/>
+        <channel name="generic_imu.Y_Axis_LinearAcc"/>
+        <channel name="generic_imu.Y_Axis_AngularAcc"/>
+        <channel name="generic_imu.Z_Axis_LinearAcc"/>
+        <channel name="generic_imu.Z_Axis_AngularAcc"/>
+
+        <channel name="generic_mag.CommandCount"/>
+        <channel name="generic_mag.CommandErrorCount"/>
+        <channel name="generic_mag.DeviceCount"/>
+        <channel name="generic_mag.DeviceErrorCount"/>
+        <channel name="generic_mag.DeviceEnabled"/>
+        <channel name="generic_mag.MagneticIntensityX"/>
+        <channel name="generic_mag.MagneticIntensityY"/>
+        <channel name="generic_mag.MagneticIntensityZ"/>
+
+        <channel name="generic_radio.CommandCount"/>
+        <channel name="generic_radio.CommandErrorCount"/>
+        <channel name="generic_radio.DeviceCount"/>
+        <channel name="generic_radio.DeviceErrorCount"/>
+        <channel name="generic_radio.ReportedComponentCount"/>
         <channel name="generic_radio.DeviceConfig"/>
         <channel name="generic_radio.ProxySignal"/>
+
+        <channel name="generic_reaction_wheel.CommandCount"/>
+        <channel name="generic_reaction_wheel.CommandErrorCount"/>
+        <channel name="generic_reaction_wheel.DeviceCountRW0"/>
+        <channel name="generic_reaction_wheel.DeviceErrorCountRW0"/>
+        <channel name="generic_reaction_wheel.DeviceEnabledRW0"/>
+        <channel name="generic_reaction_wheel.RW0_Data"/>
+        <channel name="generic_reaction_wheel.DeviceCountRW1"/>
+        <channel name="generic_reaction_wheel.DeviceErrorCountRW1"/>
+        <channel name="generic_reaction_wheel.DeviceEnabledRW1"/>
+        <channel name="generic_reaction_wheel.RW1_Data"/>
+        <channel name="generic_reaction_wheel.DeviceCountRW2"/>
+        <channel name="generic_reaction_wheel.DeviceErrorCountRW2"/>
+        <channel name="generic_reaction_wheel.DeviceEnabledRW2"/>
+        <channel name="generic_reaction_wheel.RW2_Data"/>
+
+        <channel name="generic_star_tracker.ReportedComponentCount"/>
+        <channel name="generic_star_tracker.CommandCount"/>
+        <channel name="generic_star_tracker.CommandErrorCount"/>
+        <channel name="generic_star_tracker.DeviceCount"/>
+        <channel name="generic_star_tracker.DeviceErrorCount"/>
+        <channel name="generic_star_tracker.DeviceEnabled"/>
+        <channel name="generic_star_tracker.Q0_Data"/>
+        <channel name="generic_star_tracker.Q1_Data"/>
+        <channel name="generic_star_tracker.Q2_Data"/>
+        <channel name="generic_star_tracker.Q3_Data"/>
+        <channel name="generic_star_tracker.IsValid"/>
+
+        <channel name="generic_thruster.CommandCount"/>
+        <channel name="generic_thruster.CommandErrorCount"/>
+        <channel name="generic_thruster.DeviceCount"/>
+        <channel name="generic_thruster.DeviceErrorCount"/>
+        <channel name="generic_thruster.DeviceEnabled"/>
+        <channel name="generic_thruster.Percentage_0"/>
+        <channel name="generic_thruster.Percentage_1"/>
+        <channel name="generic_thruster.Percentage_2"/>
+        <channel name="generic_thruster.Percentage_3"/>
+
+        <channel name="generic_torquer.DeviceCount"/>
+        <channel name="generic_torquer.DeviceErrorCount"/>
+        <channel name="generic_torquer.CommandErrorCount"/>
+        <channel name="generic_torquer.CommandCount"/>
+        <channel name="generic_torquer.DeviceEnabled"/>
+        <channel name="generic_torquer.Direction_0"/>
+        <channel name="generic_torquer.Percent_0"/>
+        <channel name="generic_torquer.Direction_1"/>
+        <channel name="generic_torquer.Percent_1"/>
+        <channel name="generic_torquer.Direction_2"/>
+        <channel name="generic_torquer.Percent_2"/>
+
+        <channel name="sampleSim.ReportedComponentCount"/>
+        <channel name="sampleSim.DeviceConfig"/>
+        <channel name="sampleSim.DeviceStatus"/>
+        <channel name="sampleSim.DeviceCount"/>
+        <channel name="sampleSim.DeviceErrorCount"/>
+        <channel name="sampleSim.CommandCount"/>
+        <channel name="sampleSim.CommandErrorCount"/>
+        <channel name="sampleSim.DeviceEnabled"/>
     </ignore>
 </packets>
