@@ -7,6 +7,7 @@ cmake_minimum_required(VERSION 3.13)
 project(MyProject C CXX)
 set(CMAKE_BUILD_TYPE Debug)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g")
+
 ###
 # F' Core Setup
 # This includes all of the F prime core components, and imports the make-system.

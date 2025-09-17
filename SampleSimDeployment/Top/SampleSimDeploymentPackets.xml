@@ -7,6 +7,7 @@
         <channel name="rateGroup1.RgMaxTime"/>
         <channel name="rateGroup2.RgMaxTime"/>
         <channel name="rateGroup3.RgMaxTime"/>
+        <channel name="rateGroup4.RgMaxTime"/>
         <channel name="cmdSeq.CS_LoadCommands"/>
         <channel name="cmdSeq.CS_CancelCommands"/>
         <channel name="cmdSeq.CS_CommandsExecuted"/>
@@ -27,6 +28,7 @@
         <channel name="rateGroup1.RgCycleSlips"/>
         <channel name="rateGroup2.RgCycleSlips"/>
         <channel name="rateGroup3.RgCycleSlips"/>
+        <channel name="rateGroup4.RgCycleSlips"/>
         <channel name="cmdSeq.CS_Errors"/>
         <channel name="fileUplink.Warnings"/>
         <channel name="fileDownlink.Warnings"/>
@@ -255,6 +257,24 @@
         <channel name="generic_torquer.Percent_1"/>
         <channel name="generic_torquer.Direction_2"/>
         <channel name="generic_torquer.Percent_2"/>
+
+        <channel name="generic_adcs.ingestIMUCount"/>
+        <channel name="generic_adcs.ingestMagCount"/>
+        <channel name="generic_adcs.ingestFSSCount"/>
+        <channel name="generic_adcs.ingestCSSCount"/>
+        <channel name="generic_adcs.ingestRWCount"/>
+        <channel name="generic_adcs.ingestSTCount"/>
+        <channel name="generic_adcs.ingestBDOT"/>
+        <channel name="generic_adcs.ingestSUNSAFE"/>
+        <channel name="generic_adcs.ingestPASSIVE"/>
+        <channel name="generic_adcs.ADCSMode"/>
+        <channel name="generic_adcs.INERTIALQUATERNIONX"/>
+        <channel name="generic_adcs.INERTIALQUATERNIONY"/>
+        <channel name="generic_adcs.INERTIALQUATERNIONZ"/>
+        <channel name="generic_adcs.INERTIALQUATERNIONW"/>
+        <channel name="generic_adcs.CommandCount"/>
+        <channel name="generic_adcs.CommandErrorCount"/>
+        <channel name="generic_adcs.ADCSMomentumManagement"/>
 
         <channel name="sampleSim.ReportedComponentCount"/>
         <channel name="sampleSim.DeviceConfig"/>
