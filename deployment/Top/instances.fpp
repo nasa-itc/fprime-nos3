@@ -7,6 +7,7 @@ module deployment {
   module Default {
     constant QUEUE_SIZE = 10
     constant STACK_SIZE = 64 * 1024
+    constant QUEUE_SIZE_BIG = 1000
   }
 
   # ----------------------------------------------------------------------
@@ -146,6 +147,11 @@ module deployment {
     queue size Default.QUEUE_SIZE \
     stack size Default.STACK_SIZE \
     priority 50
+
+  instance generic_adcs: Components.Generic_adcs base id 0xEA00 \
+    queue size Default.QUEUE_SIZE_BIG \
+    stack size Default.STACK_SIZE \
+    priority 45  
 
   # ----------------------------------------------------------------------
   # Queued component instances

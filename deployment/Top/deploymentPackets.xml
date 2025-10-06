@@ -250,6 +250,24 @@
         <channel name="Components.generic_torquer.Percent_1"/>
         <channel name="Components.generic_torquer.Direction_2"/>
         <channel name="Components.generic_torquer.Percent_2"/>
+
+        <channel name="Components.generic_adcs.ingestIMUCount"/>
+        <channel name="Components.generic_adcs.ingestMagCount"/>
+        <channel name="Components.generic_adcs.ingestFSSCount"/>
+        <channel name="Components.generic_adcs.ingestCSSCount"/>
+        <channel name="Components.generic_adcs.ingestRWCount"/>
+        <channel name="Components.generic_adcs.ingestSTCount"/>
+        <channel name="Components.generic_adcs.ingestBDOT"/>
+        <channel name="Components.generic_adcs.ingestSUNSAFE"/>
+        <channel name="Components.generic_adcs.ingestPASSIVE"/>
+        <channel name="Components.generic_adcs.ADCSMode"/>
+        <channel name="Components.generic_adcs.INERTIALQUATERNIONX"/>
+        <channel name="Components.generic_adcs.INERTIALQUATERNIONY"/>
+        <channel name="Components.generic_adcs.INERTIALQUATERNIONZ"/>
+        <channel name="Components.generic_adcs.INERTIALQUATERNIONW"/>
+        <channel name="Components.generic_adcs.CommandCount"/>
+        <channel name="Components.generic_adcs.CommandErrorCount"/>
+        <channel name="Components.generic_adcs.ADCSMomentumManagement"/>
         
         <channel name="Components.sampleSim.ReportedComponentCount"/>
         <channel name="Components.sampleSim.DeviceConfig"/>

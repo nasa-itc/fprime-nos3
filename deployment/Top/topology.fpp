@@ -53,6 +53,7 @@ module deployment {
     instance generic_thruster
     instance generic_imu
     instance generic_reaction_wheel
+    instance generic_adcs
     # ----------------------------------------------------------------------
     # Pattern graph specifiers
     # ----------------------------------------------------------------------
