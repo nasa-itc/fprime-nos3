@@ -146,6 +146,14 @@ module deployment {
 
     connections deployment {
       # Add here connections to user-defined components
+      generic_imu.IMUout -> generic_adcs.IMUin
+      generic_mag.MAGout -> generic_adcs.MAGin
+      generic_fss.FSSout -> generic_adcs.FSSin
+      generic_css.CSSout -> generic_adcs.CSSin
+      generic_reaction_wheel.RWout -> generic_adcs.RWin
+      generic_star_tracker.STout -> generic_adcs.STin
+      generic_adcs.RWOUTout -> generic_reaction_wheel.RWin
+      generic_adcs.TORQout -> generic_torquer.TORQin
     }
 
   }
