@@ -7,6 +7,7 @@
         <channel name="Svc.rateGroup1.RgMaxTime"/>
         <channel name="Svc.rateGroup2.RgMaxTime"/>
         <channel name="Svc.rateGroup3.RgMaxTime"/>
+        <channel name="Svc.rateGroup4.RgMaxTime"/>
         <channel name="Svc.cmdSeq.CS_LoadCommands"/>
         <channel name="Svc.cmdSeq.CS_CancelCommands"/>
         <channel name="Svc.cmdSeq.CS_CommandsExecuted"/>
@@ -27,6 +28,7 @@
         <channel name="Svc.rateGroup1.RgCycleSlips"/>
         <channel name="Svc.rateGroup2.RgCycleSlips"/>
         <channel name="Svc.rateGroup3.RgCycleSlips"/>
+        <channel name="Svc.rateGroup4.RgCycleSlips"/>
         <channel name="Svc.cmdSeq.CS_Errors"/>
         <channel name="Svc.fileUplink.Warnings"/>
         <channel name="Svc.fileDownlink.Warnings"/>

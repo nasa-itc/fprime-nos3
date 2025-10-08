@@ -83,6 +83,9 @@ enum { WARN = 3, FATAL = 5 };
 namespace deployment_rateGroup3 {
 enum { WARN = 3, FATAL = 5 };
 }
+namespace deployment_rateGroup4 {
+enum { WARN = 3, FATAL = 5 };
+}
 }  // namespace PingEntries
 }  // namespace deployment
 #endif

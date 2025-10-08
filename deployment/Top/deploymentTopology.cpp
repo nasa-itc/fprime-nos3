@@ -30,13 +30,14 @@ Svc::FprimeDeframing deframing;
 Svc::ComQueue::QueueConfigurationTable configurationTable;
 
 // The reference topology divides the incoming clock signal (1Hz) into sub-signals: 1Hz, 1/2Hz, and 1/4Hz with 0 offset
-Svc::RateGroupDriver::DividerSet rateGroupDivisorsSet{{{1, 0}, {2, 0}, {4, 0}}};
+Svc::RateGroupDriver::DividerSet rateGroupDivisorsSet{{{10, 0}, {20, 0}, {40, 0}, {2, 0}}};
 
 // Rate groups may supply a context token to each of the attached children whose purpose is set by the project. The
 // reference topology sets each token to zero as these contexts are unused in this project.
 NATIVE_INT_TYPE rateGroup1Context[Svc::ActiveRateGroup::CONNECTION_COUNT_MAX] = {};
 NATIVE_INT_TYPE rateGroup2Context[Svc::ActiveRateGroup::CONNECTION_COUNT_MAX] = {};
 NATIVE_INT_TYPE rateGroup3Context[Svc::ActiveRateGroup::CONNECTION_COUNT_MAX] = {};
+NATIVE_INT_TYPE rateGroup4Context[Svc::ActiveRateGroup::CONNECTION_COUNT_MAX] = {};
 
 // A number of constants are needed for construction of the topology. These are specified here.
 enum TopologyConstants {
@@ -71,6 +72,7 @@ Svc::Health::PingEntry pingEntries[] = {
     {PingEntries::deployment_rateGroup1::WARN, PingEntries::deployment_rateGroup1::FATAL, "rateGroup1"},
     {PingEntries::deployment_rateGroup2::WARN, PingEntries::deployment_rateGroup2::FATAL, "rateGroup2"},
     {PingEntries::deployment_rateGroup3::WARN, PingEntries::deployment_rateGroup3::FATAL, "rateGroup3"},
+    {PingEntries::deployment_rateGroup4::WARN, PingEntries::deployment_rateGroup4::FATAL, "rateGroup4"},
 };
 
 /**
@@ -106,6 +108,7 @@ void configureTopology(const TopologyState& state) {
     rateGroup1.configure(rateGroup1Context, FW_NUM_ARRAY_ELEMENTS(rateGroup1Context));
     rateGroup2.configure(rateGroup2Context, FW_NUM_ARRAY_ELEMENTS(rateGroup2Context));
     rateGroup3.configure(rateGroup3Context, FW_NUM_ARRAY_ELEMENTS(rateGroup3Context));
+    rateGroup4.configure(rateGroup4Context, FW_NUM_ARRAY_ELEMENTS(rateGroup4Context));
 
     // File downlink requires some project-derived properties.
     fileDownlink.configure(FILE_DOWNLINK_TIMEOUT, FILE_DOWNLINK_COOLDOWN, FILE_DOWNLINK_CYCLE_TIME,
