@@ -80,6 +80,46 @@ set(SOURCE_FILES
 
   #ITC STUFF
   
+  # "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/arducam/fsw/shared/cam_device.c"
+  # "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/arducam/fsw/shared/cam_registers.c"
+  # "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_torquer/fsw/shared/generic_torquer_device.c"
+  # "${CMAKE_CURRENT_LIST_DIR}/../../../../../fsw/apps/hwlib/sim/src/libsocket.c"
+  # "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_css/fsw/shared/generic_css_device.c"
+  # "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_fss/fsw/shared/generic_fss_device.c"
+  # "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_mag/fsw/shared/generic_mag_device.c"
+  # "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_star_tracker/fsw/shared/generic_star_tracker_device.c"
+  # "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_radio/fsw/shared/generic_radio_device.c" 
+  # "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/sample/fsw/shared/sample_device.c"
+  # "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_thruster/fsw/shared/generic_thruster_device.c"
+  # "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_adcs/fsw/shared/generic_adcs_utilities.c"
+
+  # "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_eps/fsw/shared/generic_eps_device.c"
+  # "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_imu/fsw/shared/generic_imu_device.c"
+  # "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_reaction_wheel/fsw/shared/generic_reaction_wheel_device.c"
+  
+  # "${CMAKE_CURRENT_LIST_DIR}/../../../../../fsw/apps/hwlib/sim/src/libtrq.c"
+  # "${CMAKE_CURRENT_LIST_DIR}/../../../../../fsw/apps/hwlib/sim/src/libsocket.c"
+  # "${CMAKE_CURRENT_LIST_DIR}/../../../../../fsw/apps/hwlib/sim/src/libuart.c"
+  # "${CMAKE_CURRENT_LIST_DIR}/../../../../../fsw/apps/hwlib/sim/src/libcan.c"
+  # "${CMAKE_CURRENT_LIST_DIR}/../../../../../fsw/apps/hwlib/sim/src/libi2c.c"
+  # "${CMAKE_CURRENT_LIST_DIR}/../../../../../fsw/apps/hwlib/sim/src/libspi.c"
+  # "${CMAKE_CURRENT_LIST_DIR}/../../../../../fsw/apps/hwlib/sim/src/nos_link.c"
+)
+set(MOD_DEPS
+  Fw/Logger
+  Svc/PosixTime
+  # Communication Implementations
+  Drv/Udp
+  Drv/TcpClient
+
+  #ITC Stuff
+  ${ITC_Common_LIBRARIES}
+  ${NOSENGINE_LIBRARIES}
+)
+
+register_fprime_module()
+
+target_sources(${FPRIME_CURRENT_MODULE} PRIVATE 
   "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/arducam/fsw/shared/cam_device.c"
   "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/arducam/fsw/shared/cam_registers.c"
   "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_torquer/fsw/shared/generic_torquer_device.c"
@@ -105,16 +145,3 @@ set(SOURCE_FILES
   "${CMAKE_CURRENT_LIST_DIR}/../../../../../fsw/apps/hwlib/sim/src/libspi.c"
   "${CMAKE_CURRENT_LIST_DIR}/../../../../../fsw/apps/hwlib/sim/src/nos_link.c"
 )
-set(MOD_DEPS
-  Fw/Logger
-  Svc/PosixTime
-  # Communication Implementations
-  Drv/Udp
-  Drv/TcpClient
-
-  #ITC Stuff
-  ${ITC_Common_LIBRARIES}
-  ${NOSENGINE_LIBRARIES}
-)
-
-register_fprime_module()

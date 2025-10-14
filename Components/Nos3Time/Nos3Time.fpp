@@ -1,6 +1,7 @@
 module Components {
     @ Nos3 time from nos engine
     passive component Nos3Time {
-        include "../../lib/fprime/Svc/Interfaces/TimeInterface.fppi"
+        @ Port to retrieve time
+        sync input port timeGetPort: Fw.Time
     }
 }
