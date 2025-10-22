@@ -28,57 +28,57 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${_ITC_CMAKE_MODULES_})
 
 find_package(NOSENGINE REQUIRED QUIET COMPONENTS common transport client uart can i2c spi)
 
-include_directories("../../../../components/sample/fsw/shared")#sample_device.h
-include_directories("../../../../components/sample/fsw/standalone") #device_cfg.h
-include_directories("../../../../components/sample/fsw/fprime/platform_inc")
+# include_directories("../../../../components/sample/fsw/shared")#sample_device.h
+# include_directories("../../../../components/sample/fsw/standalone") #device_cfg.h
+# include_directories("../../../../components/sample/fsw/fprime/platform_inc")
 
-include_directories("../../../../fsw/apps/hwlib/fsw/public_inc")
+# include_directories("../../../../fsw/apps/hwlib/fsw/public_inc")
 
-include_directories("../../../../fsw/apps/hwlib/sim/inc")
+# include_directories("../../../../fsw/apps/hwlib/sim/inc")
 
-include_directories("../../../../components/generic_star_tracker/fsw/shared")
-include_directories("../../../../components/generic_star_tracker/fsw/standalone/") #device_cfg.
-include_directories("../../../../components/generic_star_tracker/fsw/fprime/platform_inc")
+# include_directories("../../../../components/generic_star_tracker/fsw/shared")
+# include_directories("../../../../components/generic_star_tracker/fsw/standalone/") #device_cfg.
+# include_directories("../../../../components/generic_star_tracker/fsw/fprime/platform_inc")
 
-include_directories("../../../../components/generic_radio/fsw/shared")
-include_directories("../../../../components/generic_radio/fsw/standalone") #device_cfg.h
-include_directories("../../../../components/generic_radio/fsw/fprime/platform_inc")
+# include_directories("../../../../components/generic_radio/fsw/shared")
+# include_directories("../../../../components/generic_radio/fsw/standalone") #device_cfg.h
+# include_directories("../../../../components/generic_radio/fsw/fprime/platform_inc")
 
-include_directories("../../../../components/generic_torquer/fsw/shared")
-include_directories("../../../../components/generic_torquer/fsw/standalone") #device_cfg.h
-include_directories("../../../../components/generic_torquer/fsw/fprime/platform_inc")
-include_directories("../../../../components/generic_css/fsw/shared")
-include_directories("../../../../components/generic_css/fsw/standalone") #device_cfg.h
-include_directories("../../../../components/generic_css/fsw/fprime/platform_inc")
-include_directories("../../../../components/generic_fss/fsw/shared/src")
-include_directories("../../../../components/generic_fss/fsw/standalone/") #device_cfg.h
-include_directories("../../../../components/generic_fss/fsw/fprime/platform_inc")
+# include_directories("../../../../components/generic_torquer/fsw/shared")
+# include_directories("../../../../components/generic_torquer/fsw/standalone") #device_cfg.h
+# include_directories("../../../../components/generic_torquer/fsw/fprime/platform_inc")
+# include_directories("../../../../components/generic_css/fsw/shared")
+# include_directories("../../../../components/generic_css/fsw/standalone") #device_cfg.h
+# include_directories("../../../../components/generic_css/fsw/fprime/platform_inc")
+# include_directories("../../../../components/generic_fss/fsw/shared/src")
+# include_directories("../../../../components/generic_fss/fsw/standalone/") #device_cfg.h
+# include_directories("../../../../components/generic_fss/fsw/fprime/platform_inc")
 
-include_directories("../../../../components/generic_eps/fsw/shared")
-include_directories("../../../../components/generic_eps/fsw/standalone") #device_cfg.h
-include_directories("../../../../components/generic_eps/fsw/fprime/platform_inc")
+# include_directories("../../../../components/generic_eps/fsw/shared")
+# include_directories("../../../../components/generic_eps/fsw/standalone") #device_cfg.h
+# include_directories("../../../../components/generic_eps/fsw/fprime/platform_inc")
 
-include_directories("../../../../components/arducam/fsw/shared/") #device.h
-include_directories("../../../../components/arducam/fsw/standalone/") #device_cfg.h
-include_directories("../../../../components/arducam/fsw/fprime/platform_inc") #platform_cfg.h
-include_directories("../../../../components/generic_thruster/fsw/shared")
-include_directories("../../../../components/generic_thruster/fsw/standalone") #device_cfg.h
-include_directories("../../../../components/generic_thruster/fsw/fprime/platform_inc")
+# include_directories("../../../../components/arducam/fsw/shared/") #device.h
+# include_directories("../../../../components/arducam/fsw/standalone/") #device_cfg.h
+# include_directories("../../../../components/arducam/fsw/fprime/platform_inc") #platform_cfg.h
+# include_directories("../../../../components/generic_thruster/fsw/shared")
+# include_directories("../../../../components/generic_thruster/fsw/standalone") #device_cfg.h
+# include_directories("../../../../components/generic_thruster/fsw/fprime/platform_inc")
 
-include_directories("../../../../components/generic_imu/fsw/shared")
-include_directories("../../../../components/generic_imu/fsw/standalone") #device_cfg.h
-include_directories("../../../../components/generic_imu/fsw/fprime/platform_inc")
+# include_directories("../../../../components/generic_imu/fsw/shared")
+# include_directories("../../../../components/generic_imu/fsw/standalone") #device_cfg.h
+# include_directories("../../../../components/generic_imu/fsw/fprime/platform_inc")
 
-include_directories("../../../../components/generic_mag/fsw/shared")
-include_directories("../../../../components/generic_mag/fsw/standalone") #device_cfg.h
-include_directories("../../../../components/generic_mag/fsw/fprime/platform_inc")
+# include_directories("../../../../components/generic_mag/fsw/shared")
+# include_directories("../../../../components/generic_mag/fsw/standalone") #device_cfg.h
+# include_directories("../../../../components/generic_mag/fsw/fprime/platform_inc")
 
-include_directories("../../../../components/generic_reaction_wheel/fsw/shared")
-include_directories("../../../../components/generic_reaction_wheel/fsw/standalone") #device_cfg.h
-include_directories("../../../../components/generic_reaction_wheel/fsw/fprime/platform_inc")
+# include_directories("../../../../components/generic_reaction_wheel/fsw/shared")
+# include_directories("../../../../components/generic_reaction_wheel/fsw/standalone") #device_cfg.h
+# include_directories("../../../../components/generic_reaction_wheel/fsw/fprime/platform_inc")
 
-include_directories("../../../../components/generic_adcs/fsw/fprime/src")
-include_directories("../../../../components/generic_adcs/fsw/shared")
+# include_directories("../../../../components/generic_adcs/fsw/fprime/src")
+# include_directories("../../../../components/generic_adcs/fsw/shared")
 
 
 set(SOURCE_FILES 
@@ -149,4 +149,58 @@ target_sources(${FPRIME_CURRENT_MODULE} PRIVATE
     "${CMAKE_CURRENT_LIST_DIR}/../../../../fsw/apps/hwlib/sim/src/libi2c.c"
     "${CMAKE_CURRENT_LIST_DIR}/../../../../fsw/apps/hwlib/sim/src/libspi.c"
     "${CMAKE_CURRENT_LIST_DIR}/../../../../fsw/apps/hwlib/sim/src/nos_link.c" 
+)
+
+target_include_directories(${FPRIME_CURRENT_MODULE} PUBLIC
+    "../../../../components/sample/fsw/shared"
+    "../../../../components/sample/fsw/standalone"
+    "../../../../components/sample/fsw/fprime/platform_inc"
+    
+    "../../../../fsw/apps/hwlib/fsw/public_inc"
+    
+    "../../../../fsw/apps/hwlib/sim/inc"
+    
+    "../../../../components/generic_star_tracker/fsw/shared"
+    "../../../../components/generic_star_tracker/fsw/standalone/"
+    "../../../../components/generic_star_tracker/fsw/fprime/platform_inc"
+    
+    "../../../../components/generic_radio/fsw/shared"
+    "../../../../components/generic_radio/fsw/standalone" 
+    "../../../../components/generic_radio/fsw/fprime/platform_inc"
+    
+    "../../../../components/generic_torquer/fsw/shared"
+    "../../../../components/generic_torquer/fsw/standalone"
+    "../../../../components/generic_torquer/fsw/fprime/platform_inc"
+    "../../../../components/generic_css/fsw/shared"
+    "../../../../components/generic_css/fsw/standalone"
+    "../../../../components/generic_css/fsw/fprime/platform_inc"
+    "../../../../components/generic_fss/fsw/shared/src"
+    "../../../../components/generic_fss/fsw/standalone/"
+    "../../../../components/generic_fss/fsw/fprime/platform_inc"
+    
+    "../../../../components/generic_eps/fsw/shared"
+    "../../../../components/generic_eps/fsw/standalone"
+    "../../../../components/generic_eps/fsw/fprime/platform_inc"
+    
+    "../../../../components/arducam/fsw/shared/"
+    "../../../../components/arducam/fsw/standalone/"
+    "../../../../components/arducam/fsw/fprime/platform_inc"
+    "../../../../components/generic_thruster/fsw/shared"
+    "../../../../components/generic_thruster/fsw/standalone"
+    "../../../../components/generic_thruster/fsw/fprime/platform_inc"
+    
+    "../../../../components/generic_imu/fsw/shared"
+    "../../../../components/generic_imu/fsw/standalone"
+    "../../../../components/generic_imu/fsw/fprime/platform_inc"
+    
+    "../../../../components/generic_mag/fsw/shared"
+    "../../../../components/generic_mag/fsw/standalone"
+    "../../../../components/generic_mag/fsw/fprime/platform_inc"
+    
+    "../../../../components/generic_reaction_wheel/fsw/shared"
+    "../../../../components/generic_reaction_wheel/fsw/standalone"
+    "../../../../components/generic_reaction_wheel/fsw/fprime/platform_inc"
+    
+    "../../../../components/generic_adcs/fsw/fprime/src"
+    "../../../../components/generic_adcs/fsw/shared"
 )

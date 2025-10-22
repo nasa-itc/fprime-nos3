@@ -24,7 +24,7 @@
 #define ENGINE_SERVER_URI       "tcp://nos-engine-server:12000"
 #define ENGINE_BUS_NAME         "command"
 #define TICKS_PER_SECOND        100
-#define POSIX_EPOCH             1760776200 //ADVANCING TIME TO 2025-10-18:00:00 
+#define POSIX_EPOCH             1760776200 //ADVANCING TIME TO 2025-10-20:00:00 
 
 NE_Bus          *Fprime_Bus;
 pthread_mutex_t  Fprime_sim_time_mutex;
