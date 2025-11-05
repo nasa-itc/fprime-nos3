@@ -20,7 +20,7 @@ module deployment {
   module Default {
     constant QUEUE_SIZE = 100
     constant STACK_SIZE = 64 * 1024
-    constant QUEUE_SIZE_BIG = 1000
+    constant QUEUE_SIZE_BIG = 20000
   }
 
   # ----------------------------------------------------------------------
@@ -30,17 +30,17 @@ module deployment {
   instance rateGroup1: Svc.ActiveRateGroup base id 0x10001000 \
     queue size Default.QUEUE_SIZE_BIG \
     stack size Default.STACK_SIZE \
-    priority 120
+    priority 95
 
   instance rateGroup2: Svc.ActiveRateGroup base id 0x10002000 \
     queue size Default.QUEUE_SIZE \
     stack size Default.STACK_SIZE \
-    priority 119
+    priority 90
 
   instance rateGroup3: Svc.ActiveRateGroup base id 0x10003000 \
     queue size Default.QUEUE_SIZE \
     stack size Default.STACK_SIZE \
-    priority 118
+    priority 90
   
   instance rateGroup4: Svc.ActiveRateGroup base id 0xEB00 \
     queue size Default.QUEUE_SIZE_BIG \
@@ -50,7 +50,7 @@ module deployment {
   instance cmdSeq: Svc.CmdSequencer base id 0x10004000 \
     queue size Default.QUEUE_SIZE \
     stack size Default.STACK_SIZE \
-    priority 117
+    priority 99
 
    instance sampleSim: Components.SampleSim base id 0x0F00 \
     queue size Default.QUEUE_SIZE \
@@ -115,7 +115,7 @@ module deployment {
   instance generic_adcs: Components.Generic_adcs base id 0xEA00 \
     queue size Default.QUEUE_SIZE_BIG \
     stack size Default.STACK_SIZE \
-    priority 45  
+    priority 55
 
   # ----------------------------------------------------------------------
   # Queued component instances
