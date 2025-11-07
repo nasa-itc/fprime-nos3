@@ -50,7 +50,7 @@ module deployment {
   instance cmdSeq: Svc.CmdSequencer base id 0x10004000 \
     queue size Default.QUEUE_SIZE \
     stack size Default.STACK_SIZE \
-    priority 99
+    priority 20
 
    instance sampleSim: Components.SampleSim base id 0x0F00 \
     queue size Default.QUEUE_SIZE \
@@ -115,7 +115,7 @@ module deployment {
   instance generic_adcs: Components.Generic_adcs base id 0xEA00 \
     queue size Default.QUEUE_SIZE_BIG \
     stack size Default.STACK_SIZE \
-    priority 55
+    priority 45
 
   # ----------------------------------------------------------------------
   # Queued component instances
