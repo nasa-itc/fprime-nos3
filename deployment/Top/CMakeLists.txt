@@ -1,8 +1,13 @@
 ####
-# F prime CMakeLists.txt:
+# F Prime CMakeLists.txt:
 #
-# SOURCE_FILES: combined list of source and autocoding files
-# MOD_DEPS: (optional) module dependencies
+# SOURCES: list of source files (to be compiled)
+# AUTOCODER_INPUTS: list of files to be passed to the autocoders
+# DEPENDS: list of libraries that this module depends on
+#
+# More information in the F´ CMake API documentation:
+# https://fprime.jpl.nasa.gov/latest/docs/reference/api/cmake/API/
+#
 ####
 
 #ITC SFTUFF:
@@ -72,15 +77,62 @@ include_directories("../../../../../components/generic_reaction_wheel/fsw/standa
 include_directories("../../../../../components/generic_adcs/fsw/fprime/src")
 include_directories("../../../../../components/generic_adcs/fsw/shared")
 
-
 set(SOURCE_FILES
   "${CMAKE_CURRENT_LIST_DIR}/instances.fpp"
-  "${CMAKE_CURRENT_LIST_DIR}/SampleSimDeploymentPackets.xml"
+  "${CMAKE_CURRENT_LIST_DIR}/deploymentPackets.xml"
   "${CMAKE_CURRENT_LIST_DIR}/topology.fpp"
-  "${CMAKE_CURRENT_LIST_DIR}/SampleSimDeploymentTopology.cpp"
+  "${CMAKE_CURRENT_LIST_DIR}/deploymentTopology.cpp"
 
   #ITC STUFF
   
+  # "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/arducam/fsw/shared/cam_device.c"
+  # "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/arducam/fsw/shared/cam_registers.c"
+  # "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_torquer/fsw/shared/generic_torquer_device.c"
+  # "${CMAKE_CURRENT_LIST_DIR}/../../../../../fsw/apps/hwlib/sim/src/libsocket.c"
+  # "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_css/fsw/shared/generic_css_device.c"
+  # "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_fss/fsw/shared/generic_fss_device.c"
+  # "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_mag/fsw/shared/generic_mag_device.c"
+  # "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_star_tracker/fsw/shared/generic_star_tracker_device.c"
+  # "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_radio/fsw/shared/generic_radio_device.c" 
+  # "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/sample/fsw/shared/sample_device.c"
+  # "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_thruster/fsw/shared/generic_thruster_device.c"
+  # "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_adcs/fsw/shared/generic_adcs_utilities.c"
+
+  # "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_eps/fsw/shared/generic_eps_device.c"
+  # "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_imu/fsw/shared/generic_imu_device.c"
+  # "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_reaction_wheel/fsw/shared/generic_reaction_wheel_device.c"
+  
+  # "${CMAKE_CURRENT_LIST_DIR}/../../../../../fsw/apps/hwlib/sim/src/libtrq.c"
+  # "${CMAKE_CURRENT_LIST_DIR}/../../../../../fsw/apps/hwlib/sim/src/libsocket.c"
+  # "${CMAKE_CURRENT_LIST_DIR}/../../../../../fsw/apps/hwlib/sim/src/libuart.c"
+  # "${CMAKE_CURRENT_LIST_DIR}/../../../../../fsw/apps/hwlib/sim/src/libcan.c"
+  # "${CMAKE_CURRENT_LIST_DIR}/../../../../../fsw/apps/hwlib/sim/src/libi2c.c"
+  # "${CMAKE_CURRENT_LIST_DIR}/../../../../../fsw/apps/hwlib/sim/src/libspi.c"
+  # "${CMAKE_CURRENT_LIST_DIR}/../../../../../fsw/apps/hwlib/sim/src/nos_link.c"
+)
+set(MOD_DEPS
+  Fw/Logger
+  Svc/PosixTime
+  # Communication Implementations
+  Drv/Udp
+  Drv/TcpClient
+
+  #ITC Stuff
+  ${ITC_Common_LIBRARIES}
+  ${NOSENGINE_LIBRARIES}
+)
+
+register_fprime_module(
+    # AUTOCODER_INPUTS
+    #     "${CMAKE_CURRENT_LIST_DIR}/instances.fpp"
+    #     "${CMAKE_CURRENT_LIST_DIR}/topology.fpp"
+    # SOURCES
+    #     "${CMAKE_CURRENT_LIST_DIR}/deploymentTopology.cpp"
+    # DEPENDS
+    #     Fw_Logger
+)
+
+target_sources(${FPRIME_CURRENT_MODULE} PRIVATE 
   "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/arducam/fsw/shared/cam_device.c"
   "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/arducam/fsw/shared/cam_registers.c"
   "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_torquer/fsw/shared/generic_torquer_device.c"
@@ -106,16 +158,58 @@ set(SOURCE_FILES
   "${CMAKE_CURRENT_LIST_DIR}/../../../../../fsw/apps/hwlib/sim/src/libspi.c"
   "${CMAKE_CURRENT_LIST_DIR}/../../../../../fsw/apps/hwlib/sim/src/nos_link.c"
 )
-set(MOD_DEPS
-  Fw/Logger
-  Svc/PosixTime
-  # Communication Implementations
-  Drv/Udp
-  Drv/TcpClient
 
-  #ITC Stuff
-  ${ITC_Common_LIBRARIES}
-  ${NOSENGINE_LIBRARIES}
+target_include_directories(${FPRIME_CURRENT_MODULE} PRIVATE
+    "../../../../../components/sample/fsw/shared"
+    "../../../../../components/sample/fsw/standalone"
+    "../../../../../components/sample/fsw/fprime/platform_inc"
+    
+    "../../../../../fsw/apps/hwlib/fsw/public_inc"
+    
+    "../../../../../fsw/apps/hwlib/sim/inc"
+    
+    "../../../../../components/generic_star_tracker/fsw/shared"
+    "../../../../../components/generic_star_tracker/fsw/standalone/"
+    "../../../../../components/generic_star_tracker/fsw/fprime/platform_inc"
+    
+    "../../../../../components/generic_radio/fsw/shared"
+    "../../../../../components/generic_radio/fsw/standalone" 
+    "../../../../../components/generic_radio/fsw/fprime/platform_inc"
+    
+    "../../../../../components/generic_torquer/fsw/shared"
+    "../../../../../components/generic_torquer/fsw/standalone"
+    "../../../../../components/generic_torquer/fsw/fprime/platform_inc"
+    "../../../../../components/generic_css/fsw/shared"
+    "../../../../../components/generic_css/fsw/standalone"
+    "../../../../../components/generic_css/fsw/fprime/platform_inc"
+    "../../../../../components/generic_fss/fsw/shared/src"
+    "../../../../../components/generic_fss/fsw/standalone/"
+    "../../../../../components/generic_fss/fsw/fprime/platform_inc"
+    
+    "../../../../../components/generic_eps/fsw/shared"
+    "../../../../../components/generic_eps/fsw/standalone"
+    "../../../../../components/generic_eps/fsw/fprime/platform_inc"
+    
+    "../../../../../components/arducam/fsw/shared/"
+    "../../../../../components/arducam/fsw/standalone/"
+    "../../../../../components/arducam/fsw/fprime/platform_inc"
+    "../../../../../components/generic_thruster/fsw/shared"
+    "../../../../../components/generic_thruster/fsw/standalone"
+    "../../../../../components/generic_thruster/fsw/fprime/platform_inc"
+    
+    "../../../../../components/generic_imu/fsw/shared"
+    "../../../../../components/generic_imu/fsw/standalone"
+    "../../../../../components/generic_imu/fsw/fprime/platform_inc"
+    
+    "../../../../../components/generic_mag/fsw/shared"
+    "../../../../../components/generic_mag/fsw/standalone"
+    "../../../../../components/generic_mag/fsw/fprime/platform_inc"
+    
+    "../../../../../components/generic_reaction_wheel/fsw/shared"
+    "../../../../../components/generic_reaction_wheel/fsw/standalone"
+    "../../../../../components/generic_reaction_wheel/fsw/fprime/platform_inc"
+    
+    "../../../../../components/generic_adcs/fsw/fprime/src"
+    "../../../../../components/generic_adcs/fsw/shared"
 )
 
-register_fprime_module()

@@ -17,7 +17,7 @@ namespace Components {
         virtual ~Nos3Time();
     protected:
         void timeGetPort_handler(
-                NATIVE_INT_TYPE portNum, /*!< The port number*/
+                FwIndexType portNum, /*!< The port number*/
                 Fw::Time &time /*!< The U32 cmd argument*/
             );
     private:
