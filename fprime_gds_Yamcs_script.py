@@ -144,14 +144,34 @@ class SpecificChannel(DataHandler):
             sys.getsizeof(packet_data), " len = ", len(packet_data))
         print("\n")
         
-        # todo decide what ampcs framer is
-        # primary header (6 bytes) + secondary header/timestamp (6 bytes) +
-        # payload=meas_id (2 bytes) + EHA value (4 bytes)
-        yamcs_frame = self.yamcs_framer.frame(packet_data)
-        print("yamcs_frame = [", yamcs_frame.hex(), "], len = ",
-                len(yamcs_frame))
-
-        self.connection.send(yamcs_frame)
+        
+        packet_check = packet_data.hex()
+        packet_id = packet_check[:8]
+        
+        # sample cmd noop nos3 packet, cmd count=1: 08fac048001a000001605999000000000001000000000000000000000000000000
+        if packet_id == "00000f01":
+            print("Found packet with ID 00000f01")
+            print("sending sample hk data to yamcs!")
+            yamcs_frame_byte1 = '08fac048001a0000016059990000000000'
+            yamcs_frame_value = packet_check[-2:]
+            yamcs_frame_byte2 = '000000000000000000000000000000'
+            yamcs_frame_bytes = yamcs_frame_byte1 + yamcs_frame_value + yamcs_frame_byte2
+            
+            try:
+                yamcs_frame = bytes.fromhex(yamcs_frame_bytes)
+                self.connection.send(yamcs_frame)
+                print("packet sent")
+            except ValueError as e:
+                print(f"Error converting hex string: {e}")
+            except Exception as e:
+                print(f"Error sending packet: {e}")
+        else:
+            yamcs_frame = self.yamcs_framer.frame(packet_data)
+            print("yamcs_frame = [", yamcs_frame.hex(), "], len = ",
+                    len(yamcs_frame))
+            # self.connection.send(yamcs_frame)
+        
+        # self.connection.send(yamcs_frame)
         print("packet sent")
 
 
