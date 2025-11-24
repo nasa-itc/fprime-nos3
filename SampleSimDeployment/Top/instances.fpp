@@ -87,11 +87,16 @@ module SampleSimDeployment {
     stack size Default.STACK_SIZE \
     priority 96
 
+  #instance sampleSim: Components.SampleSim base id 0x1800 \
+  #  queue size Default.QUEUE_SIZE \
+  #  stack size Default.STACK_SIZE \
+  #  priority 50
+
   instance sampleSim: Components.SampleSim base id 0x0F00 \
     queue size Default.QUEUE_SIZE \
     stack size Default.STACK_SIZE \
     priority 50
-
+    
   instance generic_mag: Components.Generic_mag base id 0xEF00 \
     queue size Default.QUEUE_SIZE \
     stack size Default.STACK_SIZE \

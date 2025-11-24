@@ -106,7 +106,7 @@ namespace Components {
     
   // seq_toggle = 1;
   
-  for(int i=0;i<20;i++){
+  for(int i=0;i<255;i++){
   // while(1){
     sleep(1);
     // printf("seq toggle is equal to %d \n", seq_toggle);

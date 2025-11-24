@@ -18,7 +18,10 @@ module Components {
         async command REQUEST_HOUSEKEEPING(
         )
 
-        @ Command to issue noop
+        #@ This command has default opcode 0x18FB
+        #async command NOOP opcode 0x18FB
+
+        @ This command has default opcode 0x18FB
         async command NOOP(
         )
 
