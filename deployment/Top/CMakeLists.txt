@@ -74,6 +74,10 @@ include_directories("../../../../../components/generic_reaction_wheel/fsw/fprime
 include_directories("../../../../../components/generic_reaction_wheel/fsw/shared")
 include_directories("../../../../../components/generic_reaction_wheel/fsw/standalone") #device_cfg.h
 
+include_directories("../../../../../components/novatel_oem615/fsw/shared")
+include_directories("../../../../../components/novatel_oem615/fsw/standalone") #device_cfg.h
+include_directories("../../../../../components/novatel_oem615/fsw/fprime/platform_inc")
+
 include_directories("../../../../../components/generic_adcs/fsw/fprime/src")
 include_directories("../../../../../components/generic_adcs/fsw/shared")
 
@@ -101,6 +105,7 @@ set(SOURCE_FILES
   # "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_eps/fsw/shared/generic_eps_device.c"
   # "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_imu/fsw/shared/generic_imu_device.c"
   # "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_reaction_wheel/fsw/shared/generic_reaction_wheel_device.c"
+  # "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_mag/fsw/shared/generic_mag_device.c"
   
   # "${CMAKE_CURRENT_LIST_DIR}/../../../../../fsw/apps/hwlib/sim/src/libtrq.c"
   # "${CMAKE_CURRENT_LIST_DIR}/../../../../../fsw/apps/hwlib/sim/src/libsocket.c"
@@ -149,6 +154,7 @@ target_sources(${FPRIME_CURRENT_MODULE} PRIVATE
   "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_eps/fsw/shared/generic_eps_device.c"
   "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_imu/fsw/shared/generic_imu_device.c"
   "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_reaction_wheel/fsw/shared/generic_reaction_wheel_device.c"
+  "${CMAKE_CURRENT_LIST_DIR}/../../../../../components/generic_mag/fsw/shared/generic_mag_device.c"
   
   "${CMAKE_CURRENT_LIST_DIR}/../../../../../fsw/apps/hwlib/sim/src/libtrq.c"
   "${CMAKE_CURRENT_LIST_DIR}/../../../../../fsw/apps/hwlib/sim/src/libsocket.c"
@@ -208,6 +214,10 @@ target_include_directories(${FPRIME_CURRENT_MODULE} PRIVATE
     "../../../../../components/generic_reaction_wheel/fsw/shared"
     "../../../../../components/generic_reaction_wheel/fsw/standalone"
     "../../../../../components/generic_reaction_wheel/fsw/fprime/platform_inc"
+
+    "../../../../../components/novatel_oem615/fsw/shared"
+    "../../../../../components/novatel_oem615/fsw/standalone"
+    "../../../../../components/novatel_oem615/fsw/fprime/platform_inc"
     
     "../../../../../components/generic_adcs/fsw/fprime/src"
     "../../../../../components/generic_adcs/fsw/shared"
