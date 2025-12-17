@@ -365,4 +365,17 @@ telemetry packets deploymentPackets {
   Components.sampleSim.CommandErrorCount
   Components.sampleSim.DeviceEnabled
 
+  Components.novatel_oem615.Weeks
+  Components.novatel_oem615.SecondsIntoWeek
+  Components.novatel_oem615.Fractions
+  Components.novatel_oem615.ECEFX
+  Components.novatel_oem615.ECEFY
+  Components.novatel_oem615.ECEFZ
+  Components.novatel_oem615.VelX
+  Components.novatel_oem615.VelY
+  Components.novatel_oem615.VelZ
+  Components.novatel_oem615.lat
+  Components.novatel_oem615.lon
+  Components.novatel_oem615.alt
+
 }

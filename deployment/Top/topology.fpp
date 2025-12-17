@@ -47,6 +47,7 @@ module deployment {
     instance generic_thruster
     instance generic_imu
     instance generic_reaction_wheel
+    instance novatel_oem615
     instance generic_adcs
 
   # ----------------------------------------------------------------------

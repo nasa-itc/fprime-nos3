@@ -107,6 +107,11 @@ module deployment {
     stack size Default.STACK_SIZE \
     priority 50
 
+  instance novatel_oem615: Components.novatel_oem615 base id 0xE800 \
+    queue size Default.QUEUE_SIZE \
+    stack size Default.STACK_SIZE \
+    priority 50
+    
   instance generic_torquer: Components.Generic_torquer base id 0xE900 \
     queue size Default.QUEUE_SIZE_BIG \
     stack size Default.STACK_SIZE \
