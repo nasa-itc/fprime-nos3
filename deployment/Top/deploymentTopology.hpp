@@ -1,17 +1,17 @@
 // ======================================================================
-// \title  SampleSimDeploymentTopology.hpp
+// \title  deploymentTopology.hpp
 // \brief header file containing the topology instantiation definitions
 //
 // ======================================================================
-#ifndef SAMPLESIMDEPLOYMENT_SAMPLESIMDEPLOYMENTTOPOLOGY_HPP
-#define SAMPLESIMDEPLOYMENT_SAMPLESIMDEPLOYMENTTOPOLOGY_HPP
-// Included for access to SampleSimDeployment::TopologyState and SampleSimDeployment::ConfigObjects::pingEntries. These definitions are required by the
+#ifndef DEPLOYMENT_DEPLOYMENTTOPOLOGY_HPP
+#define DEPLOYMENT_DEPLOYMENTTOPOLOGY_HPP
+// Included for access to deployment::TopologyState and deployment::ConfigObjects::pingEntries. These definitions are required by the
 // autocoder, but are also used in this hand-coded topology.
-#include <SampleSimDeployment/Top/SampleSimDeploymentTopologyDefs.hpp>
+#include <deployment/Top/deploymentTopologyDefs.hpp>
 
-// Remove unnecessary SampleSimDeployment:: qualifications
-using namespace SampleSimDeployment;
-namespace SampleSimDeployment {
+// Remove unnecessary deployment:: qualifications
+using namespace deployment;
+namespace deployment {
 /**
  * \brief initialize and run the F´ topology
  *
@@ -32,7 +32,7 @@ namespace SampleSimDeployment {
  * custom tasks often start radio communication it is convenient to start them last.
  *
  * The state argument carries command line inputs used to setup the topology. For an explanation of the required type
- * SampleSimDeployment::TopologyState see: SampleSimDeploymentTopologyDefs.hpp.
+ * deployment::TopologyState see: deploymentTopologyDefs.hpp.
  *
  * \param state: object shuttling CLI arguments (e.g. hostname/port, or UART baudrate) needed to construct the topology
  */
@@ -53,7 +53,7 @@ void setupTopology(const TopologyState& state);
  * Step 1, 2, 3, and 4 must occur in-order as the tasks must be stopped before being joined. These tasks must be stopped
  * and joined before any active resources may be deallocated.
  *
- * For an explanation of the required type SampleSimDeployment::TopologyState see: SampleSimDeploymentTopologyDefs.hpp.
+ * For an explanation of the required type deployment::TopologyState see: deploymentTopologyDefs.hpp.
  *
  * \param state: state object provided to setupTopology
  */
@@ -67,20 +67,18 @@ void teardownTopology(const TopologyState& state);
  * achieved. This function mimics the cycling via a Task::delay(milliseconds) loop that manually invokes the ISR call
  * to the example block driver.
  *
- * This loop is stopped via a startSimulatedCycle call.
  *
- * Note: projects should replace this with a component that produces an output port call at the appropriate frequency.
+ * This loop is stopped via a stopRateGroups call.
  *
- * \param milliseconds: milliseconds to delay for each cycle. Default: 1000 or 1Hz.
  */
-void startSimulatedCycle(U32 milliseconds = 1000);
+void startRateGroups(Fw::TimeInterval interval = Fw::TimeInterval(1,0));
 
 /**
- * \brief stop the simulated cycle started by startSimulatedCycle
+ * \brief stop the rate groups 
  *
- * This stops the cycle started by startSimulatedCycle.
+ * This stops the cycle started by startRateGroups.
  */
-void stopSimulatedCycle();
+void stopRateGroups();
 
-} // namespace SampleSimDeployment
+} // namespace deployment
 #endif

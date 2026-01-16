@@ -4,14 +4,15 @@
 //
 // ======================================================================
 // Used to access topology functions
-#include <SampleSimDeployment/Top/SampleSimDeploymentTopology.hpp>
+#include <deployment/Top/deploymentTopology.hpp>
+// OSAL initialization
+#include <Os/Os.hpp>
 // Used for signal handling shutdown
 #include <signal.h>
 // Used for command line argument processing
 #include <getopt.h>
 // Used for printf functions
 #include <cstdlib>
-
 
 /**
  * \brief print command line help message
@@ -33,7 +34,7 @@ void print_usage(const char* app) {
  * @param signum
  */
 static void signalHandler(int signum) {
-    SampleSimDeployment::stopSimulatedCycle();
+    deployment::stopRateGroups();
 }
 
 /**
@@ -50,6 +51,8 @@ int main(int argc, char* argv[]) {
     I32 option = 0;
     CHAR* hostname = nullptr;
     U16 port_number = 0;
+
+    Os::init();
 
     // Loop while reading the getopt supplied options
     while ((option = getopt(argc, argv, "hp:a:")) != -1) {
@@ -72,8 +75,8 @@ int main(int argc, char* argv[]) {
                 return (option == 'h') ? 0 : 1;
         }
     }
-    // Object for communicating state to the reference topology
-    SampleSimDeployment::TopologyState inputs;
+    // Object for communicating state to the topology
+    deployment::TopologyState inputs;
     inputs.hostname = hostname;
     inputs.port = port_number;
 
@@ -83,9 +86,9 @@ int main(int argc, char* argv[]) {
     (void)printf("Hit Ctrl-C to quit\n");
 
     // Setup, cycle, and teardown topology
-    SampleSimDeployment::setupTopology(inputs);
-    SampleSimDeployment::startSimulatedCycle(1000);  // Program loop cycling rate groups at 1Hz
-    SampleSimDeployment::teardownTopology(inputs);
+    deployment::setupTopology(inputs);
+    deployment::startRateGroups(Fw::TimeInterval(0,100000));  // Program loop cycling rate groups at 10Hz
+    deployment::teardownTopology(inputs);
     (void)printf("Exiting...\n");
     return 0;
 }

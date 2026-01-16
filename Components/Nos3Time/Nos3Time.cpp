@@ -5,7 +5,10 @@
 // ======================================================================
 
 #include "Components/Nos3Time/Nos3Time.hpp"
-#include "FpConfig.hpp"
+// #include "FpConfig.hpp"
+#include "Fw/FPrimeBasicTypes.hpp"
+#include <config/TimeBaseEnumAc.hpp>
+// /home/jstar/dev/735_4_0_upgrade/nos3/fsw/fprime/fprime-nos3/build-fprime-automatic-native/F-Prime/default/config/TimeBaseEnumAc.hpp
 
 #include <Fw/Time/Time.hpp>
 #include <ctime>
@@ -15,12 +18,13 @@
 #include "nos_link.h"
 
 
+
 /* Constants used for NOS Engine Time and NOS Engine bus */
 
 #define ENGINE_SERVER_URI       "tcp://nos-engine-server:12000"
 #define ENGINE_BUS_NAME         "command"
 #define TICKS_PER_SECOND        100
-#define POSIX_EPOCH             1760982200 //ADVANCING TIME TO 2025-10-20:17:43:20  1760982200
+#define POSIX_EPOCH             1760776200 //ADVANCING TIME TO 2025-10-20:00:00 
 
 NE_Bus          *Fprime_Bus;
 pthread_mutex_t  Fprime_sim_time_mutex;
@@ -51,7 +55,7 @@ namespace Components {
     }
 
     void Nos3Time::timeGetPort_handler(
-            NATIVE_INT_TYPE portNum, /*!< The port number*/
+            FwIndexType portNum, /*!< The port number*/
             Fw::Time &time /*!< The U32 cmd argument*/
         ) {
         int32_t Nos3Time_upper;
@@ -69,7 +73,7 @@ namespace Components {
         Nos3Time_upper += POSIX_EPOCH; //setting to 2025 
 
 
-        time.set(TB_WORKSTATION_TIME,0, Nos3Time_upper, Nos3Time_lower);
+        time.set(TimeBase::TB_WORKSTATION_TIME,0, Nos3Time_upper, Nos3Time_lower);
     }
 
 }
