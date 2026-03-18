@@ -1,0 +1,2 @@
+R00:00:05 deployment.generic_adcs.NOOP;
+R00:00:06 deployment.generic_adcs.SET_MODE, SUNSAFE;

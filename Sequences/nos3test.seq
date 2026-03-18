@@ -1,0 +1,5 @@
+R00:00:01 deployment.sampleSim.NOOP;
+R00:00:01 deployment.generic_mag.NOOP;
+R00:00:01 deployment.generic_fss.NOOP;
+R00:00:01 deployment.generic_css.NOOP;
+R00:00:01 deployment.generic_adcs.NOOP;
